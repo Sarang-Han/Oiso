@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/gReview.css"/>
+    <title>받은 리뷰 확인하기</title>
+    
+</head>
+<body>
+    <header>
+        <button onclick="goBack()"><img src="..\static\image\back.png" style="width:20px;"></button>
+        <img src="..\static\image\logo.png" width="100px" alt="로고" class="logo">
+    </header>
+    <div class="profile-section">
+        <img src="..\static\image\profile.png" alt="프로필 사진" class="profile-picture" width="100px">
+        <div class="user-nickname">이화연 @1077</div>
+        
+    </div>
+    
+    <div class="review-section">
+        <div class="review-header">
+            <div class="review-header-block"><a href="gReview.html">받은 리뷰</a></div>
+            <div class="review-header-block active">작성한 리뷰</div>
+        </div>
+        <div class="image-grid">
+            <a href="review_spec2.html"><img class="review-image" src="..\static\image\500.jpg" alt="리뷰 이미지"></a>
+            <img class="review-image" src="..\static\image\400.png" alt="리뷰 이미지">
+            <img class="review-image" src="..\static\image\400.png" alt="리뷰 이미지">
+            <img class="review-image" src="..\static\image\400.png" alt="리뷰 이미지">
+            <img class="review-image" src="..\static\image\400.png" alt="리뷰 이미지">
+            <img class="review-image" src="..\static\image\400.png" alt="리뷰 이미지">
+        </div>
+        <div class="review-content">
+            <div class="review">
+                <a href="review_spec2.html" style="width:50%"><img src="..\static\image\500.jpg" alt="리뷰 사진"></a>
+                <div class="review-text">
+                    <div class="review-user">이화연 @1077</div>
+                    <div class="review-product">상품명: 컴퓨터 책상</div>
+                    <div class="review-description"><strong>판매자가 친절해요</strong> 물건이 설명과 같아요 상...더보기</div>
+                                       
+                </div>
+                
+            </div>
+            <div class="review">
+                <a href="#" style="width:50%"><img src="..\static\image\400.png" alt="리뷰 사진"></a>
+                <div class="review-text">
+                    <div class="review-user">김이화</div>
+                    <div class="review-product">스타벅스 머그</div>
+                    <div class="review-description"><strong>판매자가 친절해요</strong> 동해물과 백두산이 마르고 닳도록</div>
+                    
+                    
+                </div>
+                
+            </div>
+            <div class="review">
+                <a href="#" style="width:50%"><img src="..\static\image\400.png" alt="리뷰 사진"></a>
+                <div class="review-text">
+                    <div class="review-user">김이화</div>
+                    <div class="review-product">스타벅스 머그</div>
+                    <div class="review-description"><strong>판매자가 친절해요</strong> 동해물과 백두산이 마르고 닳도록</div>
+                    
+                    
+                </div>
+                
+            </div>
+            <div class="review">
+                <a href="#" style="width:50%"><img src="..\static\image\400.png" alt="리뷰 사진"></a>
+                <div class="review-text">
+                    <div class="review-user">김이화</div>
+                    <div class="review-product">스타벅스 머그</div>
+                    <div class="review-description"><strong>판매자가 친절해요</strong> 동해물과 백두산이 마르고 닳도록</div>
+                    
+                    
+                </div>
+                
+            </div>
+            <!-- 다른 리뷰들도 마찬가지로 추가 -->
+        </div>
+    </div>
+
+    <nav>
+        <a href="#"><img src="..\static\image\home.png" width="20px"><br>메인 홈</a>
+            <a href="allReview.html"><img src="..\static\image\write.png" width="20px"><br>전체 리뷰</a>
+            <a href="#"><img src="..\static\image\add.png" width="20px"><br>상품 등록</a>
+            <a href="#"><img src="..\static\image\chat.png" width="20px"><br>채팅 보기</a>
+            <a href="myPage_1.html"><img src="..\static\image\user.png" width="20px"><br>My</a>
+    </nav>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        /*function selectReceivedReviews() {
+            // 받은 리뷰를 표시하는 로직
+            document.getElementsByClassName('review-header-block')[0].classList.add('active');
+            document.getElementsByClassName('review-header-block')[1].classList.remove('active');
+            // 받은 리뷰를 표시하는 로직 추가
+        }
+        function selectWrittenReviews() {
+            // 작성한 리뷰를 표시하는 로직
+            document.getElementsByClassName('review-header-block')[1].classList.add('active');
+            document.getElementsByClassName('review-header-block')[0].classList.remove('active');
+            // 작성한 리뷰를 표시하는 로직 추가
+        }*/
+    </script>
+</body>
+</html>
