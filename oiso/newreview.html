@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <title>리뷰 작성</title>
+    <link rel="stylesheet" type="text/css" href="css/newreview.css">
+    <h3 id="X">X</h3>
+    <h3 id="write">리뷰 작성</h3>
+</head>
+
+<body>
+    <div class="fileinput">
+        <label for="image"><i class="plus">
+        <img src="image/camera.png" alt="사진추가"></i></label>
+        <p>0/10</p>
+        <input type="file" id="image" style="display: none; visibility: none;">
+    
+        </div>
+
+    <div class="review">
+        <p>상품명</p>
+        <input type="text" name="name" class="bottom">
+        <p>리뷰자 ID</p>
+        <input type="text" name="id" class="bottom">
+        <p>상품 가격</p>
+        <input type="text" name="price" class="bottom">
+        <p>리뷰 제목</p>
+        <input type="text" name="subject" class="bottom">
+        <p>리뷰 내용</p>
+        <textarea name="review content" id="content" cols="50" rows="10">
+        상품 리뷰를 20자 이상 입력해주세요.</textarea>
+
+        <div class="star"></div><p>별점</p>
+            <p id="countstar">☆☆☆☆☆</p>
+            <button id="register">리뷰 등록</button>
+        </div>
+    </div>
+
+   
+    
+</body>
+</html>
