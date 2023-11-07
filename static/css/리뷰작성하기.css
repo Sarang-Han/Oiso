@@ -13,6 +13,7 @@ body {
     height: 844px;
     background-color: #fff; 
     padding: 20px; 
+    display: relative;
 }
 
 header {
@@ -20,6 +21,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 
@@ -106,10 +108,9 @@ body, html {
 }
 
 nav {
-    position: fixed;
+    position: absolute;
     bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
+    
     width: 430px;
     background-color: #004F25;
     display: flex;
