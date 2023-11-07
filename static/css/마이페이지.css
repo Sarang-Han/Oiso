@@ -110,15 +110,28 @@ nav .nav-active img{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding-top:10px;
-    gap: 20px;
+    gap: 10px;
     padding-left: 10px;
-    padding-right: 30px
+    padding-right: 30px;
+}
+
+.image-grid a{
+    position:relative;
+    width:100%;
+    height: 0;
+    padding-bottom: 100%;
+}
+
+.image-grid img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .review-image {
     padding: 0 10px;
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
 }
 .review-content {
@@ -136,6 +149,8 @@ nav .nav-active img{
     height: 100px;
     
 }
+
+
 .review-text {
     margin-left: 10px;
     
@@ -167,6 +182,7 @@ nav .nav-active img{
 
 .review a{
     max-width: 100px;
+    max-height: 100px;
     display: flex;
 }
 .review img{
