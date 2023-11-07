@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/상품등록.css">
+    <title>상품 등록하기</title>
+</head>
+<body>
+<div class="content">
+    <header>
+        <button onclick="goBack()"><img src="../img/x.png" style="width:20px;"></button>
+        <h4>상품 등록하기</h4>
+    </header>
+    <div class="picupload">
+        <label for="image"><img src="../img/camera.png" alt="사진 업로드"></label>
+        <p>0/10</p>
+        <input type="file" id="image" style="display: none; visibility: none;">
+    </div>
+    <div class="add">
+        <p>판매자 ID</p>
+        <input type="text" name="name" class="line" placeholder="판매자 ID">
+        <p>상품명</p>
+        <input type="text" name="name" class="line">
+        <p>카테고리</p>
+        <div class="category">
+            <select id="category">
+                <option value="clothes">의류</option>
+                <option value="furniture">가구</option>
+                <option value="electronics">전자기기</option>
+                <option value="living">생필품</option>
+                <option value="etc">기타</option>
+            </select>
+        </div>
+        <p>가격</p>
+        <input type="text" name="price" class="line">
+        <p>거래 지역</p>
+        <div class="category">
+            <select id="place">
+                <option value="front">정문</option>
+                <option value="ecc">ECC</option>
+                <option value="posco">포스코관</option>
+                <option value="hakmun">학생문화관</option>
+                <option value="hak">학관</option>
+                <option value="jong">종합과학관</option>
+                <option value="asan">아산공학관</option>
+                <option value="ehouse">이하우스</option>
+                <option value="hanwoori">한우리집</option>
+                <option value="centlib">중앙도서관</option>
+            </select>
+        </div>
+        <p>상품 설명</p>
+        <textarea name="content" id="content" cols="50" rows="10">
+        상품의 정보와 상태를 설명해주세요.</textarea>
+    </div>
+    <nav>
+        <a href="home.html"><img src="../img/home.png" width="20px"><br>메인 홈</a>
+        <a href="allReview.html"><img src="../img/write.png" width="20px"><br>전체 리뷰</a>
+        <a href="상품등록.html"><img src="../img/add.png" width="20px"><br>상품 등록</a>
+        <a href="#"><img src="../img/chat.png" width="20px"><br>채팅 보기</a>
+        <a href="myPage_1.html"><img src="../img/user.png" width="20px"><br>My</a>
+    </nav>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</div>
+</body>
+</html>

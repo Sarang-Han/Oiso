@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/회원가입.css"> <!-- Changed CSS path -->
+    <title>회원가입</title>
+</head>
+<body>
+<div class="content">
+    <header>
+        <button onclick="goBack()"><img src="../img/back.png" style="width:20px;"></button> <!-- Changed image path -->
+        <h4>회원가입</h4>
+    </header>
+    <div class="picupload">
+        <label for="image"><img src="../img/profile.png" alt="프로필 사진"></label> <!-- Changed image path -->
+        <input type="file" id="image" style="display: none; visibility: none;">
+    </div>
+    <p>이름</p>
+    <input type="text" id="name" name="name" class="join">
+    <p>아이디</p>
+    <input type="text" id="id" name="id" class="join" placeholder="ID">
+    <p>비밀번호</p>
+    <input type="password" id="pw" name="password" class="join" placeholder="PW">
+    <p>이메일</p>
+    <input type="text" id="email" name="email" class="join">
+    <p>전화번호</p>
+    <input type="text" id="phone" name="phone" class="join">
+    <button class="join-button" onclick="welcome()">가입하기</button>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        function welcome() {
+            window.location.href = "welcome.html";
+        }
+    </script>
+</div>
+</body>
+</html>
