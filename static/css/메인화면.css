@@ -61,8 +61,8 @@ body {
 
 nav {
     position: fixed;
-    bottom: 25px;
-    left: 50%;
+    bottom: 0px;
+    left: 49.5%;
     transform: translateX(-50%);
     width: 430px;
     background-color: #004F25;
@@ -70,16 +70,24 @@ nav {
     justify-content: center;
     align-items: center;
     height: 60px;
+    
 }
-
 nav a {
     text-decoration: none;
-    color: white;
+    color: gray;
     flex: 1;
     text-align: center;
     font-size: 13px;
 }
 
 nav img{
-    filter:invert(100%);
+    filter:invert(50%);
+}
+
+nav .nav-active{
+    color:white;  
+}
+
+nav .nav-active img{
+    filter:invert(100%);  
 }
