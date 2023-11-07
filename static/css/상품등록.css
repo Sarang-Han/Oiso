@@ -39,8 +39,16 @@ body {
     margin-left: 15px;
 }
 
+header {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 header button{
-    left: 10px;
+    position: absolute;
+    margin-right: 350px;
     background-color: transparent;
     border: none;
 }
