@@ -1,5 +1,30 @@
-#header{
-    text-align: center;
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; 
+}
+
+.content {
+    width: 390px;
+    height: 844px;
+    background-color: #fff;
+    padding: 20px; 
+}
+
+header {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h4{
+    margin-top: 50px;
+    position: fixed;
 }
 
 .chat1 {
@@ -51,40 +76,37 @@
     font-size: 13px;
     color: gray;
 }
-.navbar {
-    position: fixed; 
-    bottom: 0; 
-    left: 0; 
-    margin-bottom: 0;
-    background-color: darkgreen;
+
+body, html {
+    margin: 0;
+    padding: 0;
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
+    height: 100%;
+    overflow: auto;
 }
 
-
-.navbar div {
-    text-align: center;
-    color: gray;
-    font-size: 10px;
-    text-decoration: none;
-    padding: 10px 5px;
+nav {
+    position: fixed;
+    bottom: 0px;
+    left: 49.5%;
+    transform: translateX(-50%);
+    width: 430px;
+    background-color: #004F25;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 60px;
 }
 
-.navbar img {
-    width: 24px;
-    height: 24px;
+
+nav a {
+    text-decoration: none;
+    color: gray;
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
 }
 
-.navbar div:hover {
-    color: white;
+nav img{
+    filter:invert(100%);
 }
-
-.navbar div:hover img {
-    filter: brightness(0) invert(1);
-}
-

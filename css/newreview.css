@@ -1,20 +1,39 @@
-
-
-h3{
-    display: inline-block;
-    margin-right: 80px;   
-    margin-left: 20px;
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
 }
 
-#X{
+.content {
+    width: 390px;
+    height: 844px;
+    background-color: #fff; 
+    padding: 20px; 
+}
+
+header {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+header button{
+    position: absolute;
+    margin-right: 350px;
     margin-top: 30px;
-    font-size: 180%;
+    background-color: transparent;
+    border: none;
 }
 
-#write{
-    
-    margin-top: 10px;
-    font-size: 130%;
+header h4{
+    margin-top: 50px;
+    position: fixed;
 }
 
 .fileinput{
@@ -52,31 +71,69 @@ h3{
     margin-left:20px;
 }
 
-#content{
+textarea{
     width: 100%;
     border: 1px solid black;
     display: block;
     
 }
-#content::placeholder{
+
+textarea:focus {
+    background: none;
+}
+
+textarea::placeholder {
+    font-size: 16px;
     color: gray;
-    justify-content: left;
-    padding: 0;
-
+    text-align: left;
 }
 
-#countstar{
+#countstar {
     font-size: 150%;
+    display: inline; 
+    margin-right: 110px; 
 }
 
-#countstar, #register{
-    display: inline;
-    margin-right: 50px;
-}
-
-#register{
+input[type="button"] {
+    display: inline; 
     color: white;
-    background-color: green;
+    width: 100px;
+    height: 30px;
+    background-color: darkgreen;
     border-radius: 10px;
+    border: none;
+}
 
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+nav {
+    position: fixed;
+    bottom: 0px;
+    left: 49.5%;
+    transform: translateX(-50%);
+    width: 430px;
+    background-color: #004F25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+
+nav a {
+    text-decoration: none;
+    color: gray;
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+}
+
+nav img{
+    filter:invert(100%);
 }
