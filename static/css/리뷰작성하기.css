@@ -33,7 +33,7 @@ header button{
 
 header h4{
     margin-top: 50px;
-    position: fixed;
+    position: relative;
 }
 
 .fileinput{
@@ -75,18 +75,11 @@ textarea{
     width: 100%;
     border: 1px solid black;
     display: block;
+    margin: 0;
+    text-align: left;
     
 }
 
-textarea:focus {
-    background: none;
-}
-
-textarea::placeholder {
-    font-size: 16px;
-    color: gray;
-    text-align: left;
-}
 
 #countstar {
     font-size: 150%;
@@ -123,9 +116,8 @@ nav {
     justify-content: center;
     align-items: center;
     height: 60px;
+    
 }
-
-
 nav a {
     text-decoration: none;
     color: gray;
@@ -135,5 +127,13 @@ nav a {
 }
 
 nav img{
-    filter:invert(100%);
+    filter:invert(50%);
+}
+
+nav .nav-active{
+    color:white;  
+}
+
+nav .nav-active img{
+    filter:invert(100%);  
 }

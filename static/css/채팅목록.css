@@ -24,7 +24,7 @@ header {
 
 header h4{
     margin-top: 50px;
-    position: fixed;
+    position: relative;
 }
 
 .chat1 {
@@ -96,9 +96,8 @@ nav {
     justify-content: center;
     align-items: center;
     height: 60px;
+    
 }
-
-
 nav a {
     text-decoration: none;
     color: gray;
@@ -108,5 +107,13 @@ nav a {
 }
 
 nav img{
-    filter:invert(100%);
+    filter:invert(50%);
+}
+
+nav .nav-active{
+    color:white;  
+}
+
+nav .nav-active img{
+    filter:invert(100%);  
 }
