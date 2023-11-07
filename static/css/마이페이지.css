@@ -23,7 +23,7 @@ header {
 
 nav {
     position: fixed;
-    bottom: 25px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     width: 430px;
