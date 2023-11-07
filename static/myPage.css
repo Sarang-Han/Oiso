@@ -32,14 +32,22 @@ nav {
 }
 nav a {
     text-decoration: none;
-    color: white;
+    color: gray;
     flex: 1;
     text-align: center;
     font-size: 13px;
 }
 
 nav img{
-    filter:invert(100%);
+    filter:invert(50%);
+}
+
+nav .nav-active{
+    color:white;  
+}
+
+nav .nav-active img{
+    filter:invert(100%);  
 }
 
 .myProfile{
@@ -74,6 +82,8 @@ nav img{
     margin: 10px;
     display: inline;
 }
+
+
 
 .review-section {
     margin-top: 10px;
