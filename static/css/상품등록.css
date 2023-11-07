@@ -90,3 +90,7 @@ nav .nav-active{
 nav .nav-active img{
     filter:invert(100%);  
 }
+
+.add {
+    margin-left: 16px;
+}
