@@ -107,8 +107,8 @@ body, html {
 
 nav {
     position: fixed;
-    bottom: 0px;
-    left: 49.5%;
+    bottom: 25px;
+    left: 50%;
     transform: translateX(-50%);
     width: 430px;
     background-color: #004F25;
