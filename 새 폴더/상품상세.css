@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* 밝은 흰색 배경 설정 */
+}
+
+.content {
+    width: 390px;
+    height: 844px;
+    background-color: #fff; /* 메인 화면을 흰색으로 설정 */
+    padding: 20px; /* 내용 주변에 여백을 추가합니다. */
+}
+
+header button{
+    background-color: transparent;
+    border: none;
+}
+
+.productimg {
+    text-align: center;
+}
+
+.seller {
+    left: 50%;
+    transform: translateX(-5%);
+    background-color: #eeeeee;
+    padding: 20px 20px;
+    width: 392px;
+}
+
+.seller span {
+    margin-bottom: 20px;
+    padding: 30px;
+    align-items: flex-start;
+}
+
+.productinfo {
+    margin-left: 10px;
+}
+
+.pricebar {
+    position: fixed;
+    bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 430px;
+    background-color: #eeeeee;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 60px;
+}
+
+.pricebar img {
+    margin-left: 20px;
+}
+
+.pricebar span {
+    margin-left: 20px;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.pricebar button {
+    margin-left: 150px;
+    justify-content: right;
+    padding: 10px 30px;
+    background-color: #004f25; /* 버튼 배경색을 원하는 색상으로 변경하세요. */
+    color: #fff; /* 버튼 텍스트 색상을 지정하세요. */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block; /* 버튼도 블록 수준 요소로 설정 */
+}
+
+nav {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 430px;
+    background-color: #004F25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+}
+
+nav img{
+    filter:invert(100%);
+}

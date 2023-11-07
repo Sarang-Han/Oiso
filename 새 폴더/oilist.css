@@ -1,0 +1,169 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.content {
+    width: 390px;
+    height: 844px;
+    background-color: #fff; 
+    padding: 20px; 
+}
+
+header {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+header button{
+    position: absolute;
+    margin-right: 350px;
+    margin-top: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+header h4{
+    margin-top: 50px;
+    position: fixed;
+}
+
+.filmcamera {
+    display: inline-block;
+}
+
+.filmcamera img {
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
+}
+
+.filmcamera-details {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
+}
+
+.filmcamera-details h4 {
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.filmcamera-details p {
+    font-size: 12px;
+    margin-top: 0;
+}
+
+.filmcamera img:last-child {
+    margin-left: 88px; 
+}
+
+.hoodie {
+    display: inline-block;
+}
+
+.hoodie img {
+    vertical-align: top;
+    margin-left: 10px;
+    margin-top:30px;
+}
+
+.hoodie-details {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 15px;
+    margin-top:30px;
+}
+
+.hoodie-details h4 {
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.hoodie-details p {
+    font-size: 12px;
+    margin-top: 0;
+}
+
+.hoodie img:last-child {
+    margin-left: 84px; 
+}
+
+.book {
+    display: inline-block;
+}
+
+.book img {
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
+}
+
+.book-details {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
+}
+
+.book-details h4 {
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.book-details p {
+    font-size: 12px;
+    margin-top: 0;
+}
+
+.book img:last-child {
+    margin-left: 35px; 
+}
+
+.none img{
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+nav {
+    position: fixed;
+    bottom: 0px;
+    left: 49.5%;
+    transform: translateX(-50%);
+    width: 430px;
+    background-color: #004F25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+
+nav a {
+    text-decoration: none;
+    color: gray;
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+}
+
+nav img{
+    filter:invert(100%);
+}

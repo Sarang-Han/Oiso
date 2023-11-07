@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; 
+}
+
+.content {
+    width: 390px;
+    height: 844px;
+    background-color: #fff;
+    padding: 20px; 
+}
+
+header {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h4{
+    margin-top: 50px;
+    position: fixed;
+}
+
+.chat1 {
+    display: flex;
+    align-items: center;
+}
+
+.chat1 img {
+    margin-right: 20px; 
+}
+
+.chat1 h4, .chat1 p {
+    margin: 0;
+    margin-left: 0;
+}
+
+.chat1 h4 {
+    margin-top: -30px; 
+}
+
+.chat1 p{
+    margin-left: -47px;
+    margin-top: 30px;
+    font-size: 13px;
+    color: gray;
+}
+
+.chat2 {
+    display: flex;
+    align-items: center;
+}
+
+.chat2 img {
+    margin-right: 20px; 
+}
+
+.chat2 h4, .chat2 p {
+    margin: 0; /* .chat2 p에 대한 스타일 규칙을 .chat2 p로 변경 */
+    margin-left: 0; /* .chat2 p에 대한 스타일 규칙을 .chat2 p로 변경 */
+}
+
+.chat2 h4 {
+    margin-top: -30px; 
+}
+
+.chat2 p{
+    margin-left: -47px;
+    margin-top: 30px;
+    font-size: 13px;
+    color: gray;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+nav {
+    position: fixed;
+    bottom: 0px;
+    left: 49.5%;
+    transform: translateX(-50%);
+    width: 430px;
+    background-color: #004F25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+
+nav a {
+    text-decoration: none;
+    color: gray;
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+}
+
+nav img{
+    filter:invert(100%);
+}
