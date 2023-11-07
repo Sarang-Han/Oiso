@@ -21,10 +21,15 @@ body {
 }
 
 header {
-    display: inline;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header button{
+    position: absolute;
+    margin-right: 350px;
     background-color: transparent;
     border: none;
 }
