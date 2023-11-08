@@ -15,11 +15,13 @@ body {
     padding: 20px; 
 }
 
+
 header {
     height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 
@@ -146,7 +148,7 @@ body, html {
 nav {
     position: fixed;
     bottom: 0px;
-    left: 50%;
+    left: 49.5%;
     transform: translateX(-50%);
     width: 430px;
     background-color: #004F25;

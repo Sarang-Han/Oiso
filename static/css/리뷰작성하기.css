@@ -110,7 +110,6 @@ body, html {
 nav {
     position: absolute;
     bottom: 0px;
-    
     width: 430px;
     background-color: #004F25;
     display: flex;
