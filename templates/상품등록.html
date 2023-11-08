@@ -53,7 +53,7 @@
         <textarea name="content" id="content" cols="50" rows="10">
         상품의 정보와 상태를 설명해주세요.</textarea>
     </div>
-    
+    <button class="add-button" onclick="toMain()">등록 완료</button>
     <nav>
         <a href="메인화면.html"><img src="../static/image/home.png" width="20px"><br>메인 홈</a>
         <a href="리뷰전체보기.html"><img src="../static/image/write.png" width="20px"><br>전체 리뷰</a>
@@ -65,6 +65,9 @@
     <script>
         function goBack() {
             window.history.back();
+        }
+        function toMain() {
+            window.location.href = "메인화면.html";
         }
     </script>
 </div>
