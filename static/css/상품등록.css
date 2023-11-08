@@ -66,6 +66,19 @@ header button{
     margin-bottom: 20px;
 }
 
+.add-button {
+    justify-content: center;
+    padding: 10px 100px;
+    background-color: #004f25;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    margin-left: 65px;
+    margin-top: 8px;
+}
+
 nav {
     position: fixed;
     bottom: 0px;
