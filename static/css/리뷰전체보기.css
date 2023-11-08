@@ -7,7 +7,7 @@ body {
     margin: 0 auto;
     width: 390px;
     min-height: 100vh;
-    padding: 20px; /* 네비게이션 바의 높이만큼 공간 확보 */
+    padding: 20px;
     background-color: white;
 }
 
