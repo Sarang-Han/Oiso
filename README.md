@@ -1,8 +1,8 @@
-# <font color="#004F25">Oiso Project Introduction</font>
-2-2 오픈SW플랫폼 "<font color="#E2F7B6">**오이소박이**</font>"팀의 팀프로젝트 "<font color="#A4C864">**오이소 Oiso**</font>" 입니다. <br>
-이대생을 위한 이화 플리마켓, <font color="#A4C864">**오이소**</font>에 어서오이소!
+# Oiso Project Introduction
+2-2 오픈SW플랫폼 "**오이소박이**"팀의 팀프로젝트 "**오이소 Oiso**" 입니다. <br>
+이대생을 위한 이화 플리마켓, **오이소**에 어서오이소!
 
-## <font color="#004F25">Key Features</font>
+## Key Features
 - 로그인/회원가입
 - 메인홈 (상품 전체보기)
 - 마이페이지
@@ -11,7 +11,7 @@
 - 채팅목록
 - 그 외
 
-## <font color="#004F25">Directory Structure</font>
+## Directory Structure
 프로젝트 디렉터리 구조는 다음과 같습니다:
 
 - **Oiso** (메인 저장소 폴더)
@@ -20,13 +20,13 @@
     - **css** (CSS 스타일 시트 파일들이 있는 폴더)
     - **image** (이미지 파일들이 있는 폴더)
 
-## <font color="#004F25">Technologies Used</font>
+## Technologies Used
 사용 기술은 다음과 같습니다:
 
 - **HTML**, **CSS**, **javaScript** (FE)
 - **Flask**, **Firebase** (BE)
 
-## <font color="#004F25">Contributors</font>
+## Contributors
 - @Sarang-Han (BE, FE)<br>
 - @dmsquf03 (BE)<br>
 - @eugene03850 (FE)<br>
