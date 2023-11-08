@@ -1,5 +1,6 @@
 html{
     background-color: #f0f0f0;    
+    overflow: visible;
 }
 
 body { 
@@ -9,6 +10,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     background-color: white;
+    overflow: visible;
 }
 
 header {
@@ -33,7 +35,9 @@ header h3{
     position: relative;
 }
 
-
+.reviewarea{
+    padding-bottom: 60px;
+}
 .fileinput{
     margin-left: 20px;
     margin-top: 10px;
