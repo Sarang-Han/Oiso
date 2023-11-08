@@ -26,7 +26,7 @@ header {
 }
 
 header h3{
-    margin-top: 50px;
+    margin-top: -20px;
     position: relative;
 }
 
@@ -65,10 +65,9 @@ header h3{
 }
 
 .chat2 h4, .chat2 p {
-    margin: 0; /* .chat2 p에 대한 스타일 규칙을 .chat2 p로 변경 */
-    margin-left: 0; /* .chat2 p에 대한 스타일 규칙을 .chat2 p로 변경 */
+    margin: 0; 
+    margin-left: 0; 
 }
-
 .chat2 h4 {
     margin-top: -30px; 
 }
