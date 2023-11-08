@@ -4,15 +4,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    
     background-color: #f0f0f0; 
 }
 
 .content {
+    position: relative;
     width: 390px;
-    height: 844px;
+    min-height: 100vh;
     background-color: #fff;
     padding: 20px; 
+    padding-bottom: 0;;
 }
 
 header {
@@ -78,6 +80,10 @@ header h3{
     color: gray;
 }
 
+.chatarea{
+    padding-bottom: 60px;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -88,15 +94,13 @@ body, html {
 
 nav {
     position: fixed;
-    bottom: 0px;
-    left: 49.5%;
-    transform: translateX(-50%);
+    bottom: 0;
     width: 430px;
     background-color: #004F25;
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 60px;
+    margin-left: -20px;
     
 }
 nav a {
@@ -118,4 +122,3 @@ nav .nav-active{
 nav .nav-active img{
     filter:invert(100%);  
 }
-
