@@ -23,8 +23,8 @@
 ## Technologies Used
 사용 기술은 다음과 같습니다:
 
-- **HTML**, **CSS**, **javaScript** (FE)
-- **Flask**, **Firebase** (BE)
+- **HTML**, **CSS**, **javaScript**
+- **Flask**, **Firebase**
 
 ## Contributors
 - @Sarang-Han (BE, FE)<br>
