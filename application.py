@@ -6,7 +6,7 @@ import hashlib
 
 application = Flask(__name__, static_url_path='/static', static_folder='static')
 DB = DBhandler()
-
+application.config["SECRET_KEY"] = "Oisobaki"
 
 
 
