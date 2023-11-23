@@ -75,9 +75,30 @@ def buylist():
 def selllist():
     return render_template("판매내역.html")
 
-@application.route("/오이목록")
-def oilist():
-    return render_template("오이목록.html")
+#@application.route("/오이목록/<")
+#def oilist():
+#    return render_template("오이목록.html")
+
+@application.route('/오이목록/<id_>/', methods=['GET'])
+def oilist(id_):
+    my_oilist = DB.get_oilist(session['id'],id_)
+    tot_count = len(my_oilist)
+
+    return render_template(
+        "오이목록.html",
+        lists=my_oilist.items(),
+        total = tot_count
+    )
+
+@application.route('/like/<id_>/', methods=['POST'])
+def like(id_):
+    my_oilist = DB.update_oilist(session['id'],'Y',id_)
+    return jsonify({'msg': '오이목록에 추가!'})
+
+@application.route('/unlike/<id_>/', methods=['POST'])
+def unlike(id_):
+    my_oilist = DB.update_oilist(session['id'],'N',id_)
+    return jsonify({'msg': '오이목록에서 삭제!'})
 
 if __name__ == "__main__":
  application.run(host='0.0.0.0', debug=True)
