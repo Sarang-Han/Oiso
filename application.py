@@ -61,8 +61,23 @@ def reg_items():
     return render_template("상품등록.html")
 
 @application.route("/마이페이지1")
-def mypage():
+def mypage1():
     return render_template("마이페이지1.html")
+@application.route("/마이페이지2")
+def mypage2():
+    return render_template("마이페이지2.html")
+
+@application.route("/구매내역")
+def buylist():
+    return render_template("구매내역.html")
+
+@application.route("/판매내역")
+def selllist():
+    return render_template("판매내역.html")
+
+@application.route("/오이목록")
+def oilist():
+    return render_template("오이목록.html")
 
 if __name__ == "__main__":
  application.run(host='0.0.0.0', debug=True)
