@@ -42,13 +42,6 @@ class DBhandler:
         print(data, img_paths)
         return True
 
-    def get_oilist(self, id_):
-        oilists = self.db.child("oilist").child(id_).get()
-        return oilists
-
-    def update_oilist(self, id_, isOilist, item):
-        oilist_info ={
-            "interested": isOilist
-        }
-        self.db.child("oilist").child(id_).child(item).set(oilist_info)
-        return True
+    def get_items(self):
+        selllist = self.db.child("item").get().val()
+        return selllist

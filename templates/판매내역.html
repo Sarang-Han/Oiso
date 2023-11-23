@@ -14,41 +14,28 @@
             alt="이전" style="width: 20px;"></button>
         <h3>판매내역</h3>
     </header>
-        
+
    <div class="listarea">
-    <div class="mug">
-        <img src="../static/image/mug.png" width="90px" alt="스타벅스 머그">
-        <div class="mug-details">
-            <h4>스타벅스 머그</h4>
-            <p>판매가격: 10,000원</p>
+    {% if total > 0 %} <!-- 여기서부터 수정 -->
+        {% for key, value in lists %}
+            <div>
+                <img src="static/image/{{value.img_paths}}" width="90px" alt="상품 사진">
+                <div class="item-details">
+                    <h4>{{value.name}}</h4>
+                    <p>판매가격: {{value.price}}</p>
+                </div>
+            </div>
+            <br><br>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <div class="none">
+            <img src="../static/image/none.png" alt="빈 이미지">
+            <br><br>
+            <hr>
         </div>
-    </div>
-    <br><br>
-    <hr>
-
-    <div class="doll">
-        <img src="../static/image/doll.png" alt="고슴도치 인형">
-        <div class="doll-details">
-            <h4>고슴도치 인형</h4>
-            <p>판매가격: 7,000원</p>
-        </div>
-    </div>
-    <br><br>
-    <hr>
-    
-    <div class="none">
-        <img src="../static/image/none.png" alt="빈 이미지">
-        <br><br>
-        <hr>
-        <img src="../static/image/none.png" alt="빈 이미지">
-        <br><br>
-        <hr>
-        <img src="../static/image/none.png" alt="빈 이미지">
-        <br><br>
-        <hr>
-    </div>
-</div>
-
+    {% endif %}
+    </div> <!-- 여기까지 수정 -->
     
     <nav>
         <a href="/메인화면"><img src="../static/image/home.png" width="20px"><br>메인 홈</a>
