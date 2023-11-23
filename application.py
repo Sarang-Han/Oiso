@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from database import DBhandler
 import sys
 import hashlib
-
+from datetime import datetime
 
 application = Flask(__name__, static_url_path='/static', static_folder='static')
 DB = DBhandler()
@@ -58,7 +58,8 @@ def chatlist():
 
 @application.route("/상품등록")
 def reg_items():
-    return render_template("상품등록.html")
+    seller_id = session.get('id', '')  # 세션에서 id 가져오기, 없으면 빈 문자열
+    return render_template("상품등록.html", seller_id=seller_id)
 
 @application.route("/마이페이지1")
 def mypage1():
@@ -78,6 +79,26 @@ def selllist():
 @application.route("/오이목록")
 def oilist():
     return render_template("오이목록.html")
+
+@application.route("/submit_item_post", methods=['POST'])
+def reg_item_submit_post():
+    
+    image_files = request.files.getlist("image[]")
+    img_paths = []
+
+    for image_file in image_files:
+        try:
+            if image_file.filename != '':
+                image_file.save("static/image/{}".format(image_file.filename))
+                img_paths.append("static/image/{}".format(image_file.filename))
+        except Exception as e:
+            print("파일 저장 오류: ", e)
+    
+    data=request.form
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    DB.insert_item(data, img_paths, current_time)
+
+    return render_template("메인화면.html")
 
 if __name__ == "__main__":
  application.run(host='0.0.0.0', debug=True)
