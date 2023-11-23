@@ -7,34 +7,33 @@
     <title>회원가입</title>
 </head>
 <body>
-<div class="content">
-    <header>
-        <button onclick="goBack()"><img src="../static/image/back.png" style="width:20px;"></button>
-        <h4>회원가입</h4>
-    </header>
-    <div class="picupload">
-        <label for="image"><img src="../static/image/profile.png" alt="프로필 사진"></label>
-        <input type="file" id="image" style="display: none; visibility: none;">
+    <div class="content">
+        <header>
+            <button onclick="goBack()"><img src="{{ url_for('static', filename='image/back.png') }}" style="width:20px;"></button>
+            <h4>회원가입</h4>
+        </header>
+        <div class="picupload">
+            <label for="image"><img src="{{ url_for('static', filename='image/profile.png') }}" alt="프로필 사진"></label>
+            <input type="file" id="image" style="display: none; visibility: none;">
+        </div>
+        <form action="/회원가입" method="post"> <!-- 수정된 부분 -->
+            <p>이름</p>
+            <input type="text" id="name" name="name" class="join">
+            <p>아이디</p>
+            <input type="text" id="id" name="id" class="join" placeholder="ID">
+            <p>비밀번호</p>
+            <input type="password" id="pw" name="pw" class="join" placeholder="PW"> <!-- 수정된 부분 -->
+            <p>이메일</p>
+            <input type="text" id="email" name="email" class="join">
+            <p>전화번호</p>
+            <input type="text" id="phone" name="phone" class="join">
+            <button type="submit" class="join-button">가입하기</button> <!-- 수정된 부분 -->
+        </form>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
     </div>
-    <p>이름</p>
-    <input type="text" id="name" name="name" class="join">
-    <p>아이디</p>
-    <input type="text" id="id" name="id" class="join" placeholder="ID">
-    <p>비밀번호</p>
-    <input type="password" id="pw" name="password" class="join" placeholder="PW">
-    <p>이메일</p>
-    <input type="text" id="email" name="email" class="join">
-    <p>전화번호</p>
-    <input type="text" id="phone" name="phone" class="join">
-    <button class="join-button" onclick="welcome()">가입하기</button>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-        function welcome() {
-            window.location.href = "웰컴페이지.html";
-        }
-    </script>
-</div>
 </body>
 </html>

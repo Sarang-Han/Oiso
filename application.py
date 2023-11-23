@@ -9,6 +9,42 @@ DB = DBhandler()
 application.config["SECRET_KEY"] = "Oisobaki"
 
 @application.route("/")
+def login():
+    return render_template("로그인.html")
+
+@application.route("/login_", methods=['GET', 'POST'])
+def login_():
+    if request.method == 'POST':
+        id_ = request.form['id']
+        pw = request.form['pw']
+        if DB.user_login(id_, pw):
+            session['logged_in'] = True
+            session['id'] = id_
+            return redirect(url_for('main'))  # 로그인 성공 시 main 페이지로 리다이렉트
+        else:
+            flash("아이디나 비밀번호를 잘못 입력하셨습니다!")
+            return redirect(url_for('login'))
+    return render_template("로그인.html")
+
+@application.route("/회원가입", methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        name = request.form['name']
+        id_ = request.form['id']
+        pw = request.form['pw']
+        email = request.form['email']
+        phone = request.form['phone']
+        
+        # Firebase에 회원가입 데이터 저장
+        DB.write_to_db(name, id_, pw, email, phone)
+        return redirect(url_for('welcome'))  # 웰컴페이지로 리다이렉트
+    return render_template("회원가입.html")
+
+@application.route("/웰컴페이지")
+def welcome():
+    return render_template("웰컴페이지.html")
+
+@application.route("/메인화면")
 def main():
     return render_template("메인화면.html")
 
