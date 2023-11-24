@@ -46,7 +46,7 @@ class DBhandler:
         oilists = self.db.child("oilist").child(id_).get()
         return oilists
 
-    def get_heart_bydata(self, uid, data):
+    def get_oilist_bydata(self, uid, data):
         ois = self.db.child("oilist").child(uid).get()
         target_value=""
         if ois.val() == None:
@@ -61,9 +61,10 @@ class DBhandler:
         return target_value
 
 
-    def update_oilist(self, id_, isOilist, item):
+    def update_oilist(self, id_, isOilist, data):
         oilist_info ={
-            "interested": isOilist
+            "interested": isOilist,
+            "price": data['price']
         }
-        self.db.child("oilist").child(id_).child(item).set(oilist_info)
+        self.db.child("oilist").child(id_).child(data['name']).set(oilist_info)
         return True

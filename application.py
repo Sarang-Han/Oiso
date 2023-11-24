@@ -75,13 +75,10 @@ def buylist():
 def selllist():
     return render_template("판매내역.html")
 
-#@application.route("/오이목록/<")
-#def oilist():
-#    return render_template("오이목록.html")
-
 @application.route('/오이목록/<data>/', methods=['GET'])
 def oilist(data):
-    my_oilist = DB.get_oilist(session['id'],data)
+    me = session.get('id', '')
+    my_oilist = DB.get_oilist(me)
     tot_count = len(my_oilist)
 
     return render_template(
