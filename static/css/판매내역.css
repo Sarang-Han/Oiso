@@ -37,29 +37,29 @@ header h3{
     padding-bottom:60px;
 }
 
-.mug {
+.item {
     display: inline-block;
 }
 
-.mug img {
+.item img {
     vertical-align: top;
     margin-left: 20px;
     margin-top:30px;
 }
 
-.mug-details {
+.item-details {
     display: inline-block;
     vertical-align: top;
     margin-left: 35px;
     margin-top:30px;
 }
 
-.mug-details h4 {
+.item-details h4 {
     font-size: 14px;
     margin-top: 0;
 }
 
-.mug-details p {
+.item-details p {
     font-size: 12px;
     margin-top: 0;
 }

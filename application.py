@@ -82,7 +82,8 @@ def reg_item_submit_post():
 
     #session id 별로 상품 저장
     seller_id = session.get('id', '')
-    DB.insert_selllist(seller_id, data, img_paths)
+    img_path = str(img_paths[0])
+    DB.insert_selllist(seller_id, data, img_path)
 
     return render_template("메인화면.html")
 
