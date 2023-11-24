@@ -12,19 +12,20 @@
         <button onclick="goBack()"><img src="../static/image/xmark.png" style="width:20px;"></button>
         <h3>상품 등록하기</h3>
     </header>
+    <form action="/submit_item_post" enctype="multipart/form-data"  method="post">
     <div class="picupload">
         <label for="image"><img src="../static/image/camera.png" alt="사진 업로드"></label>
-        <p>0/10</p>
-        <input type="file" id="image" style="display: none; visibility: none;">
+    <input type="file" name="image[]" id="image" accept="image/*" multiple style="display: none;" onchange="checkImageCount()">
+    <p id="image-count">0/10</p>
     </div>
     <div class="add">
-        <p>판매자 ID</p>
-        <input type="text" name="name" class="line" placeholder="판매자 ID">
-        <p>상품명</p>
-        <input type="text" name="name" class="line">
-        <p>카테고리</p>
+        <label for="seller"><p>판매자 ID</p></label>
+        <input type="text" name="seller" id="seller" class="line" value="{{ seller_id }}" readonly>
+        <label for="name"><p>상품명</p></label>
+        <input type="text" name="name" id="name" class="line" required>
+        <label for="category"><p>카테고리</p></label>
         <div class="category">
-            <select id="category">
+            <select id="category" name="category">
                 <option value="clothes">의류</option>
                 <option value="furniture">가구</option>
                 <option value="electronics">전자기기</option>
@@ -32,11 +33,11 @@
                 <option value="etc">기타</option>
             </select>
         </div>
-        <p>가격</p>
-        <input type="text" name="price" class="line">
-        <p>거래 지역</p>
+        <label for="price"><p>가격</p></label>
+        <input type="text" name="price" id="price" class="line" required>
+        <label for="place"><p>거래 지역</p></label>
         <div class="category">
-            <select id="place">
+            <select id="place" name="place">
                 <option value="front">정문</option>
                 <option value="ecc">ECC</option>
                 <option value="posco">포스코관</option>
@@ -49,10 +50,11 @@
                 <option value="centlib">중앙도서관</option>
             </select>
         </div>
-        <p>상품 설명</p>
-        <textarea name="content" id="content" cols="40" rows="10"> 상품의 정보와 상태를 설명해주세요.</textarea>
+        <label for="description"><p>상품 설명</p></label>
+        <textarea name="description" id="description" cols="50" rows="10" required placeholder="상품의 정보와 상태를 설명해주세요."></textarea>
     </div>
     <button class="add-button" onclick="toMain()">등록 완료</button>
+</form>
     <nav>
         <a href="/메인화면"><img src="../static/image/home.png" width="20px"><br>메인 홈</a>
         <a href="/리뷰전체보기"><img src="../static/image/write.png" width="20px"><br>전체 리뷰</a>
@@ -66,9 +68,10 @@
             window.history.back();
         }
         function toMain() {
-            window.location.href = "메인화면";
+            window.location.href = "/메인화면";
         }
     </script>
+    <script src="{{ url_for('static', filename='상품등록.js') }}"></script>
 </div>
 </body>
 </html>

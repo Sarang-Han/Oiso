@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from database import DBhandler
 import sys
 import hashlib
+from datetime import datetime
 
 
 application = Flask(__name__, static_url_path='/static', static_folder='static')
@@ -58,7 +59,32 @@ def chatlist():
 
 @application.route("/상품등록")
 def reg_items():
-    return render_template("상품등록.html")
+    seller_id = session.get('id', '')  # 세션에서 id 가져오기, 없으면 빈 문자열
+    return render_template("상품등록.html", seller_id=seller_id)
+
+@application.route("/submit_item_post", methods=['POST'])
+def reg_item_submit_post():
+    
+    image_files = request.files.getlist("image[]")
+    img_paths = []
+
+    for image_file in image_files:
+        try:
+            if image_file.filename != '':
+                image_file.save("static/image/{}".format(image_file.filename))
+                img_paths.append("static/image/{}".format(image_file.filename))
+        except Exception as e:
+            print("파일 저장 오류: ", e)
+    
+    data=request.form
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    DB.insert_item(data, img_paths, current_time)
+
+    #session id 별로 상품 저장
+    seller_id = session.get('id', '')
+    DB.insert_selllist(seller_id, data, img_paths)
+
+    return render_template("메인화면.html")
 
 @application.route("/마이페이지1")
 def mypage1():
@@ -71,22 +97,11 @@ def mypage2():
 def buylist():
     return render_template("구매내역.html")
 
-#@application.route("/판매내역")
-#def selllist():
-#    my_selllist = DB.get_items()
-#    for item in my_selllist.copy():
-#        if item[0] != session.get('id'):
-#            my_selllist.pop(item)
-#    tot_count = len(my_selllist)
-#    return render_template(
-#        "판매내역.html",
-#        lists = my_selllist.items(),
-#        total = tot_count
-#    )
-
 @application.route("/판매내역")
 def selllist():
-    my_selllist = DB.get_items()
+    #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
+    seller_id = session.get('id', '')
+    my_selllist = DB.get_sellitems(seller_id)
     tot_count = len(my_selllist)
     
     return render_template(
