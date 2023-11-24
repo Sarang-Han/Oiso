@@ -18,30 +18,30 @@ function previewImages() {
     var files   = document.querySelector('input[type=file]').files;
 
     function readAndPreview(file) {
-        // `file` 타입이 이미지인지 확인
+        
         if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
             var reader = new FileReader();
 
             reader.addEventListener("load", function () {
-                var imageWrapper = document.createElement('div'); // 이미지를 감싸는 div 생성
+                var imageWrapper = document.createElement('div');
                 imageWrapper.style.width = "70px";
                 imageWrapper.style.height = "70px";
                 imageWrapper.style.border = "2px solid white";
                 imageWrapper.style.borderRadius = "5px";
-                imageWrapper.style.overflow = "hidden"; // 이미지가 div 크기를 넘어가면 잘림
-                imageWrapper.style.display = "inline-block"; // inline-block으로 설정
-                imageWrapper.style.marginRight = "10px"; // div 간 여백
+                imageWrapper.style.overflow = "hidden";
+                imageWrapper.style.display = "inline-block";
+                imageWrapper.style.marginRight = "10px";
                 imageWrapper.style.flexShrink = "0";
                 
                 var image = new Image();
-                image.style.width = "100%"; // div에 맞춰 이미지 크기 조정
+                image.style.width = "100%";
                 image.style.height = "100%";
-                image.style.objectFit = "cover"; // object-fit 적용
+                image.style.objectFit = "cover";
                 image.src = this.result;
                 image.title = file.name;
 
-                imageWrapper.appendChild(image); // 이미지를 div에 추가
-                preview.appendChild(imageWrapper); // div를 preview 컨테이너에 추가
+                imageWrapper.appendChild(image);
+                preview.appendChild(imageWrapper);
             }, false);
 
             reader.readAsDataURL(file);

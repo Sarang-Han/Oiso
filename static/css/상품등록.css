@@ -16,8 +16,7 @@ body {
 }
 
 .content form {
-    width: 370px; /* form 너비 조정 */
-    /* 기타 필요한 스타일 */
+    width: 370px;
 }
 
 .upload-preview-container {
@@ -30,14 +29,14 @@ body {
     flex: 1 1 auto;
     display: flex;
     overflow-x: auto; /* 가로 스크롤 설정 */
-    white-space: nowrap; /* 이미지 한 줄 나열 */
+    white-space: nowrap;
     margin-top: 10px;
     margin-left: 10px;
     padding-bottom: 0px;
 
     /* 스크롤 바 X */
     scrollbar-width: none; /* 파이어폭스 */
-    -ms-overflow-style: none; /* IE, 엣지 */
+    -ms-overflow-style: none; /* 엣지 */
 }
 
 /* 크롬, 사파리, 오페라 스크롤 바 X*/
