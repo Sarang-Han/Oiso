@@ -13,10 +13,13 @@
         <h3>상품 등록하기</h3>
     </header>
     <form action="/submit_item_post" enctype="multipart/form-data"  method="post">
+    <div class="upload-preview-container">
     <div class="picupload">
         <label for="image"><img src="../static/image/camera.png" alt="사진 업로드"></label>
     <input type="file" name="image[]" id="image" accept="image/*" multiple style="display: none;" onchange="checkImageCount()">
     <p id="image-count">0/10</p>
+    </div>
+    <div class="image-preview-container"></div>
     </div>
     <div class="add">
         <label for="seller"><p>판매자 ID</p></label>
