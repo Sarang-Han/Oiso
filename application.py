@@ -18,6 +18,7 @@ def login_():
     if request.method == 'POST':
         id = request.form.get('id')  # 입력값 받기
         pw = request.form.get('pw')
+        pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
 
         if not id and not pw:  # 아이디나 비밀번호가 입력되지 않은 경우
             flash("아이디와 비밀번호를 입력해주세요.")
@@ -31,7 +32,7 @@ def login_():
             flash("비밀번호를 입력해주세요.")
             return redirect(url_for('login'))
 
-        elif DB.user_login(id, pw):
+        elif DB.user_login(id, pw_hash):
             session['logged_in'] = True
             session['id'] = id
             return redirect(url_for('main'))  # 로그인 성공 시 main 페이지로 리다이렉트
@@ -55,7 +56,7 @@ def signup():
             flash("필수 정보를 모두 기입해주세요!")
             return redirect(url_for('signup'))  # 필수 정보가 누락된 경우 회원가입 페이지로 리다이렉트
         
-        # 비밀번호 해실
+        # 비밀번호 해싱
         pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
         
         if DB.user_duplicate_check(id):
@@ -79,24 +80,26 @@ def welcome():
 
 @application.route("/메인화면")
 def main():
+    selected_category = request.args.get('category', 'all')
     page = request.args.get("page", 0, type=int) # 현 페이지 인덱스
     per_page = 12 # 페이지 상품 수
-    start_idx=per_page*page
-    end_idx=per_page*(page+1)
+    start_idx = per_page * page
+    end_idx = per_page * (page+1)
     data = DB.get_items()
 
     if data is None:
         data = {}
         item_counts = 0
     else:
+        if selected_category != 'all':
+            # 선택된 카테고리에 해당하는 상품만 필터링
+            data = {k: v for k, v in data.items() if v['category'] == selected_category}
         item_counts = len(data)
     
-    item_counts = len(data)
-    page_count = math.ceil(item_counts/per_page)
+    page_count = math.ceil(item_counts / per_page)
     data = dict(list(data.items())[start_idx:end_idx])
-    tot_count = len(data)
     return render_template("메인화면.html", datas=data.items(), limit=per_page, page=page,
-                           page_count=page_count, total=item_counts)
+                           page_count=page_count, total=item_counts, selected_category=selected_category)
 
 @application.route("/리뷰전체보기")
 def all_review():
