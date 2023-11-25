@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../static/css/회원가입.css">
     <title>회원가입</title>
+    <style>
+        .req{
+            color:red;
+        }
+    </style>
 </head>
 <body>
     <div class="content">
@@ -16,22 +21,32 @@
             <label for="image"><img src="{{ url_for('static', filename='image/profile.png') }}" alt="프로필 사진"></label>
             <input type="file" id="image" style="display: none; visibility: none;">
         </div>
-        <form action="/회원가입" method="post"> <!-- 수정된 부분 -->
-            <p>이름</p>
+        <form action="/회원가입" method="post">
+            <p>이름 <span class=req>*</span></p>
             <input type="text" id="name" name="name" class="join">
-            <p>아이디</p>
+            <p>아이디 <span class=req>*</span></p> 
             <input type="text" id="id" name="id" class="join" placeholder="ID">
-            <p>비밀번호</p>
-            <input type="password" id="pw" name="pw" class="join" placeholder="PW"> <!-- 수정된 부분 -->
-            <p>이메일</p>
+            <p>비밀번호 <span class=req>*</span></p> 
+            <input type="password" id="pw" name="pw" class="join" placeholder="PW">
+            <p>이메일 <span class=req>*</span></p> 
             <input type="text" id="email" name="email" class="join">
             <p>전화번호</p>
             <input type="text" id="phone" name="phone" class="join">
-            <button type="submit" class="join-button">가입하기</button> <!-- 수정된 부분 -->
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <br><br><span class="req">{{ message }}</span>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+            <button type="submit" class="join-button">가입하기</button>
         </form>
+        
         <script>
             function goBack() {
-                window.history.back();
+                window.location.href = "/";
             }
         </script>
     </div>
