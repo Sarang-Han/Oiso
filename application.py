@@ -65,18 +65,20 @@ def signup():
         
         # db에 회원가입 데이터 저장
         DB.write_to_db(name, id, pw_hash, email, phone)
-        return redirect(url_for('welcome'))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
+        session['username'] = name  # 세션에 사용자 이름 저장
+        return redirect(url_for('welcome', username=name))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
 
     return render_template("회원가입.html")
 
 @application.route("/logout")
-def logout_user():
+def logout():
     session.clear()
     return redirect(url_for('login'))
 
-@application.route("/웰컴페이지")
-def welcome():
-    return render_template("웰컴페이지.html")
+@application.route("/웰컴페이지/<username>")
+def welcome(username):
+    username = session.get('username')
+    return render_template("웰컴페이지.html", username=username)
 
 @application.route("/메인화면")
 def main():

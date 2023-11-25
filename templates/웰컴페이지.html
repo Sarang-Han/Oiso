@@ -12,13 +12,13 @@
         <img src="../static/image/prof2.png" alt="프로필 사진" width="100px">
     </div>
     <div class="ment">
-        <p>이화연 님,</p>
+        <p>{{ username }}님,</p>
         <p>오이소에 오신 것을 환영합니다!</p>
     </div>
     <button class="login-button" onclick="login()">로그인하러 가기</button>
     <script>
         function login() {
-            window.location.href = "/";
+            window.location.href = "/logout";
         }
     </script>
 </div>
