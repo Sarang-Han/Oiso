@@ -12,11 +12,11 @@ class DBhandler:
         users = self.db.child("users").get().val()
 
         for user_id, user_info in users.items():
-            if user_info["id"] == id_ and user_info["pw"] == pw:
+            if user_info.get("id") == id_ and user_info.get("pw") == pw:  # 해당하는 id와 pw가 있는지 확인
                 return True
 
         return False
-    
+
     def write_to_db(self, name, id_, pw, email, phone):
         data = {
             "name": name,
