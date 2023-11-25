@@ -17,6 +17,7 @@ def login_():
     if request.method == 'POST':
         id = request.form.get('id')  # 입력값 받기
         pw = request.form.get('pw')
+        pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
 
         if not id and not pw:  # 아이디나 비밀번호가 입력되지 않은 경우
             flash("아이디와 비밀번호를 입력해주세요.")
@@ -30,7 +31,7 @@ def login_():
             flash("비밀번호를 입력해주세요.")
             return redirect(url_for('login'))
 
-        elif DB.user_login(id, pw):
+        elif DB.user_login(id, pw_hash):
             session['logged_in'] = True
             session['id'] = id
             return redirect(url_for('main'))  # 로그인 성공 시 main 페이지로 리다이렉트
@@ -54,7 +55,7 @@ def signup():
             flash("필수 정보를 모두 기입해주세요!")
             return redirect(url_for('signup'))  # 필수 정보가 누락된 경우 회원가입 페이지로 리다이렉트
         
-        # 비밀번호 해실
+        # 비밀번호 해싱
         pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
         
         if DB.user_duplicate_check(id):
