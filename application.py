@@ -57,6 +57,10 @@ def signup():
         # 비밀번호 해실
         pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
         
+        if DB.user_duplicate_check(id):
+            flash("아이디가 중복됩니다!")
+            return redirect(url_for('signup'))  # 아이디가 중복된 경우 회원가입 페이지로 리다이렉트
+        
         # db에 회원가입 데이터 저장
         DB.write_to_db(name, id, pw_hash, email, phone)
         return redirect(url_for('welcome'))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
