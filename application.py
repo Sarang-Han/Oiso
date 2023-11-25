@@ -101,6 +101,13 @@ def main():
     return render_template("메인화면.html", datas=data.items(), limit=per_page, page=page,
                            page_count=page_count, total=item_counts, selected_category=selected_category)
 
+@application.route("/view_detail/<item_key>/") # 상품 key로 동적 라우팅
+def view_item_detail(item_key):
+    print("### Item_key:",item_key)
+    data = DB.get_item_by_key(str(item_key))
+    print("#### Data:",data)
+    return render_template("상품상세.html", item_key=item_key, data=data)
+
 @application.route("/리뷰전체보기")
 def all_review():
     return render_template("리뷰전체보기.html")

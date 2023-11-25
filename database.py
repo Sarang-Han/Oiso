@@ -57,3 +57,9 @@ class DBhandler:
     def get_items(self):
         items = self.db.child("item").get().val()
         return items
+    
+    def get_item_by_key(self, item_key):
+        item = self.db.child("item").child(item_key).get()
+        if item.val():
+            return item.val()
+        return None

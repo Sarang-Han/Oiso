@@ -31,7 +31,7 @@
     <div class="items">
             {% for key, value in datas %}
                 <div class="product">
-                    <a href=#>
+                    <a href="{{ url_for('view_item_detail', item_key=key) }}">
                     <div class="image-wrapper">
                         {% if value['img_path'] %}
                             <img src="{{ value['img_path'][0] }}" width="100px" onerror="this.onerror=null; this.src='../static/image/item.png'">

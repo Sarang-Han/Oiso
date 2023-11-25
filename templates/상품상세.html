@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/상품상세.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/상품상세.css') }}">
     <title>상품 상세</title>
 </head>
 <body>
 <div class="content">
     <header>
-        <button onclick="goBack()"><img src="../static/image/back.png" style="width:20px;"></button>
+        <button onclick="goBack()"><img src="{{ url_for('static', filename='image/back.png') }}" style="width:20px;"></button>
         <h4>상품 상세</h4>
     </header>
 <div class="productimg">
-    <img src="../static/image/mug.png" width="300px">
+    <img src="{{ '../../' + data['img_path'][0] if data['img_path'] else '../../static/image/mug.png' }}" width="300px">
 </div>
 <div class="seller">
     <a href="받은리뷰확인">
-        <img src="../static/image/prof1.png" width="80px" style="display: inline;">
+        <img src="{{ url_for('static', filename='image/prof1.png') }}" width="80px" style="display: inline;">
     </a>
-    <span>이화연 @1077</span>
+    <span>{{ data['seller'] }}</span>
     
 </div>
 <div class="productinfo">
-    <h3>스타벅스 머그</h3><p>2023. 10. 03.</p>
-    <p>깨끗해요 산 지 얼마 안 된 새 상품입니다~</p>
-    <p>쿨거시 네고 가능</p><br>
+    <h3>{{ data['name'] }}</h3><p>등록 날짜 : {{ data['date'] }}</p>
+    <p>거래 지역 : {{ data['place'] }}</p>
+    <p>{{ data['description'] }}</p><br>
 </div>
 <div class="pricebar">
-    <img src="../static/image/oi.png" width="30px" style="display: inline;">
-    <span>10,000원</span>
+    <img src="{{ url_for('static', filename='image/oi.png') }}" width="30px" style="display: inline;">
+    <span>{{ data['price'] }}원</span>
     <button>채팅하기</button>
 </div>
 <script>
@@ -38,11 +38,11 @@
     }
 </script>
 <nav>
-    <a href="/메인화면" class="nav-active"><img src="../static/image/home.png" width="20px"><br>메인 홈</a>
-    <a href="/리뷰전체보기"><img src="../static/image/write.png" width="20px"><br>전체 리뷰</a>
-    <a href="/상품등록"><img src="../static/image/add.png" width="20px"><br>상품 등록</a>
-    <a href="/채팅목록"><img src="../static/image/chat.png" width="20px"><br>채팅 보기</a>
-    <a href="/마이페이지1"><img src="../static/image/user.png" width="20px"><br>My</a>
+    <a href="/메인화면" class="nav-active"><img src="{{ url_for('static', filename='image/home.png') }}" width="20px"><br>메인 홈</a>
+    <a href="/리뷰전체보기"><img src="{{ url_for('static', filename='image/write.png') }}" width="20px"><br>전체 리뷰</a>
+    <a href="/상품등록"><img src="{{ url_for('static', filename='image/add.png') }}" width="20px"><br>상품 등록</a>
+    <a href="/채팅목록"><img src="{{ url_for('static', filename='image/chat.png') }}" width="20px"><br>채팅 보기</a>
+    <a href="/마이페이지1"><img src="{{ url_for('static', filename='image/user.png') }}" width="20px"><br>My</a>
 </nav>
 
 </div>
