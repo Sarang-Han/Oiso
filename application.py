@@ -3,6 +3,7 @@ from database import DBhandler
 import sys
 import hashlib
 from datetime import datetime
+import math
 
 application = Flask(__name__, static_url_path='/static', static_folder='static')
 DB = DBhandler()
@@ -40,13 +41,35 @@ def signup():
         return redirect(url_for('welcome'))  # 웰컴페이지로 리다이렉트
     return render_template("회원가입.html")
 
+@application.route("/logout")
+def logout_user():
+    session.clear()
+    return redirect(url_for('main'))
+
 @application.route("/웰컴페이지")
 def welcome():
     return render_template("웰컴페이지.html")
 
 @application.route("/메인화면")
 def main():
-    return render_template("메인화면.html")
+    page = request.args.get("page", 0, type=int) # 현 페이지 인덱스
+    per_page = 12 # 페이지 상품 수
+    start_idx=per_page*page
+    end_idx=per_page*(page+1)
+    data = DB.get_items()
+
+    if data is None:
+        data = {}
+        item_counts = 0
+    else:
+        item_counts = len(data)
+    
+    item_counts = len(data)
+    page_count = math.ceil(item_counts/per_page)
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    return render_template("메인화면.html", datas=data.items(), limit=per_page, page=page,
+                           page_count=page_count, total=item_counts)
 
 @application.route("/리뷰전체보기")
 def all_review():
@@ -98,7 +121,7 @@ def reg_item_submit_post():
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     DB.insert_item(data, img_paths, current_time)
 
-    return render_template("메인화면.html")
+    return redirect(url_for('main'))
 
 if __name__ == "__main__":
  application.run(host='0.0.0.0', debug=True)

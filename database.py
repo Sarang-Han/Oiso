@@ -27,7 +27,7 @@ class DBhandler:
         }
         self.db.child("users").push(data)
 
-    def insert_item(self, data, img_paths, current_time):
+    def insert_item(self, data, img_paths, current_time): # 상품 등록
         item_info ={
             "seller": data['seller'],           # 판매자 ID
             "name": data['name'],               # 상품명
@@ -41,3 +41,7 @@ class DBhandler:
         self.db.child("item").push(item_info)
         print(data, img_paths)
         return True
+    
+    def get_items(self):
+        items = self.db.child("item").get().val()
+        return items
