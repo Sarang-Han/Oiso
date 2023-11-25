@@ -24,8 +24,7 @@ class DBhandler:
             "email": email,
             "phone": phone
         }
-<<<<<<< HEAD
-        self.db.child("users").push(data)
+        self.db.child("users").push(user_info)
 
     def insert_item(self, data, img_paths, current_time):
         item_info ={
@@ -68,7 +67,6 @@ class DBhandler:
         }
         self.db.child("oilist").child(id_).child(data['name']).set(oilist_info)
         return True
-=======
         self.db.child("users").push(user_info)
     
     def user_duplicate_check(self, id_string):
@@ -82,4 +80,3 @@ class DBhandler:
                 if value['id'] == id_string:
                     return True
             return False
->>>>>>> 0f3b81c66a6345fa91822001b074a92456bcf464
