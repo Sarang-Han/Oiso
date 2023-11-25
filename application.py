@@ -15,14 +15,14 @@ def login():
 @application.route("/login_", methods=['GET', 'POST'])
 def login_():
     if request.method == 'POST':
-        id_ = request.form.get('id')  # 입력값 받기
+        id = request.form.get('id')  # 입력값 받기
         pw = request.form.get('pw')
 
-        if not id_ and not pw:  # 아이디나 비밀번호가 입력되지 않은 경우
+        if not id and not pw:  # 아이디나 비밀번호가 입력되지 않은 경우
             flash("아이디와 비밀번호를 입력해주세요.")
             return redirect(url_for('login'))
         
-        elif not id_: # 아이디가 입력되지 않은 경우
+        elif not id: # 아이디가 입력되지 않은 경우
             flash("아이디를 입력해주세요.")
             return redirect(url_for('login'))
         
@@ -30,13 +30,13 @@ def login_():
             flash("비밀번호를 입력해주세요.")
             return redirect(url_for('login'))
 
-        elif DB.user_login(id_, pw):
+        elif DB.user_login(id, pw):
             session['logged_in'] = True
-            session['id'] = id_
+            session['id'] = id
             return redirect(url_for('main'))  # 로그인 성공 시 main 페이지로 리다이렉트
         else:
             flash("아이디나 비밀번호를 잘못 입력하셨습니다.")
-            return redirect(url_for('login'))
+        return redirect(url_for('login'))
     return render_template("로그인.html")
 
 
@@ -44,14 +44,23 @@ def login_():
 def signup():
     if request.method == 'POST':
         name = request.form['name']
-        id_ = request.form['id']
+        id = request.form['id']
         pw = request.form['pw']
         email = request.form['email']
         phone = request.form['phone']
+
+        # 필수 정보가 모두 입력되었는지 확인
+        if not all([name, id, pw, email]):
+            flash("필수 정보를 모두 기입해주세요!")
+            return redirect(url_for('signup'))  # 필수 정보가 누락된 경우 회원가입 페이지로 리다이렉트
         
-        # Firebase에 회원가입 데이터 저장
-        DB.write_to_db(name, id_, pw, email, phone)
-        return redirect(url_for('welcome'))  # 웰컴페이지로 리다이렉트
+        # 비밀번호 해실
+        pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
+        
+        # db에 회원가입 데이터 저장
+        DB.write_to_db(name, id, pw_hash, email, phone)
+        return redirect(url_for('welcome'))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
+
     return render_template("회원가입.html")
 
 @application.route("/웰컴페이지")

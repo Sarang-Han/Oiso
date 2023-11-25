@@ -11,17 +11,16 @@ class DBhandler:
     def user_login(self, id_, pw):
         users = self.db.child("users").get().val()
 
-        for user_id, user_info in users.items():
+        for user_info in users.items():
             if user_info.get("id") == id_ and user_info.get("pw") == pw:  # 해당하는 id와 pw가 있는지 확인
                 return True
-
         return False
 
-    def write_to_db(self, name, id_, pw, email, phone):
+    def write_to_db(self, name, id, pw_hash, email, phone):
         data = {
             "name": name,
-            "id": id_,  
-            "pw": pw,   
+            "id": id,  
+            "pw": pw_hash,   
             "email": email,
             "phone": phone
         }
