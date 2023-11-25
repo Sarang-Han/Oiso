@@ -10,9 +10,11 @@ class DBhandler:
     
     def user_login(self, id_, pw):
         users = self.db.child("users").get().val()
+        hashed_pw = hashlib.sha256(pw.encode('utf-8')).hexdigest()
 
         for user_info in users.items():
-            if user_info.get("id") == id_ and user_info.get("pw") == pw:  # 해당하는 id와 pw가 있는지 확인
+            user_data = user_info[1]
+            if user_data.get("id") == id_ and user_data.get("pw") == hashed_pw:  # 해당하는 id와 pw가 있는지 확인
                 return True
         return False
 
