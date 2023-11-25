@@ -12,6 +12,7 @@ application.config["SECRET_KEY"] = "Oisobaki"
 def login():
     return render_template("로그인.html")
 
+
 @application.route("/login_", methods=['GET', 'POST'])
 def login_():
     if request.method == 'POST':
@@ -67,6 +68,11 @@ def signup():
         return redirect(url_for('welcome'))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
 
     return render_template("회원가입.html")
+
+@application.route("/logout")
+def logout_user():
+    session.clear()
+    return redirect(url_for('login'))
 
 @application.route("/웰컴페이지")
 def welcome():
