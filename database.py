@@ -17,8 +17,9 @@ class DBhandler:
                 return True
         return False
 
-    def write_to_db(self, name, id, pw_hash, email, phone):
+    def write_to_db(self, profile, name, id, pw_hash, email, phone):
         user_info = {
+            "profile": profile,
             "name": name,
             "id": id,  
             "pw": pw_hash,   

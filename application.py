@@ -45,6 +45,9 @@ def login_():
 @application.route("/회원가입", methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
+        profile = request.files['profile']
+        profile.save("static/image/{}".format(profile.filename))
+                
         name = request.form['name']
         id = request.form['id']
         pw = request.form['pw']
@@ -64,9 +67,10 @@ def signup():
             return redirect(url_for('signup'))  # 아이디가 중복된 경우 회원가입 페이지로 리다이렉트
         
         # db에 회원가입 데이터 저장
-        DB.write_to_db(name, id, pw_hash, email, phone)
+        DB.write_to_db(profile.filename, name, id, pw_hash, email, phone)
         session['username'] = name  # 세션에 사용자 이름 저장
-        return redirect(url_for('welcome', username=name))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
+        session['profile'] = profile.filename
+        return redirect(url_for('welcome', username=name, profile=profile.filename))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
 
     return render_template("회원가입.html")
 
@@ -75,10 +79,11 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-@application.route("/웰컴페이지/<username>")
-def welcome(username):
+@application.route("/웰컴페이지/<username>/<profile>")
+def welcome(username, profile):
     username = session.get('username')
-    return render_template("웰컴페이지.html", username=username)
+    profile = session.get('profile')
+    return render_template("웰컴페이지.html", username=username, profile=profile)
 
 @application.route("/메인화면")
 def main():
