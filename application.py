@@ -4,10 +4,20 @@ import sys
 import hashlib
 from datetime import datetime
 import math
+from functools import wraps
 
 application = Flask(__name__, static_url_path='/static', static_folder='static')
 DB = DBhandler()
 application.config["SECRET_KEY"] = "Oisobaki"
+
+# 로그인 확인하는 데코레이터 함수
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'logged_in' not in session or not session['logged_in']:
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 @application.route("/")
 def login():
@@ -124,17 +134,21 @@ def all_review():
     return render_template("리뷰전체보기.html")
 
 @application.route("/채팅목록")
+@login_required
 def chatlist():
     return render_template("채팅목록.html")
 
 @application.route("/상품등록")
+@login_required
 def reg_items():
     seller_id = session.get('id', '')  # 세션에서 id 가져와 판매자 id 자동완성, 없으면 빈 문자열
     return render_template("상품등록.html", seller_id=seller_id)
 
 @application.route("/마이페이지1")
+@login_required
 def mypage1():
     return render_template("마이페이지1.html")
+
 @application.route("/마이페이지2")
 def mypage2():
     return render_template("마이페이지2.html")
