@@ -106,7 +106,8 @@ def view_item_detail(item_key):
     print("### Item_key:",item_key)
     data = DB.get_item_by_key(str(item_key))
     print("#### Data:",data)
-    return render_template("상품상세.html", item_key=item_key, data=data)
+    seller_name = DB.get_user_name_by_id(data['seller']) # 판매자 이름 가져옴
+    return render_template("상품상세.html", item_key=item_key, data=data, seller_name=seller_name)
 
 @application.route("/리뷰전체보기")
 def all_review():

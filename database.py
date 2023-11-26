@@ -63,3 +63,10 @@ class DBhandler:
         if item.val():
             return item.val()
         return None
+    
+    def get_user_name_by_id(self, user_id):
+        users = self.db.child("users").get().val()
+        for user_key, user_info in users.items():
+            if user_info['id'] == user_id:
+                return user_info['name']
+        return None

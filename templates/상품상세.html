@@ -12,14 +12,36 @@
         <button onclick="goBack()"><img src="{{ url_for('static', filename='image/back.png') }}" style="width:20px;"></button>
         <h4>상품 상세</h4>
     </header>
-<div class="productimg">
-    <img src="{{ '../../' + data['img_path'][0] if data['img_path'] else '../../static/image/mug.png' }}" width="300px">
-</div>
+
+    <div class="productimg">
+        <div class="image-slider">
+            {% if data['img_path'] %}
+            {% for img_path in data['img_path'] %}
+                <div class="slide">
+                    <img src="{{ '../../' + img_path }}" width="300px">
+                </div>
+            {% endfor %}
+            {% else %}
+            <div class="slide">
+                <img src="../../static/image/500.png" width="300px">
+            </div>
+            {% endif %}
+            <!-- 왼쪽 화살표 버튼 -->
+            <button class="slider-btn prev" onclick="plusSlides(-1)">
+                <img src="{{ url_for('static', filename='image/back.png') }}" alt="Prev" style="width: 20px;">
+            </button>
+            <!-- 오른쪽 화살표 버튼 -->
+            <button class="slider-btn next" onclick="plusSlides(1)">
+                <img src="{{ url_for('static', filename='image/back.png') }}" alt="Next" style="transform: rotate(180deg); width: 20px;">
+            </button>
+        </div>
+    </div>
+
 <div class="seller">
-    <a href="받은리뷰확인">
+    <a href="#"> <!--판매자 프로필 화면 연결 필요-->
         <img src="{{ url_for('static', filename='image/prof1.png') }}" width="80px" style="display: inline;">
     </a>
-    <span>{{ data['seller'] }}</span>
+    <p>{{ seller_name }} @{{ data['seller'] }}</p>
     
 </div>
 <div class="productinfo">
@@ -28,7 +50,7 @@
     <p>{{ data['description'] }}</p><br>
 </div>
 <div class="pricebar">
-    <img src="{{ url_for('static', filename='image/oi.png') }}" width="30px" style="display: inline;">
+    <img src="{{ url_for('static', filename='image/oi.png') }}" width="40px" style="display: inline;">
     <span>{{ data['price'] }}원</span>
     <button>채팅하기</button>
 </div>
@@ -37,6 +59,7 @@
         window.history.back();
     }
 </script>
+<script src="{{ url_for('static', filename='상품상세.js') }}"></script>
 <nav>
     <a href="/메인화면" class="nav-active"><img src="{{ url_for('static', filename='image/home.png') }}" width="20px"><br>메인 홈</a>
     <a href="/리뷰전체보기"><img src="{{ url_for('static', filename='image/write.png') }}" width="20px"><br>전체 리뷰</a>
