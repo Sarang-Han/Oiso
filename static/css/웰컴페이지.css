@@ -18,7 +18,11 @@ body {
 img {
     padding: 50px 140px;
     justify-content: center;
-}
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }  
 
 .ment {
     text-align: center;
