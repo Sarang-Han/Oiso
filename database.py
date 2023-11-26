@@ -8,7 +8,7 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
     
-    def user_login(self, id, pw):
+    def user_login(self, id, pw): # db에서 유저 로그인 정보 확인
         users = self.db.child("users").get().val()
 
         for user_info in users.items():
@@ -17,18 +17,18 @@ class DBhandler:
                 return True
         return False
 
-    def write_to_db(self, profile, name, id, pw_hash, email, phone):
+    def write_to_db(self, profile, name, id, pw_hash, email, phone): # 회원가입 정보 받아서 db에 쓰는 함수
         user_info = {
-            "profile": profile,
-            "name": name,
-            "id": id,  
-            "pw": pw_hash,   
-            "email": email,
-            "phone": phone
+            "profile": profile, # 프로필 사진
+            "name": name,       # 이름
+            "id": id,           # ID
+            "pw": pw_hash,      # PW
+            "email": email,     # 이메일
+            "phone": phone      # 전화번호
         }
         self.db.child("users").push(user_info)
 
-    def user_duplicate_check(self, id_string):
+    def user_duplicate_check(self, id_string): # 아이디 중복체크 함수
         users = self.db.child("users").get()
         
         if str(users.val()) == "None":  # 첫 번째 등록인 경우

@@ -14,12 +14,12 @@ def login():
     return render_template("로그인.html")
 
 
-@application.route("/login_", methods=['GET', 'POST'])
+@application.route("/login_", methods=['GET', 'POST']) # 로그인 확인 함수
 def login_():
     if request.method == 'POST':
-        id = request.form.get('id')  # 입력값 받기
+        id = request.form.get('id')
         pw = request.form.get('pw')
-        pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
+        pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest() # 비밀번호 해싱
 
         if not id and not pw:  # 아이디나 비밀번호가 입력되지 않은 경우
             flash("아이디와 비밀번호를 입력해주세요.")
@@ -49,7 +49,7 @@ def signup():
         if 'profile' in request.files and request.files['profile'].filename != '':
             img_file = request.files['profile']
             img_file.save("static/image/{}".format(img_file.filename)) # static/image 경로에 이미지 저장
-            profile = "{}".format(img_file.filename) # profile 이미지 이름으로 저장
+            profile = "{}".format(img_file.filename) # profile에 이미지 이름으로 저장
         else:
             profile = "_"  # 이미지가 업로드되지 않은 경우 "_" 문자열로 처리
         name = request.form['name']
@@ -77,16 +77,16 @@ def signup():
         return redirect(url_for('welcome', username=name, profile=profile))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
     return render_template("회원가입.html")
 
-@application.route("/logout")
+@application.route("/logout") # 로그아웃 함수
 def logout():
     session.clear()
     return redirect(url_for('login'))
 
-@application.route("/웰컴페이지/<username>/<profile>")
+@application.route("/웰컴페이지/<username>/<profile>") # 웰컴페이지 동적 라우팅 함수
 def welcome(username, profile):
     username = session.get('username')
     profile = session.get('profile')
-    return render_template("웰컴페이지.html", username=username, profile=profile)
+    return render_template("웰컴페이지.html", username=username, profile=profile) # 회원가입 정보로 임시 로그인하여 이름, 프사 띄우기
 
 @application.route("/메인화면")
 def main():
@@ -113,9 +113,7 @@ def main():
 
 @application.route("/view_detail/<item_key>/") # 상품 key로 동적 라우팅
 def view_item_detail(item_key):
-    print("### Item_key:",item_key)
     data = DB.get_item_by_key(str(item_key))
-    print("#### Data:",data)
     seller_info = DB.get_user_info_by_id(data['seller'])  # 판매자 정보 가져옴
     seller_name = seller_info['name'] if seller_info else None
     seller_profile = seller_info['profile'] if seller_info and 'profile' in seller_info else 'prof1.png'
@@ -131,7 +129,7 @@ def chatlist():
 
 @application.route("/상품등록")
 def reg_items():
-    seller_id = session.get('id', '')  # 세션에서 id 가져오기, 없으면 빈 문자열
+    seller_id = session.get('id', '')  # 세션에서 id 가져와 판매자 id 자동완성, 없으면 빈 문자열
     return render_template("상품등록.html", seller_id=seller_id)
 
 @application.route("/마이페이지1")
@@ -153,7 +151,7 @@ def selllist():
 def oilist():
     return render_template("오이목록.html")
 
-@application.route("/submit_item_post", methods=['POST'])
+@application.route("/submit_item_post", methods=['POST']) # 상품 등록 함수
 def reg_item_submit_post():
     
     image_files = request.files.getlist("image[]")
@@ -161,7 +159,7 @@ def reg_item_submit_post():
 
     for image_file in image_files:
         try:
-            if image_file.filename != '':
+            if image_file.filename != '': # 이미지 파일이 비어있지 않으면 저장 후 경로를 리스트에 추가.
                 image_file.save("static/image/{}".format(image_file.filename))
                 img_paths.append("static/image/{}".format(image_file.filename))
         except Exception as e:
@@ -169,7 +167,7 @@ def reg_item_submit_post():
     
     data=request.form
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    DB.insert_item(data, img_paths, current_time)
+    DB.insert_item(data, img_paths, current_time) # 상품 정보와 이미지 경로, 현재 시간 저장
 
     return redirect(url_for('main'))
 
