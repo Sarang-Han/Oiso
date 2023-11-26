@@ -39,10 +39,11 @@
 
 <div class="seller">
     <a href="#"> <!--판매자 프로필 화면 연결 필요-->
-        <img src="{{ url_for('static', filename='image/prof1.png') }}" width="80px" style="display: inline;">
+        <div class="profile-circle">
+        <img src="{{ url_for('static', filename='image/' + seller_profile) }}" width="70px" style="display: inline;">
+        </div>
     </a>
     <p>{{ seller_name }} @{{ data['seller'] }}</p>
-    
 </div>
 <div class="productinfo">
     <h3>{{ data['name'] }}</h3><p>등록 날짜 : {{ data['date'] }}</p>

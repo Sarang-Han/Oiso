@@ -17,8 +17,9 @@ class DBhandler:
                 return True
         return False
 
-    def write_to_db(self, name, id, pw_hash, email, phone):
+    def write_to_db(self, profile, name, id, pw_hash, email, phone):
         user_info = {
+            "profile": profile,
             "name": name,
             "id": id,  
             "pw": pw_hash,   
@@ -64,9 +65,9 @@ class DBhandler:
             return item.val()
         return None
     
-    def get_user_name_by_id(self, user_id):
-        users = self.db.child("users").get().val()
-        for user_key, user_info in users.items():
-            if user_info['id'] == user_id:
-                return user_info['name']
+    def get_user_info_by_id(self, user_id): # id로 user 정보 접근
+        users = self.db.child("users").get()
+        for user in users.each():
+            if user.val()['id'] == user_id:
+                return user.val()
         return None

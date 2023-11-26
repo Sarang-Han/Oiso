@@ -38,7 +38,12 @@
                         {% else %}
                             <img src="../static/image/item.png" width="100px">
                         {% endif %}
-                        <div class="product-name-overlay">{{ value['name'] or '상품명' }}</div>
+                        <div class="product-name-overlay">
+                        {% if value['name'] and value['name']|length > 6 %}
+                            {{ value['name'][:4] + '...' }}
+                        {% else %}
+                            {{ value['name'] or '상품명' }}
+                        {% endif %}</div>
                     </div>
                     </a>
                 </div>

@@ -13,6 +13,7 @@ application.config["SECRET_KEY"] = "Oisobaki"
 def login():
     return render_template("로그인.html")
 
+
 @application.route("/login_", methods=['GET', 'POST'])
 def login_():
     if request.method == 'POST':
@@ -45,6 +46,9 @@ def login_():
 @application.route("/회원가입", methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
+        profile = request.files['profile']
+        profile.save("static/image/{}".format(profile.filename))
+                
         name = request.form['name']
         id = request.form['id']
         pw = request.form['pw']
@@ -64,19 +68,23 @@ def signup():
             return redirect(url_for('signup'))  # 아이디가 중복된 경우 회원가입 페이지로 리다이렉트
         
         # db에 회원가입 데이터 저장
-        DB.write_to_db(name, id, pw_hash, email, phone)
-        return redirect(url_for('welcome'))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
+        DB.write_to_db(profile.filename, name, id, pw_hash, email, phone)
+        session['username'] = name  # 세션에 사용자 이름 저장
+        session['profile'] = profile.filename
+        return redirect(url_for('welcome', username=name, profile=profile.filename))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
 
     return render_template("회원가입.html")
 
 @application.route("/logout")
-def logout_user():
+def logout():
     session.clear()
-    return redirect(url_for('main'))
+    return redirect(url_for('login'))
 
-@application.route("/웰컴페이지")
-def welcome():
-    return render_template("웰컴페이지.html")
+@application.route("/웰컴페이지/<username>/<profile>")
+def welcome(username, profile):
+    username = session.get('username')
+    profile = session.get('profile')
+    return render_template("웰컴페이지.html", username=username, profile=profile)
 
 @application.route("/메인화면")
 def main():
@@ -106,8 +114,10 @@ def view_item_detail(item_key):
     print("### Item_key:",item_key)
     data = DB.get_item_by_key(str(item_key))
     print("#### Data:",data)
-    seller_name = DB.get_user_name_by_id(data['seller']) # 판매자 이름 가져옴
-    return render_template("상품상세.html", item_key=item_key, data=data, seller_name=seller_name)
+    seller_info = DB.get_user_info_by_id(data['seller'])  # 판매자 정보 가져옴
+    seller_name = seller_info['name'] if seller_info else None
+    seller_profile = seller_info['profile'] if seller_info and 'profile' in seller_info else 'prof1.png'
+    return render_template("상품상세.html", item_key=item_key, data=data, seller_name=seller_name, seller_profile=seller_profile)
 
 @application.route("/리뷰전체보기")
 def all_review():
