@@ -47,7 +47,8 @@ class DBhandler:
             "category": data['category'],       # 카테고리
             "price": data['price'],             # 가격
             "place": data['place'],             # 거래 지역
-            "description": data['description'], # 상품 상태/설명
+            "status": data['status'],           # 상품 상태
+            "description": data['description'], # 상품 설명
             "img_path": img_paths,              # 이미지 경로
             "date": current_time                # 등록 날짜
         }

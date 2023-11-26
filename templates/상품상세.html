@@ -48,12 +48,23 @@
 <div class="productinfo">
     <h3>{{ data['name'] }}</h3><p>등록 날짜 : {{ data['date'] }}</p>
     <p>거래 지역 : {{ data['place'] }}</p>
+    <p>상태 : 
+        {% if data['status'] == 'new' %}
+        새상품(미개봉)
+        {% elif data['status'] == 'barely_used'%}
+        거의 사용 안함
+        {% elif data['status'] == 'lightly_used'%}
+        약간 사용함
+        {% else %}
+        많이 사용함
+        {% endif %}
+    </p>
     <p>{{ data['description'] }}</p><br>
 </div>
 <div class="pricebar">
     <img src="{{ url_for('static', filename='image/oi.png') }}" width="40px" style="display: inline;">
     <span>{{ data['price'] }}원</span>
-    <button>채팅하기</button>
+    <button>채팅하기</button><!--채팅 화면 연결 필요-->
 </div>
 <script>
     function goBack() {

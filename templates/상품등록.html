@@ -2,12 +2,11 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../static/css/상품등록.css">
     <title>상품 등록하기</title>
 </head>
 <body>
-<div class="content">
     <header>
         <button onclick="goBack()"><img src="../static/image/xmark.png" style="width:20px;"></button>
         <h3>상품 등록하기</h3>
@@ -38,6 +37,15 @@
         </div>
         <label for="price"><p>가격</p></label>
         <input type="text" name="price" id="price" class="line" required>
+        <label for="status"><p>상태</p></label>
+        <div class="category">
+            <select id="status" name="status">
+                <option value="new">새상품(미개봉)</option>
+                <option value="barely_used">거의 사용 안함</option>
+                <option value="lightly_used">약간 사용함</option>
+                <option value="living">많이 사용함</option>
+            </select>
+        </div>
         <label for="place"><p>거래 지역</p></label>
         <div class="category">
             <select id="place" name="place">
@@ -54,7 +62,7 @@
             </select>
         </div>
         <label for="description"><p>상품 설명</p></label>
-        <textarea name="description" id="description" cols="50" rows="10" required placeholder="상품의 정보와 상태를 설명해주세요."></textarea>
+        <textarea name="description" id="description" cols="50" rows="10" required placeholder="상품의 자세한 설명을 적어주세요!"></textarea>
     </div>
     <button class="add-button" onclick="toMain()">등록 완료</button>
 </form>
@@ -75,6 +83,5 @@
         }
     </script>
     <script src="{{ url_for('static', filename='상품등록.js') }}"></script>
-</div>
 </body>
 </html>
