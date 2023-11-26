@@ -27,6 +27,7 @@ class DBhandler:
         }
         self.db.child("users").push(user_info)
 
+<<<<<<< HEAD
     def insert_item(self, data, img_paths, current_time):
         item_info ={
             "seller": data['seller'],           # 판매자 ID
@@ -70,6 +71,8 @@ class DBhandler:
         return True
         self.db.child("users").push(user_info)
     
+=======
+>>>>>>> regi_item
     def user_duplicate_check(self, id_string):
         users = self.db.child("users").get()
         
@@ -81,3 +84,31 @@ class DBhandler:
                 if value['id'] == id_string:
                     return True
             return False
+<<<<<<< HEAD
+=======
+
+    def insert_item(self, data, img_paths, current_time): # 상품 등록
+        item_info ={
+            "seller": data['seller'],           # 판매자 ID
+            "name": data['name'],               # 상품명
+            "category": data['category'],       # 카테고리
+            "price": data['price'],             # 가격
+            "place": data['place'],             # 거래 지역
+            "description": data['description'], # 상품 상태/설명
+            "img_path": img_paths,              # 이미지 경로
+            "date": current_time                # 등록 날짜
+        }
+        self.db.child("item").push(item_info)
+        print(data, img_paths)
+        return True
+    
+    def get_items(self):
+        items = self.db.child("item").get().val()
+        return items
+    
+    def get_item_by_key(self, item_key):
+        item = self.db.child("item").child(item_key).get()
+        if item.val():
+            return item.val()
+        return None
+>>>>>>> regi_item
