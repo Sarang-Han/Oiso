@@ -12,11 +12,13 @@ application.config["SECRET_KEY"] = "Oisobaki"
 def login():
     return render_template("로그인.html")
 
+
 @application.route("/login_", methods=['GET', 'POST'])
 def login_():
     if request.method == 'POST':
         id = request.form.get('id')  # 입력값 받기
         pw = request.form.get('pw')
+        pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
 
         if not id and not pw:  # 아이디나 비밀번호가 입력되지 않은 경우
             flash("아이디와 비밀번호를 입력해주세요.")
@@ -30,7 +32,7 @@ def login_():
             flash("비밀번호를 입력해주세요.")
             return redirect(url_for('login'))
 
-        elif DB.user_login(id, pw):
+        elif DB.user_login(id, pw_hash):
             session['logged_in'] = True
             session['id'] = id
             return redirect(url_for('main'))  # 로그인 성공 시 main 페이지로 리다이렉트
@@ -54,7 +56,7 @@ def signup():
             flash("필수 정보를 모두 기입해주세요!")
             return redirect(url_for('signup'))  # 필수 정보가 누락된 경우 회원가입 페이지로 리다이렉트
         
-        # 비밀번호 해실
+        # 비밀번호 해싱
         pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
         
         if DB.user_duplicate_check(id):
@@ -63,13 +65,20 @@ def signup():
         
         # db에 회원가입 데이터 저장
         DB.write_to_db(name, id, pw_hash, email, phone)
-        return redirect(url_for('welcome'))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
+        session['username'] = name  # 세션에 사용자 이름 저장
+        return redirect(url_for('welcome', username=name))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
 
     return render_template("회원가입.html")
 
-@application.route("/웰컴페이지")
-def welcome():
-    return render_template("웰컴페이지.html")
+@application.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
+@application.route("/웰컴페이지/<username>")
+def welcome(username):
+    username = session.get('username')
+    return render_template("웰컴페이지.html", username=username)
 
 @application.route("/메인화면")
 def main():
