@@ -46,9 +46,12 @@ def login_():
 @application.route("/회원가입", methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        profile = request.files['profile']
-        profile.save("static/image/{}".format(profile.filename))
-                
+        if 'profile' in request.files and request.files['profile'].filename != '':
+            img_file = request.files['profile']
+            img_file.save("static/image/{}".format(img_file.filename)) # static/image 경로에 이미지 저장
+            profile = "{}".format(img_file.filename) # profile 이미지 이름으로 저장
+        else:
+            profile = "_"  # 이미지가 업로드되지 않은 경우 "_" 문자열로 처리
         name = request.form['name']
         id = request.form['id']
         pw = request.form['pw']
@@ -68,11 +71,10 @@ def signup():
             return redirect(url_for('signup'))  # 아이디가 중복된 경우 회원가입 페이지로 리다이렉트
         
         # db에 회원가입 데이터 저장
-        DB.write_to_db(profile.filename, name, id, pw_hash, email, phone)
+        DB.write_to_db(profile, name, id, pw_hash, email, phone)
         session['username'] = name  # 세션에 사용자 이름 저장
-        session['profile'] = profile.filename
-        return redirect(url_for('welcome', username=name, profile=profile.filename))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
-
+        session['profile'] = profile
+        return redirect(url_for('welcome', username=name, profile=profile))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
     return render_template("회원가입.html")
 
 @application.route("/logout")
