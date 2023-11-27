@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../static/css/메인화면.css"/>
     <script>
         var selectedCategory = "{{ selected_category }}";
@@ -38,7 +38,12 @@
                         {% else %}
                             <img src="../static/image/item.png" width="100px">
                         {% endif %}
-                        <div class="product-name-overlay">{{ value['name'] or '상품명' }}</div>
+                        <div class="product-name-overlay">
+                        {% if value['name'] and value['name']|length > 6 %}
+                            {{ value['name'][:4] + '...' }}
+                        {% else %}
+                            {{ value['name'] or '상품명' }}
+                        {% endif %}</div>
                     </div>
                     </a>
                 </div>

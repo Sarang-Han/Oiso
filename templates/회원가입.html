@@ -17,11 +17,14 @@
             <button onclick="goBack()"><img src="{{ url_for('static', filename='image/back.png') }}" style="width:20px;"></button>
             <h4>회원가입</h4>
         </header>
-        <div class="picupload">
-            <label for="image"><img src="{{ url_for('static', filename='image/profile.png') }}" alt="프로필 사진"></label>
-            <input type="file" id="image" style="display: none; visibility: none;">
-        </div>
-        <form action="/회원가입" method="post">
+        
+        <form action="/회원가입" method="post" enctype="multipart/form-data">
+            <div class="picupload">
+                <label for="profile">
+                    <img id="preview" src="{{ url_for('static', filename='image/profile.png') }}" alt="프로필 사진">
+                </label>
+                <input type="file" id="profile" name="profile" accept="image/*" style="display: none; visibility: none;" onchange="previewImage(event)">
+            </div>
             <p>이름 <span class=req>*</span></p>
             <input type="text" id="name" name="name" class="join">
             <p>아이디 <span class=req>*</span></p> 
@@ -48,6 +51,16 @@
             function goBack() {
                 window.location.href = "/";
             }
+
+            function previewImage(event) { //추가한 프로필 사진을 미리 볼 수 있는 기능
+                var reader = new FileReader();
+                reader.onload = function() {
+                    var preview = document.getElementById('preview');
+                    preview.src = reader.result;
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+
         </script>
     </div>
 </body>

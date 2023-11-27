@@ -8,7 +8,7 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
     
-    def user_login(self, id, pw):
+    def user_login(self, id, pw): # db에서 유저 로그인 정보 확인
         users = self.db.child("users").get().val()
 
         for user_info in users.items():
@@ -17,16 +17,18 @@ class DBhandler:
                 return True
         return False
 
-    def write_to_db(self, name, id, pw_hash, email, phone):
+    def write_to_db(self, profile, name, id, pw_hash, email, phone): # 회원가입 정보 받아서 db에 쓰는 함수
         user_info = {
-            "name": name,
-            "id": id,  
-            "pw": pw_hash,   
-            "email": email,
-            "phone": phone
+            "profile": profile, # 프로필 사진
+            "name": name,       # 이름
+            "id": id,           # ID
+            "pw": pw_hash,      # PW
+            "email": email,     # 이메일
+            "phone": phone      # 전화번호
         }
         self.db.child("users").push(user_info)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     def insert_item(self, data, img_paths, current_time):
         item_info ={
@@ -74,6 +76,9 @@ class DBhandler:
 =======
 >>>>>>> regi_item
     def user_duplicate_check(self, id_string):
+=======
+    def user_duplicate_check(self, id_string): # 아이디 중복체크 함수
+>>>>>>> 3872242e29bfc53d1977c17d43253799e4292048
         users = self.db.child("users").get()
         
         if str(users.val()) == "None":  # 첫 번째 등록인 경우
@@ -85,7 +90,10 @@ class DBhandler:
                     return True
             return False
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3872242e29bfc53d1977c17d43253799e4292048
 
     def insert_item(self, data, img_paths, current_time): # 상품 등록
         item_info ={
@@ -94,7 +102,8 @@ class DBhandler:
             "category": data['category'],       # 카테고리
             "price": data['price'],             # 가격
             "place": data['place'],             # 거래 지역
-            "description": data['description'], # 상품 상태/설명
+            "status": data['status'],           # 상품 상태
+            "description": data['description'], # 상품 설명
             "img_path": img_paths,              # 이미지 경로
             "date": current_time                # 등록 날짜
         }
@@ -111,4 +120,14 @@ class DBhandler:
         if item.val():
             return item.val()
         return None
+<<<<<<< HEAD
 >>>>>>> regi_item
+=======
+    
+    def get_user_info_by_id(self, user_id): # id로 user 정보 접근
+        users = self.db.child("users").get()
+        for user in users.each():
+            if user.val()['id'] == user_id:
+                return user.val()
+        return None
+>>>>>>> 3872242e29bfc53d1977c17d43253799e4292048

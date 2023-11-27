@@ -62,3 +62,10 @@ input[type="text"], input[type="password"] {
     display: block;
     margin-top: 50px;
 }
+
+#preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }  

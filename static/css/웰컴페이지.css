@@ -15,18 +15,14 @@ body {
     padding: 20px;
 }
 
-.profpic {
-    padding: 30px 140px;
-    text-align: center;
+img {
+    padding: 50px 140px;
     justify-content: center;
-}
-
-.profpic img{
-    margin-top: 170px;
     width: 100px;
-    display: block;
-    margin-bottom: 20px;
-}
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }  
 
 .ment {
     text-align: center;
