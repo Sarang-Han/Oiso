@@ -162,11 +162,16 @@ def selllist():
     #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
     seller_id = session.get('id', '')
     my_selllist = DB.get_sellitems(seller_id)
-    tot_count = len(my_selllist)
+    if (my_selllist == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = my_selllist.items()
+        tot_count = len(my_selllist)
     
     return render_template(
         "판매내역.html",
-        lists = my_selllist.items(),
+        lists = lists,
         total = tot_count
     )
 
@@ -174,10 +179,15 @@ def selllist():
 def oilist():
     my_id = session.get('id', '')
     my_oilist = DB.get_oilist_byuid(my_id)
-    tot_count = len(my_oilist)
+    if (my_oilist == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = my_oilist.items()
+        tot_count = len(my_oilist)
     return render_template(
         "오이목록.html",
-        ois = my_oilist.items(),
+        lists = lists,
         total = tot_count
     )
 

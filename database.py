@@ -88,7 +88,7 @@ class DBhandler:
         return target_value
 
     def get_oilist_byuid(self, uid):
-        my_oilist = self.db.child("oilist").get().val()
+        my_oilist = self.db.child("oilist").child("uid").get().val()
         return my_oilist
 
     def update_oilist(self, uid, isOilist, item_key):

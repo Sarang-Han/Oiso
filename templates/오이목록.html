@@ -18,7 +18,7 @@
     
     <div class="listarea">
     {% if total > 0 %} <!-- 여기서부터 수정 -->
-        {% for key, value in ois %}
+        {% for key, value in lists %}
         {% if value['intersted'] == 'Y' %}
             <div>
                 <img src="static/image/{{value.img_path}}" alt="상품사진">
@@ -33,6 +33,7 @@
     {% else %}
     <div class="none">
         <img src="../static/image/none.png" alt="빈 이미지">
+        <h4>오이목록이 없습니다</h4>
         <br><br>
     </div>
     {% endif %} <!-- 여기까지 수정 -->
