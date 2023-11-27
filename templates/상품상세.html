@@ -3,12 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="../static/css/상품상세.css">
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-=======
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/상품상세.css') }}">
->>>>>>> regi_item
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        function showOi(){
+            $.ajax({
+                type: 'GET',
+                url: '/show_Oi/{{item_key}}/',
+                data: {},
+                success: function (response){
+                    let my_oi = response['my_oi'];
+                    if (my_oi['interested']=='Y'){
+                        $("#oi").attr("onclick", "unlike()");
+                        $('#oi').on({
+                            'click': function(){
+                                $('#oi').attr('src',"{{ url_for('static', filename='image/oioi.png') }}");
+                            }
+                        });
+                        $("#oi").attr("src", "{{ url_for('static', filename='image/oioi.png') }}");
+                    }
+                    else{
+                        $("#oi").attr("onclick", "like()");
+                        $('#oi').on({
+                            'click': function(){
+                                $('#oi').attr('src',"{{ url_for('static', filename='image/oi.png') }}");
+                            }
+                        });
+                        $("#oi").attr("src", "{{ url_for('static', filename='image/oi.png') }}");
+                    }
+                }
+            });
+        }
+    
+        function like(){
+            $.ajax({
+                type: 'POST',
+                url: '/like/{{item_key}}/',
+                data: {
+                    interested: "Y"
+                },
+                success: function (response){
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+    
+        function unlike(){
+            $.ajax({
+                type: 'POST',
+                url: '/unlike/{{item_key}}/',
+                data: {
+                    interested: "N"
+                },
+                success: function (response){
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+        $(document).ready(function(){
+            showOi();
+        });
+    </script>
+
     <title>상품 상세</title>
 </head>
 <body>
@@ -67,7 +125,7 @@
     <p>{{ data['description'] }}</p><br>
 </div>
 <div class="pricebar">
-    <img src="{{ url_for('static', filename='image/oi.png') }}" width="40px" style="display: inline;">
+    <img id="oi" src="{{ url_for('static', filename='image/oi.png') }}" width="40px" style="display: inline;">
     <span>{{ data['price'] }}원</span>
     <button>채팅하기</button><!--채팅 화면 연결 필요-->
 </div>
