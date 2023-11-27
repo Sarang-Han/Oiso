@@ -37,97 +37,35 @@ header h3{
     padding-bottom:60px;
 }
 
-.filmcamera {
+.item {
     display: inline-block;
 }
 
-.filmcamera img {
+.item img {
     vertical-align: top;
     margin-left: 20px;
     margin-top:30px;
 }
 
-.filmcamera-details {
+.item-details {
     display: inline-block;
     vertical-align: top;
     margin-left: 20px;
     margin-top:30px;
 }
 
-.filmcamera-details h4 {
+.item-details h4 {
     font-size: 14px;
     margin-top: 0;
 }
 
-.filmcamera-details p {
+.item-details p {
     font-size: 12px;
     margin-top: 0;
 }
 
-.filmcamera img:last-child {
+.item img:last-child {
     margin-left: 90px; 
-}
-
-.hoodie {
-    display: inline-block;
-}
-
-.hoodie img {
-    vertical-align: top;
-    margin-left: 10px;
-    margin-top:30px;
-}
-
-.hoodie-details {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 15px;
-    margin-top:30px;
-}
-
-.hoodie-details h4 {
-    font-size: 14px;
-    margin-top: 0;
-}
-
-.hoodie-details p {
-    font-size: 12px;
-    margin-top: 0;
-}
-
-.hoodie img:last-child {
-    margin-left: 84px; 
-}
-
-.book {
-    display: inline-block;
-}
-
-.book img {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
-}
-
-.book-details {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
-}
-
-.book-details h4 {
-    font-size: 14px;
-    margin-top: 0;
-}
-
-.book-details p {
-    font-size: 12px;
-    margin-top: 0;
-}
-
-.book img:last-child {
-    margin-left: 35px; 
 }
 
 .none img{

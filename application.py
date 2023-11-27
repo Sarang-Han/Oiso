@@ -185,6 +185,7 @@ def oilist():
     else:
         lists = my_oilist.items()
         tot_count = len(my_oilist)
+        
     return render_template(
         "오이목록.html",
         lists = lists,

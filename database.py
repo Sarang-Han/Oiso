@@ -88,16 +88,17 @@ class DBhandler:
         return target_value
 
     def get_oilist_byuid(self, uid):
-        my_oilist = self.db.child("oilist").child("uid").get().val()
+        my_oilist = self.db.child("oilist").child(uid).get().val()
         return my_oilist
 
     def update_oilist(self, uid, isOilist, item_key):
-        item_info = self.db.child("item").child(item_key).get()
+        item_info = self.db.child("item").child(item_key).get().val()
+        imgpath = item_info["img_path"]
         oilist_info ={
             "interested": isOilist,
-            "name":item_info['name'],
+            "name": item_info['name'],
             "price": item_info['price'],
-            "img_path": item_info['img_path']
+            "img_path": imgpath[0]
         }
         self.db.child("oilist").child(uid).child(item_key).set(oilist_info)
         return True
