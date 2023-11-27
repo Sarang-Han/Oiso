@@ -175,7 +175,11 @@ def oilist():
     my_id = session.get('id', '')
     my_oilist = DB.get_oilist_byuid(my_id)
     tot_count = len(my_oilist)
-    return render_template("오이목록.html")
+    return render_template(
+        "오이목록.html",
+        ois = my_oilist.items(),
+        total = tot_count
+    )
 
 @application.route("/submit_item_post", methods=['POST']) # 상품 등록 함수
 def reg_item_submit_post():
