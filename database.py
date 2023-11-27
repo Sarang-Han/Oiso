@@ -56,21 +56,6 @@ class DBhandler:
         print(data, img_paths)
         return True
     
-    #session id 별로 등록한 상품 정보 저장
-    def insert_selllist(self, id_, data, img_paths):
-        item_info ={
-            "name": data['name'],               # 상품명
-            "price": data['price'],             # 가격
-            "img_path": img_paths               # 이미지 경로
-        }
-        self.db.child("selllist").child(id_).push(item_info)
-        print(data, img_paths)
-        return True
-
-    def get_sellitems(self, id_):
-        selllist = self.db.child("selllist").child(id_).get().val()
-        return selllist
-
     def get_items(self):
         items = self.db.child("item").get().val()
         return items
@@ -87,3 +72,18 @@ class DBhandler:
             if user.val()['id'] == user_id:
                 return user.val()
         return None
+    
+        #session id 별로 등록한 상품 정보 저장
+    def insert_selllist(self, id_, data, img_paths):
+        item_info ={
+            "name": data['name'],               # 상품명
+            "price": data['price'],             # 가격
+            "img_path": img_paths               # 이미지 경로
+        }
+        self.db.child("selllist").child(id_).push(item_info)
+        print(data, img_paths)
+        return True
+
+    def get_sellitems(self, id_):
+        selllist = self.db.child("selllist").child(id_).get().val()
+        return selllist
