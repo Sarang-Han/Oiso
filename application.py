@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session
+from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from database import DBhandler
 import sys
 import hashlib
@@ -157,6 +157,13 @@ def mypage2():
 def buylist():
     return render_template("구매내역.html")
 
+<<<<<<< HEAD
+=======
+@application.route("/판매내역")
+def selllist():
+    return render_template("판매내역.html")
+
+>>>>>>> oi_funct
 @application.route("/오이목록")
 def oilist():
     return render_template("오이목록.html")
@@ -183,6 +190,7 @@ def reg_item_submit_post():
     DB.insert_selllist(seller_id, data, img_paths)
     return redirect(url_for('main'))
 
+<<<<<<< HEAD
 @application.route("/판매내역")
 def selllist():
     #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
@@ -200,6 +208,22 @@ def selllist():
         lists = lists,
         total = tot_count
     )
+=======
+@application.route('/show_Oi/<item_key>/', methods=['GET'])
+def show_Oi(item_key):
+    my_oi = DB.get_oilist_bykey(session['id'],item_key)
+    return jsonify({'my_oi': my_oi})
+
+@application.route('/like/<item_key>/', methods=['POST'])
+def like(item_key):
+    my_oilist = DB.update_oilist(session['id'],'Y',item_key)
+    return jsonify({'msg': '오이목록에 추가!'})
+
+@application.route('/unlike/<item_key>/', methods=['POST'])
+def unlike(item_key):
+    my_oilist = DB.update_oilist(session['id'],'N',item_key)
+    return jsonify({'msg': '오이목록에서 삭제!'})
+>>>>>>> oi_funct
 
 if __name__ == "__main__":
  application.run(host='0.0.0.0', debug=True)
