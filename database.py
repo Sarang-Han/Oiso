@@ -74,8 +74,6 @@ class DBhandler:
         return None
     
     def get_oilist_bykey(self, uid, item_key):
-        print("###########",uid)
-        print("###########",item_key)
         ois = self.db.child("oilist").child(uid).get()
         target_value=""
         if ois.val() == None:
@@ -89,6 +87,9 @@ class DBhandler:
                 
         return target_value
 
+    def get_oilist_byuid(self, uid):
+        my_oilist = self.db.child("oilist").get().val()
+        return my_oilist
 
     def update_oilist(self, uid, isOilist, item_key):
         oilist_info ={

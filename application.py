@@ -159,10 +159,22 @@ def buylist():
 
 @application.route("/판매내역")
 def selllist():
-    return render_template("판매내역.html")
+    #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
+    seller_id = session.get('id', '')
+    my_selllist = DB.get_sellitems(seller_id)
+    tot_count = len(my_selllist)
+    
+    return render_template(
+        "판매내역.html",
+        lists = my_selllist.items(),
+        total = tot_count
+    )
 
 @application.route("/오이목록")
 def oilist():
+    my_id = session.get('id', '')
+    my_oilist = DB.get_oilist_byuid(my_id)
+    tot_count = len(my_oilist)
     return render_template("오이목록.html")
 
 @application.route("/submit_item_post", methods=['POST']) # 상품 등록 함수
