@@ -87,12 +87,7 @@ def signup():
         return redirect(url_for('welcome', username=name, profile=profile))  # 회원가입 성공 시 웰컴페이지로 리다이렉트
     return render_template("회원가입.html")
 
-<<<<<<< HEAD
-@application.route("/logout")
-<<<<<<< HEAD
-=======
 @application.route("/logout") # 로그아웃 함수
->>>>>>> 3872242e29bfc53d1977c17d43253799e4292048
 def logout():
     session.clear()
     return redirect(url_for('login'))
@@ -100,21 +95,8 @@ def logout():
 @application.route("/웰컴페이지/<username>/<profile>") # 웰컴페이지 동적 라우팅 함수
 def welcome(username, profile):
     username = session.get('username')
-<<<<<<< HEAD
-    return render_template("웰컴페이지.html", username=username)
-=======
-def logout_user():
-    session.clear()
-    return redirect(url_for('main'))
-
-@application.route("/웰컴페이지")
-def welcome():
-    return render_template("웰컴페이지.html")
->>>>>>> regi_item
-=======
     profile = session.get('profile')
     return render_template("웰컴페이지.html", username=username, profile=profile) # 회원가입 정보로 임시 로그인하여 이름, 프사 띄우기
->>>>>>> 3872242e29bfc53d1977c17d43253799e4292048
 
 @application.route("/메인화면")
 def main():
@@ -179,27 +161,9 @@ def buylist():
 def selllist():
     return render_template("판매내역.html")
 
-@application.route('/오이목록/<data>/', methods=['GET'])
-def oilist(data):
-    me = session.get('id', '')
-    my_oilist = DB.get_oilist(me)
-    tot_count = len(my_oilist)
-
-    return render_template(
-        "오이목록.html",
-        lists=my_oilist.items(),
-        total = tot_count
-    )
-
-@application.route('/상품상세/<data>/', methods=['POST'])
-def like(data):
-    my_oilist = DB.update_oilist(session['id'],'Y',data)
-    return jsonify({'msg': '오이목록에 추가!'})
-
-@application.route('/상품상세/<data>/', methods=['POST'])
-def unlike(data):
-    my_oilist = DB.update_oilist(session['id'],'N',data)
-    return jsonify({'msg': '오이목록에서 삭제!'})
+@application.route("/오이목록")
+def oilist():
+    return render_template("오이목록.html")
 
 @application.route("/submit_item_post", methods=['POST']) # 상품 등록 함수
 def reg_item_submit_post():
