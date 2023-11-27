@@ -26,11 +26,6 @@ class DBhandler:
             "email": email,     # 이메일
             "phone": phone      # 전화번호
         }
-<<<<<<< HEAD
-        self.db.child("users").push(data)
-
-    def insert_item(self, data, img_paths, current_time):
-=======
         self.db.child("users").push(user_info)
 
     def user_duplicate_check(self, id_string): # 아이디 중복체크 함수
@@ -46,27 +41,21 @@ class DBhandler:
             return False
 
     def insert_item(self, data, img_paths, current_time): # 상품 등록
->>>>>>> main
         item_info ={
             "seller": data['seller'],           # 판매자 ID
             "name": data['name'],               # 상품명
             "category": data['category'],       # 카테고리
             "price": data['price'],             # 가격
             "place": data['place'],             # 거래 지역
-<<<<<<< HEAD
-            "description": data['description'], # 상품 상태/설명
-=======
             "status": data['status'],           # 상품 상태
             "description": data['description'], # 상품 설명
->>>>>>> main
             "img_path": img_paths,              # 이미지 경로
             "date": current_time                # 등록 날짜
         }
         self.db.child("item").push(item_info)
         print(data, img_paths)
         return True
-<<<<<<< HEAD
-
+    
     #session id 별로 등록한 상품 정보 저장
     def insert_selllist(self, id_, data, img_paths):
         item_info ={
@@ -81,8 +70,7 @@ class DBhandler:
     def get_sellitems(self, id_):
         selllist = self.db.child("selllist").child(id_).get().val()
         return selllist
-=======
-    
+
     def get_items(self):
         items = self.db.child("item").get().val()
         return items
@@ -99,4 +87,3 @@ class DBhandler:
             if user.val()['id'] == user_id:
                 return user.val()
         return None
->>>>>>> main
