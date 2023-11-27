@@ -157,10 +157,6 @@ def mypage2():
 def buylist():
     return render_template("구매내역.html")
 
-@application.route("/판매내역")
-def selllist():
-    return render_template("판매내역.html")
-
 @application.route("/오이목록")
 def oilist():
     return render_template("오이목록.html")
@@ -182,7 +178,9 @@ def reg_item_submit_post():
     data=request.form
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     DB.insert_item(data, img_paths, current_time) # 상품 정보와 이미지 경로, 현재 시간 저장
-
+    seller_id = session.get('id', '')
+    img_paths = str(img_paths[0])
+    DB.insert_selllist(seller_id, data, img_paths)
     return redirect(url_for('main'))
 
 @application.route("/판매내역")
@@ -190,11 +188,16 @@ def selllist():
     #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
     seller_id = session.get('id', '')
     my_selllist = DB.get_sellitems(seller_id)
-    tot_count = len(my_selllist)
+    if (my_selllist == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = my_selllist.items()
+        tot_count = len(my_selllist)
     
     return render_template(
         "판매내역.html",
-        lists = my_selllist.items(),
+        lists = lists,
         total = tot_count
     )
 
