@@ -2,21 +2,29 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../static/css/상품등록.css">
     <title>상품 등록하기</title>
 </head>
 <body>
-<div class="content">
     <header>
         <button onclick="goBack()"><img src="../static/image/xmark.png" style="width:20px;"></button>
         <h3>상품 등록하기</h3>
     </header>
     <form action="/submit_item_post" enctype="multipart/form-data"  method="post">
+<<<<<<< HEAD
+=======
+    <div class="upload-preview-container">
+>>>>>>> main
     <div class="picupload">
         <label for="image"><img src="../static/image/camera.png" alt="사진 업로드"></label>
     <input type="file" name="image[]" id="image" accept="image/*" multiple style="display: none;" onchange="checkImageCount()">
     <p id="image-count">0/10</p>
+<<<<<<< HEAD
+=======
+    </div>
+    <div class="image-preview-container"></div>
+>>>>>>> main
     </div>
     <div class="add">
         <label for="seller"><p>판매자 ID</p></label>
@@ -35,6 +43,7 @@
         </div>
         <label for="price"><p>가격</p></label>
         <input type="text" name="price" id="price" class="line" required>
+<<<<<<< HEAD
         <label for="place"><p>거래 지역</p></label>
         <div class="category">
             <select id="place" name="place">
@@ -52,6 +61,34 @@
         </div>
         <label for="description"><p>상품 설명</p></label>
         <textarea name="description" id="description" cols="50" rows="10" required placeholder="상품의 정보와 상태를 설명해주세요."></textarea>
+=======
+        <label for="status"><p>상태</p></label>
+        <div class="category">
+            <select id="status" name="status">
+                <option value="new">새상품(미개봉)</option>
+                <option value="barely_used">거의 사용 안함</option>
+                <option value="lightly_used">약간 사용함</option>
+                <option value="living">많이 사용함</option>
+            </select>
+        </div>
+        <label for="place"><p>거래 지역</p></label>
+        <div class="category">
+            <select id="place" name="place">
+                <option value="정문">정문</option>
+                <option value="ECC">ECC</option>
+                <option value="포스코관">포스코관</option>
+                <option value="학생문화관">학생문화관</option>
+                <option value="학관">학관</option>
+                <option value="종합과학관">종합과학관</option>
+                <option value="아산공학관">아산공학관</option>
+                <option value="이하우스">이하우스</option>
+                <option value="한우리집">한우리집</option>
+                <option value="중앙도서관">중앙도서관</option>
+            </select>
+        </div>
+        <label for="description"><p>상품 설명</p></label>
+        <textarea name="description" id="description" cols="50" rows="10" required placeholder="상품의 자세한 설명을 적어주세요!"></textarea>
+>>>>>>> main
     </div>
     <button class="add-button" onclick="toMain()">등록 완료</button>
 </form>
@@ -72,6 +109,9 @@
         }
     </script>
     <script src="{{ url_for('static', filename='상품등록.js') }}"></script>
+<<<<<<< HEAD
 </div>
+=======
+>>>>>>> main
 </body>
 </html>

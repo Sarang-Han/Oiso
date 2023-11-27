@@ -1,22 +1,53 @@
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+html{
+    background-color: #f0f0f0;    
 }
 
-.content {
+body {
     width: 390px;
-    height: 844px;
-    background-color: #fff;
     padding: 20px;
+    margin: 0 auto;
+    display: block;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+}
+
+header {
+    width: 100%;
+}
+
+.body form {
+    width: 370px;
+}
+
+.upload-preview-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.image-preview-container {
+    flex: 1 1 auto;
+    display: flex;
+    overflow-x: auto; /* 가로 스크롤 설정 */
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-bottom: 0px;
+
+    /* 스크롤 바 X */
+    scrollbar-width: none; /* 파이어폭스 */
+    -ms-overflow-style: none; /* 엣지 */
+}
+
+/* 크롬, 사파리, 오페라 스크롤 바 X*/
+.image-preview-container::-webkit-scrollbar {
+    display: none;
 }
 
 .picupload{
-    margin-left: 20px;
+    flex: 0 0 auto;
+    margin-left: 15px;
     margin-top: 10px;
     padding: 10px;
     background: #eeeeee;
@@ -57,13 +88,18 @@ header button{
     border: none;
     border-bottom: 1px solid #000;
     padding: 2px;
-    width: 90%;
+    width: 98%;
     display: block;
 }
 
 .category {
     text-align: left;
     margin-bottom: 10px;
+}
+
+.add textarea {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .add-button {

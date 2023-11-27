@@ -8,39 +8,64 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
     
-    def user_login(self, id_, pw):
+    def user_login(self, id, pw): # db에서 유저 로그인 정보 확인
         users = self.db.child("users").get().val()
 
-        for user_id, user_info in users.items():
-            if user_info["id"] == id_ and user_info["pw"] == pw:
+        for user_info in users.items():
+            user_data = user_info[1]
+            if user_data.get("id") == id and user_data.get("pw") == pw:  # 해당하는 id와 pw가 있는지 확인
                 return True
-
         return False
-    
-    def write_to_db(self, name, id_, pw, email, phone):
-        data = {
-            "name": name,
-            "id": id_,  
-            "pw": pw,   
-            "email": email,
-            "phone": phone
+
+    def write_to_db(self, profile, name, id, pw_hash, email, phone): # 회원가입 정보 받아서 db에 쓰는 함수
+        user_info = {
+            "profile": profile, # 프로필 사진
+            "name": name,       # 이름
+            "id": id,           # ID
+            "pw": pw_hash,      # PW
+            "email": email,     # 이메일
+            "phone": phone      # 전화번호
         }
+<<<<<<< HEAD
         self.db.child("users").push(data)
 
     def insert_item(self, data, img_paths, current_time):
+=======
+        self.db.child("users").push(user_info)
+
+    def user_duplicate_check(self, id_string): # 아이디 중복체크 함수
+        users = self.db.child("users").get()
+        
+        if str(users.val()) == "None":  # 첫 번째 등록인 경우
+            return False
+        else: #아이디가 중복된 경우
+            for res in users.each():
+                value = res.val()
+                if value['id'] == id_string:
+                    return True
+            return False
+
+    def insert_item(self, data, img_paths, current_time): # 상품 등록
+>>>>>>> main
         item_info ={
             "seller": data['seller'],           # 판매자 ID
             "name": data['name'],               # 상품명
             "category": data['category'],       # 카테고리
             "price": data['price'],             # 가격
             "place": data['place'],             # 거래 지역
+<<<<<<< HEAD
             "description": data['description'], # 상품 상태/설명
+=======
+            "status": data['status'],           # 상품 상태
+            "description": data['description'], # 상품 설명
+>>>>>>> main
             "img_path": img_paths,              # 이미지 경로
             "date": current_time                # 등록 날짜
         }
         self.db.child("item").push(item_info)
         print(data, img_paths)
         return True
+<<<<<<< HEAD
 
     #session id 별로 등록한 상품 정보 저장
     def insert_selllist(self, id_, data, img_paths):
@@ -56,3 +81,22 @@ class DBhandler:
     def get_sellitems(self, id_):
         selllist = self.db.child("selllist").child(id_).get().val()
         return selllist
+=======
+    
+    def get_items(self):
+        items = self.db.child("item").get().val()
+        return items
+    
+    def get_item_by_key(self, item_key):
+        item = self.db.child("item").child(item_key).get()
+        if item.val():
+            return item.val()
+        return None
+    
+    def get_user_info_by_id(self, user_id): # id로 user 정보 접근
+        users = self.db.child("users").get()
+        for user in users.each():
+            if user.val()['id'] == user_id:
+                return user.val()
+        return None
+>>>>>>> main

@@ -2,8 +2,12 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../static/css/메인화면.css"/>
+    <script>
+        var selectedCategory = "{{ selected_category }}";
+    </script>
+    <script src="{{ url_for('static', filename='메인화면.js') }}"></script>
     <title>오이소</title>
 </head>
 
@@ -12,8 +16,9 @@
     <header>
         <div class="logo"><img src="../static/image/logo.png" width="100px" alt="로고" class="logo"></div>
     </header>
+
     <div class="category">
-    <select id="category">
+    <select id="category" onchange="filterByCategory()">
         <option value="all">전체</option>
         <option value="clothes">의류</option>
         <option value="furniture">가구</option>
@@ -22,32 +27,53 @@
         <option value="etc">기타</option>
     </select></div>
     
+    {% if total > 0 %}
     <div class="items">
-        <div class="product"><a href="상품상세.html"><img src="..\static\image\mug.png" width="100px"></a></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
-        <div class="product"><img src="../static/image/item.png" width="100px"></div>
+            {% for key, value in datas %}
+                <div class="product">
+                    <a href="{{ url_for('view_item_detail', item_key=key) }}">
+                    <div class="image-wrapper">
+                        {% if value['img_path'] %}
+                            <img src="{{ value['img_path'][0] }}" width="100px" onerror="this.onerror=null; this.src='../static/image/item.png'">
+                        {% else %}
+                            <img src="../static/image/item.png" width="100px">
+                        {% endif %}
+                        <div class="product-name-overlay">
+                        {% if value['name'] and value['name']|length > 6 %}
+                            {{ value['name'][:4] + '...' }}
+                        {% else %}
+                            {{ value['name'] or '상품명' }}
+                        {% endif %}</div>
+                    </div>
+                    </a>
+                </div>
+            {% endfor %}
+            {% set current_page_item_count = datas|length %}
+            {% set remaining_count = 12 - current_page_item_count %}
+            {% for _ in range(remaining_count) %} <!--상품 없는 칸-->
+            <div class="product">
+            <div class="image-wrapper">
+                <img src="../static/image/item.png" width="100px">
+            </div>
+            </div>
+            {% endfor %}
     </div>
     <div class="page">
-        <a href="#">&laquo; 이전</a>
-        <a href="#" style="margin: 0 10px;">1</a>
-        <a href="#" style="margin: 0 10px;">2</a>
-        <a href="#" style="margin: 0 10px;">3</a>
-        <a href="#" style="margin: 0 10px;">4</a>
-        <a href="#" style="margin: 0 10px;">5</a>
-        <a href="#">다음 &raquo;</a>
+        <div class="page-nation">
+            <ul>
+                <li>
+                    {% for i in range(page_count) %}
+                        <a href="{{url_for('main', page=i)}}">{{i}}</a>
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
     </div>
+    {% else %}
+        <div class="no-items">
+            <p>등록된 상품이 없습니다.</p>
+        </div>
+    {% endif %}
 
     <nav>
         <a href="/메인화면" class="nav-active"><img src="../static/image/home.png" width="20px"><br>메인 홈</a>
