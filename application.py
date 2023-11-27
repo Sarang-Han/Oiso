@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session
+from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from database import DBhandler
 import sys
 import hashlib
@@ -200,6 +200,21 @@ def selllist():
         lists = lists,
         total = tot_count
     )
+
+@application.route('/show_Oi/<item_key>/', methods=['GET'])
+def show_Oi(item_key):
+    my_oi = DB.get_oilist_bykey(session['id'],item_key)
+    return jsonify({'my_oi': my_oi})
+
+@application.route('/like/<item_key>/', methods=['POST'])
+def like(item_key):
+    my_oilist = DB.update_oilist(session['id'],'Y',item_key)
+    return jsonify({'msg': '오이목록에 추가!'})
+
+@application.route('/unlike/<item_key>/', methods=['POST'])
+def unlike(item_key):
+    my_oilist = DB.update_oilist(session['id'],'N',item_key)
+    return jsonify({'msg': '오이목록에서 삭제!'})
 
 if __name__ == "__main__":
  application.run(host='0.0.0.0', debug=True)

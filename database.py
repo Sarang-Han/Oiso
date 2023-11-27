@@ -87,3 +87,26 @@ class DBhandler:
     def get_sellitems(self, id_):
         selllist = self.db.child("selllist").child(id_).get().val()
         return selllist
+    
+    def get_oilist_bykey(self, uid, item_key):
+        ois = self.db.child("oilist").child(uid).get()
+        target_value=""
+        if ois.val() == None:
+            return target_value
+        
+        for res in ois.each():
+            key_value = res.key()
+            
+            if key_value == item_key:
+                target_value=res.val()
+                
+        return target_value
+
+
+    def update_oilist(self, uid, isOilist, item_key):
+        oilist_info ={
+            "interested": isOilist
+            #"price": data['price']
+        }
+        self.db.child("oilist").child(uid).child(item_key).set(oilist_info)
+        return True
