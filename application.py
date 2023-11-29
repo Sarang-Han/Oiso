@@ -160,27 +160,6 @@ def mypage2():
 def buylist():
     return render_template("구매내역.html")
 
-<<<<<<< HEAD
-=======
-@application.route("/판매내역")
-def selllist():
-    #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
-    seller_id = session.get('id', '')
-    my_selllist = DB.get_sellitems(seller_id)
-    if (my_selllist == None):
-        lists = []
-        tot_count = 0
-    else:
-        lists = my_selllist.items()
-        tot_count = len(my_selllist)
-    
-    return render_template(
-        "판매내역.html",
-        lists = lists,
-        total = tot_count
-    )
-
->>>>>>> c056e6a13d61c650a0f8e07c238020cf4f94fd90
 @application.route("/오이목록")
 def oilist():
     my_id = session.get('id', '')
