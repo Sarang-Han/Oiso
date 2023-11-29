@@ -1,18 +1,15 @@
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 130vh;
-    background-color: #f0f0f0;
+html{
+    background-color: #f0f0f0;    
 }
 
-.content {
+body {
     width: 390px;
-    height: 844px;
-    background-color: #fff;
     padding: 20px;
+    margin: 0 auto;
+    display: block;
+    align-items: center;
+    min-height: 140vh;
+    background-color: white;
 }
 
 header {
@@ -35,6 +32,7 @@ header button{
     text-align: center;
     width: 100%;
     height: 300px;
+    position: relative;
     overflow: hidden;
 }
 
@@ -60,7 +58,7 @@ header button{
     background: transparent;
     cursor: pointer;
     position: absolute;
-    top: 30%;
+    top: 50%;
     transform: translateY(-50%);
     z-index: 10;
 }

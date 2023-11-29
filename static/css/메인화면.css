@@ -1,18 +1,15 @@
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
-    padding-bottom: 70px;
+html{
+    background-color: #f0f0f0;    
 }
 
-.content {
+body {
     width: 390px;
-    background-color: #fff;
     padding: 20px;
+    margin: 0 auto;
+    display: block;
+    align-items: center;
+    min-height: 140vh;
+    background-color: white;
 }
 
 .logo {
