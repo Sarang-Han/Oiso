@@ -21,7 +21,7 @@
 
         <div class="myProfile">
             {% if profile == '_' %}
-                <img src="../static/image/profile.png">
+                <img src="{{ url_for('static', filename='image/profile.png') }}">
             {% else %}
                 <img src={{profile}}>
             {% endif %}
