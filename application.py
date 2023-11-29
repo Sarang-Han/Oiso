@@ -218,7 +218,11 @@ def reg_item_submit_post():
 @application.route('/show_Oi/<item_key>/', methods=['GET'])
 def show_Oi(item_key):
     my_oi = DB.get_oilist_bykey(session['id'],item_key)
-    return jsonify({'my_oi': my_oi})
+    data = DB.get_item_by_key(str(item_key))
+    seller_info = DB.get_user_info_by_id(data['seller'])  # 판매자 정보 가져옴
+    seller_id = seller_info['id']
+    my_id = session.get('id', '')
+    return jsonify({'my_oi': my_oi, 'seller_id': seller_id, 'my_id': my_id})
 
 @application.route('/like/<item_key>/', methods=['POST'])
 def like(item_key):

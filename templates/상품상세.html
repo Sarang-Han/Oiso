@@ -14,23 +14,35 @@
                 async: false,
                 success: function (response){
                     let my_oi = response['my_oi'];
-                    if (my_oi['interested']=='Y'){
-                        $("#oi").attr("onclick", "unlike()");
+                    let seller_id = response['seller_id'];
+                    let my_id = response['my_id'];
+                    if (seller_id == my_id){
+                        $("#oi").attr("src", "{{ url_for('static', filename='image/oi.png') }}");
                         $('#oi').on({
-                            'click': function(){
-                                $('#oi').attr('src',"{{ url_for('static', filename='image/oioi.png') }}");
-                            }
-                        });
-                        $("#oi").attr("src", "{{ url_for('static', filename='image/oioi.png') }}");
+                                'click': function(){
+                                    alert("내가 등록한 상품입니다!");
+                                }
+                            });
                     }
                     else{
-                        $("#oi").attr("onclick", "like()");
-                        $('#oi').on({
-                            'click': function(){
-                                $('#oi').attr('src',"{{ url_for('static', filename='image/oi.png') }}");
-                            }
-                        });
-                        $("#oi").attr("src", "{{ url_for('static', filename='image/oi.png') }}");
+                        if (my_oi['interested']=='Y'){
+                            $("#oi").attr("onclick", "unlike()");
+                            $('#oi').on({
+                                'click': function(){
+                                    $('#oi').attr('src',"{{ url_for('static', filename='image/oioi.png') }}");
+                                }
+                            });
+                            $("#oi").attr("src", "{{ url_for('static', filename='image/oioi.png') }}");
+                        }
+                        else{
+                            $("#oi").attr("onclick", "like()");
+                            $('#oi').on({
+                                'click': function(){
+                                    $('#oi').attr('src',"{{ url_for('static', filename='image/oi.png') }}");
+                                }
+                            });
+                            $("#oi").attr("src", "{{ url_for('static', filename='image/oi.png') }}");
+                        }
                     }
                 }
             });
