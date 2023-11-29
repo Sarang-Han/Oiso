@@ -142,7 +142,7 @@
     <img id="oi" src="{{ url_for('static', filename='image/oi.png') }}" width="40px" style="display: inline;">
     <span>{{ data['price'] }}원</span>
     {% if seller_id == my_id %}
-        <button id="chat1">채팅하기</button><!--채팅 화면 연결 필요-->
+        <button id="chat1">채팅하기</button><!-- 채팅 화면 연결X -->
     {% else %}
         <button id="chat2">채팅하기</button><!--채팅 화면 연결 필요-->
     {% endif %}
