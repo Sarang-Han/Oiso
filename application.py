@@ -128,7 +128,10 @@ def view_item_detail(item_key):
     seller_name = seller_info['name'] if seller_info else None
     seller_id = seller_info['id']
     my_id = session.get('id', '')
-    seller_profile = seller_info['profile'] if seller_info and 'profile' in seller_info else 'prof1.png'
+    if seller_info and 'profile' in seller_info and seller_info['profile'] != "_":
+        seller_profile = seller_info['profile']
+    else:
+        seller_profile = 'prof1.png'  # 기본 프로필 이미지
     return render_template("상품상세.html", item_key=item_key, data=data, seller_name=seller_name, seller_profile=seller_profile,
                            seller_id=seller_id, my_id=my_id)
 
