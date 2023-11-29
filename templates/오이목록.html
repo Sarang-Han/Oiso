@@ -21,7 +21,7 @@
         {% for key, value in lists %}
             {% if value['interested'] == 'Y' %}
             <div class="item">
-                <img src="{{value.img_path}}" width="90px" alt="상품사진">
+                <img src="{{value.img_path}}" width="100px" height="100px" alt="상품사진">
                 <div class="item-details">
                     <h4>{{value.name}}</h4>
                     <p>판매가격: {{value.price}}</p>
