@@ -158,7 +158,11 @@ def mypage1():
 
 @application.route("/마이페이지2")
 def mypage2():
-    return render_template("마이페이지2.html")
+    my_id = session.get('id', '')
+    user_info = DB.get_user_info_by_id(my_id)
+    name = user_info['name']
+    profile = user_info['profile']
+    return render_template("마이페이지2.html", my_id=my_id, name=name, profile=profile)
 
 @application.route("/구매내역")
 def buylist():
