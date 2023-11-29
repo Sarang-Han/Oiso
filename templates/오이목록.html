@@ -16,57 +16,31 @@
             <h3>내 오이목록</h3>
         </header>
     
-<<<<<<< HEAD
-        <div class="listarea">
-            <div class="filmcamera">
-                <img src="../static/image/filmcamera.png" alt="필름카메라">
-                <div class="filmcamera-details">
-                    <h4>필름카메라</h4>
-                    <p>판매가격: 20,000원</p>
-=======
     <div class="listarea">
     {% if total > 0 %} <!-- 여기서부터 수정 -->
         {% for key, value in lists %}
-            <div>
-                <img src="static/image/{{value.img_path}}" alt="상품사진">
-                <div>
+            {% if value['interested'] == 'Y' %}
+            <div class="item">
+                <img src="{{value.img_path}}" width="90px" alt="상품사진">
+                <div class="item-details">
                     <h4>{{value.name}}</h4>
                     <p>판매가격: {{value.price}}</p>
->>>>>>> oi_funct
                 </div>
-                <img src="../static/image/oioi.png" alt="오이">
+                <img class="oi" src="../static/image/oioi.png" width="20px" alt="오이">
             </div>
             <br><br>
             <hr>
-            <div class="hoodie">
-                <img src="../static/image/1886hoodie.png" alt="이화 1886 후드티">
-                <div class="hoodie-details">
-                    <h4>이화 1886 후드티</h4>
-                    <p>판매가격: 11,000원</p>
-                </div>
-                <img src="../static/image/oioi.png" alt="오이">
-            </div>
-            <br><br>
-            <hr>
-            <div class="book">
-                <img src="../static/image/book.png" alt="컴퓨터구조 책">
-                <div class="book-details">
-                    <h4>컴퓨터 구조 및 설계 도서</h4>
-                    <p>판매가격: 16,000원</p>
-                </div>
-                <img src="../static/image/oioi.png" alt="오이">
-            </div>
-            <br><br>
-            <hr>
+            {% endif %}
+        {% endfor %}
+    {% else %}
             <div class="none">
-                <img src="../static/image/none.png" alt="빈 이미지">
+                <div class="item-details">
+                    <h2>오이목록이 없습니다</h2>
+                </div>
                 <br><br>
                 <hr>
-                <img src="../static/image/none.png" alt="빈 이미지">
-                <br><br>
             </div>
-            </div>
-
+    {% endif %}
     <nav>
         <a href="/메인화면"><img src="../static/image/home.png" width="20px"><br>메인 홈</a>
         <a href="/리뷰전체보기"><img src="../static/image/write.png" width="20px"><br>전체 리뷰</a>

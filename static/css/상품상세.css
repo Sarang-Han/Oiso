@@ -4,7 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 130vh;
     background-color: #f0f0f0;
 }
 
@@ -141,7 +141,17 @@ header button{
     font-weight: bold;
 }
 
-.pricebar button {
+.pricebar #chat1 {
+    padding: 10px 30px;
+    margin-right: 30px;
+    background-color: #c1c1c1;
+    color: #9a9a9a;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.pricebar #chat2 {
     padding: 10px 30px;
     margin-right: 30px;
     background-color: #004f25;

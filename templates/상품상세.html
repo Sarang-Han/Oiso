@@ -11,25 +11,38 @@
                 type: 'GET',
                 url: '/show_Oi/{{item_key}}/',
                 data: {},
+                async: false,
                 success: function (response){
                     let my_oi = response['my_oi'];
-                    if (my_oi['interested']=='Y'){
-                        $("#oi").attr("onclick", "unlike()");
+                    let seller_id = response['seller_id'];
+                    let my_id = response['my_id'];
+                    if (seller_id == my_id){
+                        $("#oi").attr("src", "{{ url_for('static', filename='image/oi.png') }}");
                         $('#oi').on({
-                            'click': function(){
-                                $('#oi').attr('src',"{{ url_for('static', filename='image/oioi.png') }}");
-                            }
-                        });
-                        $("#oi").attr("src", "{{ url_for('static', filename='image/oioi.png') }}");
+                                'click': function(){
+                                    alert("내가 등록한 상품입니다!");
+                                }
+                            });
                     }
                     else{
-                        $("#oi").attr("onclick", "like()");
-                        $('#oi').on({
-                            'click': function(){
-                                $('#oi').attr('src',"{{ url_for('static', filename='image/oi.png') }}");
-                            }
-                        });
-                        $("#oi").attr("src", "{{ url_for('static', filename='image/oi.png') }}");
+                        if (my_oi['interested']=='Y'){
+                            $("#oi").attr("onclick", "unlike()");
+                            $('#oi').on({
+                                'click': function(){
+                                    $('#oi').attr('src',"{{ url_for('static', filename='image/oioi.png') }}");
+                                }
+                            });
+                            $("#oi").attr("src", "{{ url_for('static', filename='image/oioi.png') }}");
+                        }
+                        else{
+                            $("#oi").attr("onclick", "like()");
+                            $('#oi').on({
+                                'click': function(){
+                                    $('#oi').attr('src',"{{ url_for('static', filename='image/oi.png') }}");
+                                }
+                            });
+                            $("#oi").attr("src", "{{ url_for('static', filename='image/oi.png') }}");
+                        }
                     }
                 }
             });
@@ -48,7 +61,8 @@
                 }
             });
         }
-    
+
+
         function unlike(){
             $.ajax({
                 type: 'POST',
@@ -127,7 +141,11 @@
 <div class="pricebar">
     <img id="oi" src="{{ url_for('static', filename='image/oi.png') }}" width="40px" style="display: inline;">
     <span>{{ data['price'] }}원</span>
-    <button>채팅하기</button><!--채팅 화면 연결 필요-->
+    {% if seller_id == my_id %}
+        <button id="chat1">채팅하기</button><!-- 채팅 화면 연결X -->
+    {% else %}
+        <button id="chat2">채팅하기</button><!--채팅 화면 연결 필요-->
+    {% endif %}
 </div>
 <script>
     function goBack() {

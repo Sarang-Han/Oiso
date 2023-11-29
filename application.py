@@ -126,8 +126,11 @@ def view_item_detail(item_key):
     data = DB.get_item_by_key(str(item_key))
     seller_info = DB.get_user_info_by_id(data['seller'])  # 판매자 정보 가져옴
     seller_name = seller_info['name'] if seller_info else None
+    seller_id = seller_info['id']
+    my_id = session.get('id', '')
     seller_profile = seller_info['profile'] if seller_info and 'profile' in seller_info else 'prof1.png'
-    return render_template("상품상세.html", item_key=item_key, data=data, seller_name=seller_name, seller_profile=seller_profile)
+    return render_template("상품상세.html", item_key=item_key, data=data, seller_name=seller_name, seller_profile=seller_profile,
+                           seller_id=seller_id, my_id=my_id)
 
 @application.route("/리뷰전체보기")
 def all_review():
@@ -157,9 +160,43 @@ def mypage2():
 def buylist():
     return render_template("구매내역.html")
 
+<<<<<<< HEAD
+=======
+@application.route("/판매내역")
+def selllist():
+    #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
+    seller_id = session.get('id', '')
+    my_selllist = DB.get_sellitems(seller_id)
+    if (my_selllist == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = my_selllist.items()
+        tot_count = len(my_selllist)
+    
+    return render_template(
+        "판매내역.html",
+        lists = lists,
+        total = tot_count
+    )
+
+>>>>>>> c056e6a13d61c650a0f8e07c238020cf4f94fd90
 @application.route("/오이목록")
 def oilist():
-    return render_template("오이목록.html")
+    my_id = session.get('id', '')
+    my_oilist = DB.get_oilist_byuid(my_id)
+    if (my_oilist == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = my_oilist.items()
+        tot_count = len(my_oilist)
+        
+    return render_template(
+        "오이목록.html",
+        lists = lists,
+        total = tot_count
+    )
 
 @application.route("/submit_item_post", methods=['POST']) # 상품 등록 함수
 def reg_item_submit_post():
@@ -204,7 +241,11 @@ def selllist():
 @application.route('/show_Oi/<item_key>/', methods=['GET'])
 def show_Oi(item_key):
     my_oi = DB.get_oilist_bykey(session['id'],item_key)
-    return jsonify({'my_oi': my_oi})
+    data = DB.get_item_by_key(str(item_key))
+    seller_info = DB.get_user_info_by_id(data['seller'])  # 판매자 정보 가져옴
+    seller_id = seller_info['id']
+    my_id = session.get('id', '')
+    return jsonify({'my_oi': my_oi, 'seller_id': seller_id, 'my_id': my_id})
 
 @application.route('/like/<item_key>/', methods=['POST'])
 def like(item_key):
