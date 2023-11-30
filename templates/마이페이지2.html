@@ -24,7 +24,7 @@
             {% if profile == '_' %}
                 <img src="{{ url_for('static', filename='image/profile.png') }}">
             {% else %}
-                <img src={{profile}}>
+                <img src="{{ url_for('static', filename='image/' + profile) }}">
             {% endif %}
             <div class="user">{{name}} @{{my_id}}</div>
             <img src="../static/image/logout.png" onclick="logout()" style="float:right; display: inline; width:25px; margin-top: 12px;">
