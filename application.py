@@ -139,10 +139,6 @@ def view_item_detail(item_key):
 def all_review():
     return render_template("리뷰전체보기.html")
 
-@application.route("/채팅목록")
-@login_required
-def chatlist():
-    return render_template("채팅목록.html")
 
 @application.route("/상품등록")
 @login_required
@@ -246,6 +242,17 @@ def like(item_key):
 def unlike(item_key):
     my_oilist = DB.update_oilist(session['id'],'N',item_key)
     return jsonify({'msg': '오이목록에서 삭제!'})
+
+@application.route("/채팅목록")
+@login_required
+def chatlist():
+    return render_template("채팅목록.html")
+
+@application.route("/채팅상세")
+@login_required
+def chats():
+    return render_template("채팅상세.html")
+
 
 if __name__ == "__main__":
  application.run(host='0.0.0.0', debug=True)
