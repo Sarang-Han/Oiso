@@ -52,10 +52,11 @@ class DBhandler:
             "img_path": img_paths,              # 이미지 경로
             "date": current_time                # 등록 날짜
         }
-        self.db.child("item").push(item_info)
-        print(data, img_paths)
-        return True
+        new_item_ref = self.db.child("item").push(item_info)
+        new_item_key = new_item_ref.get('name')  # 새로 생성한 상품의 키 가져오기
+        return new_item_key
     
+
     def get_items(self):
         items = self.db.child("item").get().val()
         return items
@@ -118,6 +119,11 @@ class DBhandler:
         self.db.child("oilist").child(uid).child(item_key).set(oilist_info)
         return True
     
+    def create_chat_room(self, user_id, product_key):
+        chat_data = {"Chat_Room": product_key}  # 상품 키를 값으로 하는 딕셔너리 생성
+        self.db.child("chatlist").child(user_id).update(chat_data)
+        return True
+
     def insert_chat_message(self, name, message, timestamp):
         chat_info = {
             "name": name,

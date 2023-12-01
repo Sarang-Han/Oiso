@@ -198,13 +198,49 @@ def reg_item_submit_post():
         except Exception as e:
             print("파일 저장 오류: ", e)
     
-    data=request.form
+    data = request.form
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    DB.insert_item(data, img_paths, current_time) # 상품 정보와 이미지 경로, 현재 시간 저장
+    
+    product_key = DB.insert_item(data, img_paths, current_time) # 상품 추가 후 생성된 키값 가져오기
     seller_id = session.get('id', '')
     img_paths = str(img_paths[0])
+    
+    DB.create_chat_room(seller_id, product_key) # 채팅방 생성을 위한 정보를 데이터베이스에 추가
     DB.insert_selllist(seller_id, data, img_paths)
+    
     return redirect(url_for('main'))
+
+
+@application.route("/채팅목록")
+@login_required
+def chatlist():
+    return render_template("채팅목록.html")
+
+@application.route("/채팅상세")
+def chats():
+    return render_template("채팅상세.html")
+
+
+
+@application.route("/send_message", methods=['POST'])
+def send_message():
+    if request.method == 'POST':
+        message = request.json.get('message')
+        name = session.get('username')
+
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        DB.insert_chat_message(name, message, timestamp)
+
+        return jsonify({"message": message, "name": name, "timestamp": timestamp}), 200
+    else:
+        return jsonify({"error": "Invalid request"}), 400
+
+@application.route("/get_chat_messages")
+def get_chat_messages():
+    messages = DB.get_chat_messages()  # DB에서 채팅 메시지를 가져옵니다.
+    return jsonify(messages)
+
 
 @application.route("/판매내역")
 def selllist():
@@ -243,33 +279,6 @@ def unlike(item_key):
     my_oilist = DB.update_oilist(session['id'],'N',item_key)
     return jsonify({'msg': '오이목록에서 삭제!'})
 
-@application.route("/채팅목록")
-@login_required
-def chatlist():
-    return render_template("채팅목록.html")
-
-@application.route("/채팅상세")
-def chats():
-    return render_template("채팅상세.html")
-
-@application.route("/send_message", methods=['POST'])
-def send_message():
-    if request.method == 'POST':
-        message = request.json.get('message')
-        name = session.get('username')
-
-        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-        DB.insert_chat_message(name, message, timestamp)
-
-        return jsonify({"message": message, "name": name, "timestamp": timestamp}), 200
-    else:
-        return jsonify({"error": "Invalid request"}), 400
-
-@application.route("/get_chat_messages")
-def get_chat_messages():
-    messages = DB.get_chat_messages()  # DB에서 채팅 메시지를 가져옵니다.
-    return jsonify(messages)
 
 
 if __name__ == "__main__":
