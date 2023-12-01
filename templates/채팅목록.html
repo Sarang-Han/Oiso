@@ -9,23 +9,37 @@
 <body>
     <div class="content">
         <header>
+            <button onclick="goBack()"><img src="../static/image/back.png" 
+                alt="이전" style="width: 20px;"></button>
             <h3>채팅목록</h3>
         </header>
-    <br>
-    <div class="chatarea">
-    <div class = "chat1">
-        <img src="../static/image/prof2.png"width="50px" alt="프로필">
-        <h4>김이화</h4>
-        <p>안녕하세용~</p>
-    </div>
-    <br><hr><br>
+    
+<div class="listarea">
+    {% if total > 0 %}
+        {% for key, value in lists %}
+            <a href="{{ url_for('chat_detail', product_key=key) }}" class="item-link"> <!-- 채팅 상세 페이지로 이동하는 링크 -->
+                <div class="item">
+                    <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
+                    <div class="item-details">
+                        <h4>{{ value.name }}</h4>
+                        <p>최근 메시지: {{ get_latest_message(value.chats) }}</p> <!-- 최근 메시지 표시 -->
+                    </div>
+                </div>
+            </a>
+            <br><br>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <div class="none">
+            <div class="item-details">
+                <h2>판매내역이 없습니다</h2>
+            </div>
+            <br><br>
+            <hr>
+        </div>
+    {% endif %}
+</div>
 
-    <div class = "chat2">
-        <img src="../static/image/prof2.png" width="50px" alt="프로필">
-        <h4>박컴공</h4>
-        <p>팔렸나요?</p>
-    </div>
-    <br><hr>
 
 
 </div>

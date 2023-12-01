@@ -13,15 +13,27 @@ body {
 
 
 header {
-    height: 80px;
+    background-color: #ffffff;
+    height: 73.5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+
+header button{
+    position: absolute;
+    left: 30px;
+    background-color: transparent;
+    border: none;
+
 }
 
 header h3{
     position: relative;
 }
+
 
 .chat1 {
     display: flex;
