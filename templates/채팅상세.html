@@ -37,6 +37,92 @@
     function goBack() {
         window.history.back();
     }
+
+    // 채팅 메시지 전송 함수
+        function sendMessage() {
+            var messageInput = document.getElementById('messageInput').value.trim();
+            if (messageInput !== '') {
+                var chatBox = document.getElementById('chatBox');
+                var messageDiv = document.createElement('div');
+                messageDiv.className = 'message';
+                messageDiv.textContent = messageInput;
+                chatBox.appendChild(messageDiv);
+
+                // AJAX를 이용한 서버로의 POST 요청
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/send_message', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            console.log('메시지 전송 완료');
+                        } else {
+                            console.error('메시지 전송 실패');
+                        }
+                    }
+                };
+
+                // 서버로 보낼 데이터 생성
+                var data = JSON.stringify({ message: messageInput });
+
+                // 요청 보내기
+                xhr.send(data);
+
+                // 입력창 초기화
+                document.getElementById('messageInput').value = '';
+            }
+        }
+
+        // 전송 버튼 클릭 이벤트
+        document.getElementById('sendButton').addEventListener('click', function() {
+            sendMessage();
+        });
+
+        // 입력창에서 Enter 키 누를 때 전송되도록
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // 화면 로딩 시 초기 채팅 메시지 불러오기
+        window.onload = function() {
+            fetchChatMessages();
+        }
+
+        // 채팅 메시지 불러오기 함수
+        function fetchChatMessages() {
+            var chatBox = document.getElementById('chatBox');
+
+            // AJAX를 이용하여 서버로부터 채팅 메시지 가져오기
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get_chat_messages', true);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var messages = JSON.parse(xhr.responseText);
+
+                        // 가져온 메시지를 화면에 표시
+                        for (var i = 0; i < messages.length; i++) {
+                            var messageDiv = document.createElement('div');
+                            messageDiv.className = 'message';
+                            messageDiv.textContent = messages[i].message;
+                            chatBox.appendChild(messageDiv);
+                        }
+
+                        // 스크롤을 항상 아래로 이동
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    } else {
+                        console.error('채팅 메시지 가져오기 실패');
+                    }
+                }
+            };
+
+            // 요청 보내기
+            xhr.send();
+        }
 </script>
 </body>
 </html>

@@ -15,8 +15,8 @@ body {
 #chatBox {
     border: 1px solid #ccc;
     padding: 10px;
-    height: 300px;
-    overflow-y: scroll;
+    height: 450px;
+    overflow-y: auto;
 }
 
 /* 메시지 스타일 */

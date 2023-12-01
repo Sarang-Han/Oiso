@@ -117,3 +117,17 @@ class DBhandler:
         }
         self.db.child("oilist").child(uid).child(item_key).set(oilist_info)
         return True
+    
+    def insert_chat_message(self, name, message, timestamp):
+        chat_info = {
+            "name": name,
+            "message": message,
+            "timestamp": timestamp
+        }
+        self.db.child("chat").push(chat_info)
+        return True
+
+    # 채팅 메시지 불러오기
+    def get_chat_messages(self):
+        chat_messages = self.db.child("chat").get().val()
+        return chat_messages

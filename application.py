@@ -249,9 +249,27 @@ def chatlist():
     return render_template("채팅목록.html")
 
 @application.route("/채팅상세")
-@login_required
 def chats():
     return render_template("채팅상세.html")
+
+@application.route("/send_message", methods=['POST'])
+def send_message():
+    if request.method == 'POST':
+        message = request.json.get('message')
+        name = session.get('username')
+
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        DB.insert_chat_message(name, message, timestamp)
+
+        return jsonify({"message": message, "name": name, "timestamp": timestamp}), 200
+    else:
+        return jsonify({"error": "Invalid request"}), 400
+
+@application.route("/get_chat_messages")
+def get_chat_messages():
+    messages = DB.get_chat_messages()  # DB에서 채팅 메시지를 가져옵니다.
+    return jsonify(messages)
 
 
 if __name__ == "__main__":
