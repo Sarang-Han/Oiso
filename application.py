@@ -208,7 +208,7 @@ def reg_item_submit_post():
     return redirect(url_for('main'))
 
 
-@application.route("/채팅목록")
+@application.route("/채팅목록") # 판매내역 db에서 정보 가져오도록 함
 @login_required
 def chatlist():
     seller_id = session.get('id', '')
@@ -226,33 +226,11 @@ def chatlist():
         total = tot_count
     )
     
-
-@application.route("/send_message", methods=['POST'])
-def send_message():
-    if request.method == 'POST':
-        message = request.json.get('message')
-        name = session.get('username')
-        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        product_key = request.json.get('product_key')  # 채팅이 속한 상품의 키를 가져옵니다.
-
-        DB.insert_chat_message(product_key, name, message, timestamp)  # 채팅 메시지를 DB에 저장합니다.
-        return jsonify({"message": message, "name": name, "timestamp": timestamp}), 200
-    else:
-        return jsonify({"error": "Invalid request"}), 400
-
-
-@application.route("/get_chat_messages/<product_key>")
-def get_chat_messages(product_key):
-    messages = DB.get_chat_messages(product_key)  # 해당 상품 키의 채팅 메시지를 가져옵니다.
-    return jsonify(messages)
-
-
 @application.route("/chat_detail/<product_key>")
 @login_required
 def chat_detail(product_key):
-    chat_messages = DB.get_chat_messages(product_key)
     user_id = session.get('id')
-    return render_template("채팅상세.html", product_key=product_key, chat_messages=chat_messages)
+    return render_template("채팅상세.html", user_id, product_key=product_key)
 
 
 @application.route("/판매내역")
