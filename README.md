@@ -30,7 +30,7 @@
 
 ## 🦴 Menu Structure
 
-<img src="https://github.com/Sarang-Han/Oiso/assets/144914664/1018f107-a48e-40a8-a74a-76934f2fa21d" width=80%>
+<img src="https://github.com/Sarang-Han/Oiso/assets/144914664/1018f107-a48e-40a8-a74a-76934f2fa21d" width=100%>
 
 
 ## 🥗 Contributors
@@ -52,5 +52,5 @@ Flask, Firebase
 <br>
 
 <b>Cowork</b>
-Notion, GitHub, Git
+Notion, Figma, GitHub, Git
 <br>
