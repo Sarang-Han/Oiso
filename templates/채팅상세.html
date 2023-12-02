@@ -15,12 +15,21 @@
         </header>
     
         <div id="chatBox">
-            <!-- 여기에 채팅 메시지를 동적으로 추가할 예정 -->
-        </div>
+            <!-- 채팅 메시지가 있는 경우 -->
+            {% if chat_messages %}
+                {% for chat_key, chat_message in chat_messages.items() %}
+                    <p>{{ chat_message['Id'] }}: {{ chat_message['msg'] }}</p>
+                {% endfor %}
+            <!-- 채팅 메시지가 없는 경우 -->
+            {% else %}
+                <p>채팅 내역이 없습니다.</p>
+            {% endif %}
+        </div>        
+        
         
         <div>
             <input type="text" id="messageInput" placeholder="메시지 입력">
-            <button id="sendButton">전송</button>
+            <button id="sendButton" onclick="sendMessage('{{ product_key }}')">전송</button>
         </div>
 
 </div>
@@ -37,6 +46,42 @@
 <script>
     function goBack() {
         window.history.back();
+    }
+    
+    function sendMessage(productKey) {
+        var messageInput = document.getElementById("messageInput");
+        var message = messageInput.value.trim();
+        
+        if (message !== "") {
+            // AJAX를 사용하여 서버로 메시지 전송
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/send_message", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // 성공적으로 메시지를 전송한 경우, 화면에 메시지 추가
+                        var chatBox = document.getElementById("chatBox");
+                        var newMessage = document.createElement("p");
+                        newMessage.textContent = "{{ user_id }}: " + message;
+                        chatBox.appendChild(newMessage);
+                        
+                        // 메시지 전송 후 입력창 초기화
+                        messageInput.value = "";
+                    }
+                }
+            };
+            
+            var data = JSON.stringify({
+                "product_key": productKey,
+                "participant_id": "{{ user_id }}",
+                "message": message,
+                "timestamp": new Date().toISOString()
+            });
+            
+            xhr.send(data);
+        }
     }
     
     

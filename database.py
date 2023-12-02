@@ -117,17 +117,35 @@ class DBhandler:
         }
         self.db.child("oilist").child(uid).child(item_key).set(oilist_info)
         return True
-
-    
     
     def insert_chat_message(self, product_key, participant_id, message, timestamp):
-        chat_ref = self.db.child("chatlist").child("Chat").child(product_key).push({
+        chat_messages = self.db.child("chatlist").child(product_key).get().val() or {}
+        chat_count = chat_messages.get("chat_count", 0)
+
+        chat_ref = self.db.child("chatlist").child(product_key).child(f"chat{chat_count}").set({
             "Id": participant_id,
             "msg": message,
             "time": timestamp
         })
+
+        # 업데이트 된 chat_count를 chatlist에 반영
+        self.db.child("chatlist").child(product_key).update({"chat_count": chat_count + 1})
+
         return True
 
-    def get_chat_messages(self, product_key):
-        chat_messages = self.db.child("chatlist").child(product_key).child("Chat").get().val()
-        return chat_messages
+
+    def get_chat_messages(self, product_key, limit=10):
+        chat_messages = self.db.child("chatlist").child(product_key).get().val() or {}
+        chat_count = chat_messages.get("chat_count", 0)
+        if not chat_count:
+            return None
+        
+        latest_messages = {}
+        for i in range(max(0, chat_count - limit), chat_count):
+            chat_key = f"chat{i}"
+            if chat_key in chat_messages:
+                latest_messages[chat_key] = chat_messages[chat_key]
+
+        return latest_messages
+
+

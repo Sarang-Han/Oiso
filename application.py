@@ -236,12 +236,34 @@ def chatlist():
         total = tot_count
     )
     
+
 @application.route("/chat_detail/<product_key>")
 @login_required
 def chat_detail(product_key):
     user_id = session.get('id')
-    return render_template("채팅상세.html", user_id=user_id, product_key=product_key)
+    
+    # 상품키에 해당하는 채팅 메시지 가져오기
+    chat_messages = DB.get_chat_messages(product_key)
+    
+    # 채팅 데이터가 없을 경우 예외 처리
+    if chat_messages is None or not chat_messages:
+        return render_template("채팅상세.html", user_id=user_id, product_key=product_key, chat_messages=None)
+    
+    return render_template("채팅상세.html", user_id=user_id, product_key=product_key, chat_messages=chat_messages)
 
+
+@application.route("/send_message", methods=["POST"])
+def send_message():
+    if request.method == "POST":
+        data = request.get_json()
+        product_key = data.get("product_key")
+        participant_id = data.get("participant_id")
+        message = data.get("message")
+        timestamp = data.get("timestamp")
+
+        DB.insert_chat_message(product_key, participant_id, message, timestamp)
+        return "Message sent successfully", 200
+    return "Invalid request", 400
 
 @application.route("/판매내역")
 def selllist():
