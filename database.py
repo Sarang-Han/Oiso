@@ -132,3 +132,23 @@ class DBhandler:
         }
         self.db.child("oilist").child(uid).child(item_key).set(oilist_info)
         return True
+    
+    def get_chat_messages(self, item_key):
+        chat_ref = self.db.child("chatlist").child(item_key).get().val()
+        if chat_ref:
+            return list(chat_ref.values())  # 딕셔너리를 리스트로 변환하여 반환합니다.
+        return None
+
+    def insert_message(self, item_key, user_id, message, timestamp):
+    # 채팅 메시지 추가
+        chat_ref = self.db.child("chatlist").child(item_key)
+
+        # 새로운 메시지 정보
+        new_message = {
+            'id': user_id,
+            'msg': message,
+            'timestamp': timestamp
+        }
+
+        # 채팅방에 새로운 메시지 추가
+        chat_ref.push(new_message)

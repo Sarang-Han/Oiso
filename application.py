@@ -155,8 +155,24 @@ def chatlist():
 @application.route("/채팅상세/<item_key>/")
 @login_required
 def chat_detail(item_key):
-    item_key = DB.get_item_key(item_key)  # item_key 확인
-    return render_template("채팅상세.html", item_key=item_key)
+    chat_messages = DB.get_chat_messages(item_key)  # item_key에 해당하는 채팅 메시지 가져오기
+    return render_template("채팅상세.html", item_key=item_key, chat_messages=chat_messages)
+
+@application.route("/send_message", methods=["POST"])
+def send_message():
+    if request.method == "POST":
+        data = request.json
+        item_key = data.get("item_key")
+        user_id = session.get('id', '')
+        message = data.get("msg")
+        timestamp = data.get("timestamp")
+
+        # 여기서 DB에 메시지를 저장하는 함수 호출
+        DB.insert_message(item_key, user_id, message, timestamp)
+
+        return jsonify({"success": True}), 200
+    else:
+        return jsonify({"success": False}), 400
 
 @application.route("/상품등록")
 @login_required

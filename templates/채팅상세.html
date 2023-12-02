@@ -13,20 +13,58 @@
         </header>
     
         <div id="chatBox">
-            <!-- 채팅 메시지가 있는 경우 (채팅메세지 db에서 불러와 라우팅) -->
-            
-            <!-- 채팅 메시지가 없는 경우 (채팅내역이 없습니다 문구 띄우기)-->
-            
-        </div>        
+            {% if chat_messages %}
+                {% for chat_data in chat_messages %}
+                    <p> {{ chat_data['id'] }} : {{ chat_data['msg'] }} </p>
+                {% endfor %}
+            {% else %}
+                <p>채팅 내역이 없습니다.</p>
+            {% endif %}
+        </div>    
         
         
         <div>
             <input type="text" id="messageInput" placeholder="메시지 입력">
-            <button id="sendButton" onclick="sendMessage()">전송</button>
+            <button id="sendButton" onclick="sendMessage('{{ item_key }}')">전송</button>
         </div>
 
     </div>
 
+    <script>
+        function sendMessage(itemKey) {
+            var messageInput = document.getElementById("messageInput");
+            var message = messageInput.value.trim();
+            
+            if (message !== "") {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/send_message", true);
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            var chatBox = document.getElementById("chatBox");
+                            var newMessage = document.createElement("p");
+                            newMessage.textContent = message;
+                            chatBox.appendChild(newMessage);
+                            
+                            messageInput.value = "";
+                        }
+                    }
+                };
+                
+                var data = JSON.stringify({
+                    "item_key": itemKey,
+                    "id": "{{ user_id }}",
+                    "msg": message,
+                    "timestamp": new Date().toISOString()
+                });
+                
+                xhr.send(data);
+            }
+        }
+        
+    </script>
     <nav>
         <a href="/메인화면"><img src="{{ url_for('static', filename='image/home.png') }}" width="20px"><br>메인 홈</a>
         <a href="/리뷰전체보기"><img src="{{ url_for('static', filename='image/write.png') }}" width="20px"><br>전체 리뷰</a>
