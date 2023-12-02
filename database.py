@@ -60,6 +60,9 @@ class DBhandler:
         items = self.db.child("item").get().val()
         return items
     
+    def get_item_key(self, item_key):
+        return item_key
+    
     def get_item_by_key(self, item_key):
         item = self.db.child("item").child(item_key).get()
         if item.val():

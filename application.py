@@ -152,7 +152,11 @@ def chatlist():
         # 세션에 사용자 ID가 없는 경우 로그인 페이지로 리다이렉트 또는 다른 처리 수행
         return redirect(url_for('login'))  # login 함수명에 맞게 수정해야 합니다.
 
-
+@application.route("/채팅상세/<item_key>/")
+@login_required
+def chat_detail(item_key):
+    item_key = DB.get_item_key(item_key)  # item_key 확인
+    return render_template("채팅상세.html", item_key=item_key)
 
 @application.route("/상품등록")
 @login_required

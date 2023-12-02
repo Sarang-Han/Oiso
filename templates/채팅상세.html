@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>채팅상세</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/채팅상세.css') }}">
+</head>
+<body>
+    <div class="content">
+        <header>
+            <h3>채팅상세</h3>
+        </header>
+    
+        <div id="chatBox">
+            <!-- 채팅 메시지가 있는 경우 (채팅메세지 db에서 불러와 라우팅) -->
+            
+            <!-- 채팅 메시지가 없는 경우 (채팅내역이 없습니다 문구 띄우기)-->
+            
+        </div>        
+        
+        
+        <div>
+            <input type="text" id="messageInput" placeholder="메시지 입력">
+            <button id="sendButton" onclick="sendMessage()">전송</button>
+        </div>
+
+    </div>
+
+    <nav>
+        <a href="/메인화면"><img src="{{ url_for('static', filename='image/home.png') }}" width="20px"><br>메인 홈</a>
+        <a href="/리뷰전체보기"><img src="{{ url_for('static', filename='image/write.png') }}" width="20px"><br>전체 리뷰</a>
+        <a href="/상품등록"><img src="{{ url_for('static', filename='image/add.png') }}" width="20px"><br>상품 등록</a>
+        <a href="/채팅목록" class="nav-active"><img src="{{ url_for('static', filename='image/chat.png') }}" width="20px"><br>채팅 보기</a>
+        <a href="/마이페이지1"><img src="{{ url_for('static', filename='image/user.png') }}" width="20px"><br>My</a>
+    </nav>
+
+</body>
+</html>

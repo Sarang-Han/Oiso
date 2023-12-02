@@ -1,0 +1,98 @@
+
+html{
+    background-color: #f0f0f0;    
+}
+
+body { 
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    width: 390px;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: white;
+}
+
+#chatBox {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 450px;
+    overflow-y: auto;
+}
+
+/* 메시지 스타일 */
+.message {
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+/* 입력창, 전송 버튼 스타일 */
+#messageInput {
+    width: 70%;
+    padding: 8px;
+    margin-right: 5px;
+}
+
+#sendButton {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+header {
+    background-color: #ffffff;
+    height: 73.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+header button{
+    position: absolute;
+    left: 30px;
+    background-color: transparent;
+    border: none;
+
+}
+
+header h3{
+    position: relative;
+}
+
+
+nav {
+    position: fixed;
+    bottom: 0;
+    width: 430px;
+    background-color: #004F25;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    margin-left: -20px;
+    
+}
+nav a {
+    text-decoration: none;
+    color: gray;
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+}
+
+nav img{
+    filter:invert(50%);
+}
+
+nav .nav-active{
+    color:white;  
+}
+
+nav .nav-active img{
+    filter:invert(100%);  
+}

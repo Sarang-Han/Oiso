@@ -16,13 +16,14 @@
     <div class="listarea">
         {% if total > 0 %}
             {% for key, value in lists.items() %}
-                    <div class="item">
+                <div class="item">
+                    <a href="{{ url_for('chat_detail', item_key=key) }}">
                         <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
                         <div class="item-details">
                             <h4>{{ value.name }}의 채팅방</h4>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
                 <br><br>
                 <hr>
             {% endfor %}
@@ -36,6 +37,7 @@
             </div>
         {% endif %}
     </div>
+    
     
 </div>
 
