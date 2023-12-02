@@ -132,6 +132,7 @@ def view_item_detail(item_key):
         seller_profile = seller_info['profile']
     else:
         seller_profile = 'prof1.png'  # 기본 프로필 이미지
+
     return render_template("상품상세.html", item_key=item_key, data=data, seller_name=seller_name, seller_profile=seller_profile,
                            seller_id=seller_id, my_id=my_id)
 
@@ -198,31 +199,26 @@ def reg_item_submit_post():
         except Exception as e:
             print("파일 저장 오류: ", e)
     
-    data = request.form
+    data=request.form
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    product_key = DB.insert_item(data, img_paths, current_time) # 상품 추가 후 생성된 키값 가져오기
+    DB.insert_item(data, img_paths, current_time) # 상품 정보와 이미지 경로, 현재 시간 저장
     seller_id = session.get('id', '')
     img_paths = str(img_paths[0])
-    
-    DB.create_chat_room(seller_id, product_key) # 채팅방 생성을 위한 정보를 데이터베이스에 추가
     DB.insert_selllist(seller_id, data, img_paths)
-    
     return redirect(url_for('main'))
 
 
 @application.route("/채팅목록")
 @login_required
 def chatlist():
-    #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
     seller_id = session.get('id', '')
-    my_selllist = DB.get_sellitems(seller_id)
-    if (my_selllist == None):
+    my_chatlist = DB.get_sellitems(seller_id)
+    if (my_chatlist == None):
         lists = []
         tot_count = 0
     else:
-        lists = my_selllist.items()
-        tot_count = len(my_selllist)
+        lists = my_chatlist.items()
+        tot_count = len(my_chatlist)
     
     return render_template(
         "채팅목록.html",
@@ -239,9 +235,6 @@ def send_message():
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         product_key = request.json.get('product_key')  # 채팅이 속한 상품의 키를 가져옵니다.
 
-        if not DB.is_participant(product_key, name):  # 참여자인지 확인 후 아니라면 참여자로 추가합니다.
-            DB.add_participant(product_key, name)
-
         DB.insert_chat_message(product_key, name, message, timestamp)  # 채팅 메시지를 DB에 저장합니다.
         return jsonify({"message": message, "name": name, "timestamp": timestamp}), 200
     else:
@@ -253,19 +246,12 @@ def get_chat_messages(product_key):
     messages = DB.get_chat_messages(product_key)  # 해당 상품 키의 채팅 메시지를 가져옵니다.
     return jsonify(messages)
 
-@application.route("/add_participant/<product_key>")
-@login_required
-def add_participant(product_key):
-    user_id = session.get('id')
-    if DB.add_participant(product_key, user_id):
-        return jsonify({'message': 'Participant added successfully'}), 200
-    else:
-        return jsonify({'error': 'Failed to add participant'}), 500
 
 @application.route("/chat_detail/<product_key>")
 @login_required
 def chat_detail(product_key):
     chat_messages = DB.get_chat_messages(product_key)
+    user_id = session.get('id')
     return render_template("채팅상세.html", product_key=product_key, chat_messages=chat_messages)
 
 
@@ -287,7 +273,6 @@ def selllist():
         total = tot_count
     )
     
-
 @application.route('/show_Oi/<item_key>/', methods=['GET'])
 def show_Oi(item_key):
     my_oi = DB.get_oilist_bykey(session['id'],item_key)

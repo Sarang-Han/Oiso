@@ -56,7 +56,13 @@ class DBhandler:
         new_item_key = new_item_ref.get('name')  # 새로 생성한 상품의 키 가져오기
         return new_item_key
     
-
+    def get_user_info_by_id(self, user_id): # id로 user 정보 접근
+        users = self.db.child("users").get()
+        for user in users.each():
+            if user.val()['id'] == user_id:
+                return user.val()
+        return None
+    
     def get_items(self):
         items = self.db.child("item").get().val()
         return items
@@ -65,15 +71,6 @@ class DBhandler:
         item = self.db.child("item").child(item_key).get()
         if item.val():
             return item.val()
-        return None
-    
-    def get_user_info_by_id(self, user_id):
-        users = self.db.child("users").get()
-        for user in users.each():
-            if user.val()['id'] == user_id:
-                user_info = user.val()
-                user_info['is_seller'] = True  # 판매자 여부를 여기서 처리하거나 DB에서 가져와 추가합니다.
-                return user_info
         return None
     
         #session id 별로 등록한 상품 정보 저장
@@ -120,28 +117,9 @@ class DBhandler:
         }
         self.db.child("oilist").child(uid).child(item_key).set(oilist_info)
         return True
-    
-    def create_chat_room(self, user_id, product_key):
-        chat_room= product_key  # 상품 키를 값으로 하는 딕셔너리 생성
-        chat_info ={
-            "participant": user_id,
-        }
-        self.db.child("chatlist").child(user_id).child(chat_room).update(chat_info)
-        return True
 
-    def is_participant(self, product_key, user_id):
-        participant = self.db.child("chatlist").child(product_key).child("participant").get().val()
-        return user_id in participant if participant else False
     
-    def add_participant(self, product_key, user_id):
-        participant_ref = self.db.child("chatlist").child(product_key).child("participant")
-        participants = participant_ref.get().val()
-        if participants:
-            participants.append(user_id)
-            participant_ref.set(participants)
-        else:
-            participant_ref.set([user_id])
-
+    
     def insert_chat_message(self, product_key, participant_id, message, timestamp):
         chat_ref = self.db.child("chatlist").child("Chat").child(product_key).push({
             "Id": participant_id,

@@ -143,7 +143,9 @@
     {% if seller_id == my_id %}
         <button id="chat1">채팅하기</button><!-- 채팅 화면 연결X -->
     {% else %}
+        <a href="{{ url_for('chat_detail', product_key=item_key) }}">
         <button id="chat2">채팅하기</button><!--채팅 화면 연결 필요-->
+    </a>
     {% endif %}
 </div>
 <script>
@@ -164,7 +166,7 @@
             // 채팅방에 참여하기 위해 사용자 ID를 추가하는 로직
             $.ajax({
                 type: 'GET',
-                url: '/add_participant/{{ item_key }}', // 상품 키를 이용하여 해당 상품 채팅방에 참여합니다.
+                url: '/chat_detail/{{ item_key }}', // 상품 키를 이용하여 해당 상품 채팅방에 참여합니다.
                 success: function (response) {
                     // 채팅 상세 페이지로 이동합니다.
                     goToChatDetail();
