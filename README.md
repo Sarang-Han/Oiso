@@ -4,7 +4,7 @@
 이대생을 위한 이화 플리마켓, **오이소**에 어서오이소!
 
 
-## 👾 Key Features
+## 🥬 Key Features
 
 + 로그인/회원가입
 + 메인 화면 (상품 전체보기)
@@ -33,29 +33,29 @@
 <img src="https://github.com/Sarang-Han/Oiso/assets/144914664/1018f107-a48e-40a8-a74a-76934f2fa21d" width=80%>
 
 
-## 🛠️ Tech Stacks
-
-<b>Front end</b><br>
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white">
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white">
-<img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white">
-
-<b>Back end</b><br>
-<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white">
-<img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=white">
-<img src="https://img.shields.io/badge/Flask-000000?style=flat-square&logo=Flask&logoColor=white">
-
-<b>Cowork</b><br>
-<img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white">
-<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white">
-<img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white">
-<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white">
-
-
-## 👩🏻‍💻 Contributors
+## 🥗 Contributors
 
 |Front|Front|Front|Back|Back|Back|
 |-|-|-|-|-|-|
 |[김기림](https://github.com/gilmeee)|[양유진](https://github.com/eugene03850)|[이예은](https://github.com/ye-eunlee)|[한사랑](https://github.com/Sarang-Han)|[신다영](https://github.com/dayoungs)|[최은별](https://github.com/dmsquf03)|
 
+<br><br>
 
+## 🛠️ Tech Stacks
+
+<b>FE</b> 
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white">
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white">
+<img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white">
+<br>
+<b>BE</b> 
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white">
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=white">
+<img src="https://img.shields.io/badge/Flask-000000?style=flat-square&logo=Flask&logoColor=white">
+<br>
+<b>Cowork</b> 
+<img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white">
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white">
+<img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white">
+<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white">
+<br>
