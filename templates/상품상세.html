@@ -150,6 +150,32 @@
     function goBack() {
         window.history.back();
     }
+
+    // 채팅 상세 페이지로 이동하는 함수
+    function goToChatDetail() {
+        // 여기에 채팅 상세 페이지 URL을 설정합니다.
+        let productKey = '{{ item_key }}';
+        window.location.href = `/채팅상세/${productKey}`;
+    }
+
+    $(document).ready(function () {
+        // 채팅하기 버튼 클릭 이벤트
+        $('#chat2').on('click', function () {
+            // 채팅방에 참여하기 위해 사용자 ID를 추가하는 로직
+            $.ajax({
+                type: 'GET',
+                url: '/add_participant/{{ item_key }}', // 상품 키를 이용하여 해당 상품 채팅방에 참여합니다.
+                success: function (response) {
+                    // 채팅 상세 페이지로 이동합니다.
+                    goToChatDetail();
+                },
+                error: function (error) {
+                    console.error('Failed to add participant to the chat room', error);
+                }
+            });
+        });
+    });
+
 </script>
 <script src="{{ url_for('static', filename='js/상품상세.js') }}"></script>
 <nav>

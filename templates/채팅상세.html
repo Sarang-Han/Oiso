@@ -15,8 +15,9 @@
         </header>
     
         <div id="chatBox">
-            <!-- 채팅 메시지가 동적으로 추가될 공간 -->
+            <!-- 여기에 채팅 메시지를 동적으로 추가할 예정 -->
         </div>
+        
         <div>
             <input type="text" id="messageInput" placeholder="메시지 입력">
             <button id="sendButton">전송</button>
@@ -39,11 +40,13 @@
     }
 
     // 채팅 메시지 전송 함수
-        function sendMessage() {
-            var messageInput = document.getElementById('messageInput').value.trim();
-            if (messageInput !== '') {
+    function sendMessage() {
+        var messageInput = document.getElementById('messageInput').value.trim();
+        if (messageInput !== '') {
                 var chatBox = document.getElementById('chatBox');
                 var messageDiv = document.createElement('div');
+                var productKey = window.location.pathname.split('/').pop(); // 현재 URL에서 상품 키를 가져옵니다.
+                var data = JSON.stringify({ message: messageInput, product_key: productKey });
                 messageDiv.className = 'message';
                 messageDiv.textContent = messageInput;
                 chatBox.appendChild(messageDiv);
@@ -94,33 +97,33 @@
         // 채팅 메시지 불러오기 함수
         function fetchChatMessages() {
             var chatBox = document.getElementById('chatBox');
-
-            // AJAX를 이용하여 서버로부터 채팅 메시지 가져오기
+        
+            var productKey = window.location.pathname.split('/').pop(); // 현재 URL에서 상품 키를 가져옵니다.
+        
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/get_chat_messages', true);
-
+            xhr.open('GET', '/get_chat_messages/' + productKey, true); // 상품 키를 기반으로 서버에서 채팅 메시지 가져오기
+        
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         var messages = JSON.parse(xhr.responseText);
-
-                        // 가져온 메시지를 화면에 표시
-                        for (var i = 0; i < messages.length; i++) {
+        
+                        // 메시지를 채팅 박스에 표시
+                        messages.forEach(function(message) {
                             var messageDiv = document.createElement('div');
                             messageDiv.className = 'message';
-                            messageDiv.textContent = messages[i].message;
+                            messageDiv.textContent = message.message;
                             chatBox.appendChild(messageDiv);
-                        }
-
-                        // 스크롤을 항상 아래로 이동
+                        });
+        
+                        // 항상 맨 아래로 스크롤
                         chatBox.scrollTop = chatBox.scrollHeight;
                     } else {
                         console.error('채팅 메시지 가져오기 실패');
                     }
                 }
             };
-
-            // 요청 보내기
+        
             xhr.send();
         }
 </script>

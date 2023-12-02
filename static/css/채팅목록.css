@@ -11,7 +11,6 @@ body {
     background-color: white;
 }
 
-
 header {
     background-color: #ffffff;
     height: 73.5px;
@@ -34,61 +33,70 @@ header h3{
     position: relative;
 }
 
-
-.chat1 {
-    display: flex;
-    align-items: center;
+.listarea{
+    padding-bottom:60px;
 }
 
-.chat1 img {
-    margin-right: 20px; 
+.item {
+    display: inline-block;
 }
 
-.chat1 h4, .chat1 p {
-    margin: 0;
-    margin-left: 0;
+.item img {
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
 }
 
-.chat1 h4 {
-    margin-top: -30px; 
+.item-details {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 35px;
+    margin-top:30px;
 }
 
-.chat1 p{
-    margin-left: -47px;
-    margin-top: 30px;
-    font-size: 13px;
-    color: gray;
+.item-details h4 {
+    font-size: 14px;
+    margin-top: 0;
 }
 
-.chat2 {
-    display: flex;
-    align-items: center;
+.item-details p {
+    font-size: 12px;
+    margin-top: 0;
 }
 
-.chat2 img {
-    margin-right: 20px; 
+.doll {
+    display: inline-block;
 }
 
-.chat2 h4, .chat2 p {
-    margin: 0;
-    margin-left: 0;
+.doll img {
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
 }
 
-.chat2 h4 {
-    margin-top: -30px; 
+.doll-details {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
 }
 
-.chat2 p{
-    margin-left: -47px;
-    margin-top: 30px;
-    font-size: 13px;
-    color: gray;
+.doll-details h4 {
+    font-size: 14px;
+    margin-top: 0;
 }
 
-.chatarea{
-    padding-bottom: 60px;
+.doll-details p {
+    font-size: 12px;
+    margin-top: 0;
 }
 
+
+.none img{
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
 
 nav {
     position: fixed;

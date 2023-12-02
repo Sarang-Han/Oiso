@@ -214,32 +214,59 @@ def reg_item_submit_post():
 @application.route("/채팅목록")
 @login_required
 def chatlist():
-    return render_template("채팅목록.html")
-
-@application.route("/채팅상세")
-def chats():
-    return render_template("채팅상세.html")
-
-
+    #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
+    seller_id = session.get('id', '')
+    my_selllist = DB.get_sellitems(seller_id)
+    if (my_selllist == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = my_selllist.items()
+        tot_count = len(my_selllist)
+    
+    return render_template(
+        "채팅목록.html",
+        lists = lists,
+        total = tot_count
+    )
+    
 
 @application.route("/send_message", methods=['POST'])
 def send_message():
     if request.method == 'POST':
         message = request.json.get('message')
         name = session.get('username')
-
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        product_key = request.json.get('product_key')  # 채팅이 속한 상품의 키를 가져옵니다.
 
-        DB.insert_chat_message(name, message, timestamp)
+        if not DB.is_participant(product_key, name):  # 참여자인지 확인 후 아니라면 참여자로 추가합니다.
+            DB.add_participant(product_key, name)
 
+        DB.insert_chat_message(product_key, name, message, timestamp)  # 채팅 메시지를 DB에 저장합니다.
         return jsonify({"message": message, "name": name, "timestamp": timestamp}), 200
     else:
         return jsonify({"error": "Invalid request"}), 400
 
-@application.route("/get_chat_messages")
-def get_chat_messages():
-    messages = DB.get_chat_messages()  # DB에서 채팅 메시지를 가져옵니다.
+
+@application.route("/get_chat_messages/<product_key>")
+def get_chat_messages(product_key):
+    messages = DB.get_chat_messages(product_key)  # 해당 상품 키의 채팅 메시지를 가져옵니다.
     return jsonify(messages)
+
+@application.route("/add_participant/<product_key>")
+@login_required
+def add_participant(product_key):
+    user_id = session.get('id')
+    if DB.add_participant(product_key, user_id):
+        return jsonify({'message': 'Participant added successfully'}), 200
+    else:
+        return jsonify({'error': 'Failed to add participant'}), 500
+
+@application.route("/chat_detail/<product_key>")
+@login_required
+def chat_detail(product_key):
+    chat_messages = DB.get_chat_messages(product_key)
+    return render_template("채팅상세.html", product_key=product_key, chat_messages=chat_messages)
 
 
 @application.route("/판매내역")
@@ -259,6 +286,7 @@ def selllist():
         lists = lists,
         total = tot_count
     )
+    
 
 @application.route('/show_Oi/<item_key>/', methods=['GET'])
 def show_Oi(item_key):

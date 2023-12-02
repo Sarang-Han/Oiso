@@ -14,34 +14,29 @@
             <h3>채팅목록</h3>
         </header>
     
-<div class="listarea">
-    {% if total > 0 %}
-        {% for key, value in lists %}
-            <a href="{{ url_for('chat_detail', product_key=key) }}" class="item-link"> <!-- 채팅 상세 페이지로 이동하는 링크 -->
-                <div class="item">
-                    <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
-                    <div class="item-details">
-                        <h4>{{ value.name }}</h4>
-                        <p>최근 메시지: {{ get_latest_message(value.chats) }}</p> <!-- 최근 메시지 표시 -->
+        <div class="listarea">
+            {% if total > 0 %} <!-- 여기서부터 수정 -->
+                {% for key, value in lists %}
+                    <div class="item">
+                        <img src="{{value.img_path}}" width="90px" alt="상품 사진">
+                        <div class="item-details">
+                            <h4>{{value.name}}의 채팅방</h4>
+                        </div>
                     </div>
+                    <br><br>
+                    <hr>
+                {% endfor %}
+            {% else %}
+                <div class="none">
+                    <div class="item-details">
+                        <h4>채팅내역이 없습니다</h4>
+                    </div>
+                    <br><br>
+                    <hr>
                 </div>
-            </a>
-            <br><br>
-            <hr>
-        {% endfor %}
-    {% else %}
-        <div class="none">
-            <div class="item-details">
-                <h2>채팅내역이 없습니다</h2>
+            {% endif %}
             </div>
-            <br><br>
-            <hr>
-        </div>
-    {% endif %}
-</div>
-
-
-
+    </div>
 </div>
 
     <nav>
