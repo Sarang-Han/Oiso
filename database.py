@@ -67,10 +67,32 @@ class DBhandler:
         items = self.db.child("item").get().val()
         return items
     
+    def get_item_key(self, item_key):
+        return item_key
+    
     def get_item_by_key(self, item_key):
         item = self.db.child("item").child(item_key).get()
         if item.val():
             return item.val()
+        return None
+    
+    def get_sellitems_by_seller(self, seller_id):
+        items = self.db.child("item").get().val()
+        seller_items = {}
+        if items:
+            for item_key, item_info in items.items():
+                if 'seller' in item_info and item_info['seller'] == seller_id:
+                    seller_items[item_key] = {
+                        'name': item_info['name'],  # 상품명
+                        'img_path': item_info['img_path'][0] if 'img_path' in item_info else None  # 이미지 경로 (첫 번째 이미지만 가져오기)
+                    }
+        return seller_items
+    
+    def get_user_info_by_id(self, user_id): # id로 user 정보 접근
+        users = self.db.child("users").get()
+        for user in users.each():
+            if user.val()['id'] == user_id:
+                return user.val()
         return None
     
         #session id 별로 등록한 상품 정보 저장
@@ -118,34 +140,22 @@ class DBhandler:
         self.db.child("oilist").child(uid).child(item_key).set(oilist_info)
         return True
     
-    def insert_chat_message(self, product_key, participant_id, message, timestamp):
-        chat_messages = self.db.child("chatlist").child(product_key).get().val() or {}
-        chat_count = chat_messages.get("chat_count", 0)
+    def get_chat_messages(self, item_key):
+        chat_ref = self.db.child("chatlist").child(item_key).get().val()
+        if chat_ref:
+            return list(chat_ref.values())  # 딕셔너리를 리스트로 변환하여 반환합니다.
+        return None
 
-        chat_ref = self.db.child("chatlist").child(product_key).child(f"chat{chat_count}").set({
-            "Id": participant_id,
-            "msg": message,
-            "time": timestamp
-        })
+    def insert_message(self, item_key, user_id, message, timestamp):
+    # 채팅 메시지 추가
+        chat_ref = self.db.child("chatlist").child(item_key)
 
-        # 업데이트 된 chat_count를 chatlist에 반영
-        self.db.child("chatlist").child(product_key).update({"chat_count": chat_count + 1})
+        # 새로운 메시지 정보
+        new_message = {
+            'id': user_id,
+            'msg': message,
+            'timestamp': timestamp
+        }
 
-        return True
-
-
-    def get_chat_messages(self, product_key, limit=10):
-        chat_messages = self.db.child("chatlist").child(product_key).get().val() or {}
-        chat_count = chat_messages.get("chat_count", 0)
-        if not chat_count:
-            return None
-        
-        latest_messages = {}
-        for i in range(max(0, chat_count - limit), chat_count):
-            chat_key = f"chat{i}"
-            if chat_key in chat_messages:
-                latest_messages[chat_key] = chat_messages[chat_key]
-
-        return latest_messages
-
-
+        # 채팅방에 새로운 메시지 추가
+        chat_ref.push(new_message)

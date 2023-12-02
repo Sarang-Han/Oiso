@@ -143,9 +143,7 @@
     {% if seller_id == my_id %}
         <button id="chat1">채팅하기</button><!-- 채팅 화면 연결X -->
     {% else %}
-        <a href="{{ url_for('chat_detail', product_key=product_key) }}">
-        <button id="chat2">채팅하기</button><!--채팅 화면 연결 필요-->
-    </a>
+        <a href="{{ url_for('chat_detail', item_key=item_key) }}"><button id="chat2">채팅하기</button></a>
     {% endif %}
 </div>
 <script>
