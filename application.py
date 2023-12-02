@@ -128,13 +128,23 @@ def view_item_detail(item_key):
     seller_name = seller_info['name'] if seller_info else None
     seller_id = seller_info['id']
     my_id = session.get('id', '')
+    product_key = None
+    
+    # 상품 키 가져오기
+    seller_items = DB.get_sellitems(seller_id)
+    if seller_items:
+        for key, value in seller_items.items():
+            if value.get('name') == data.get('name') and value.get('price') == data.get('price'):
+                product_key = key
+                break
+
     if seller_info and 'profile' in seller_info and seller_info['profile'] != "_":
         seller_profile = seller_info['profile']
     else:
         seller_profile = 'prof1.png'  # 기본 프로필 이미지
 
     return render_template("상품상세.html", item_key=item_key, data=data, seller_name=seller_name, seller_profile=seller_profile,
-                           seller_id=seller_id, my_id=my_id)
+                           seller_id=seller_id, my_id=my_id, product_key=product_key)
 
 @application.route("/리뷰전체보기")
 def all_review():
@@ -230,7 +240,7 @@ def chatlist():
 @login_required
 def chat_detail(product_key):
     user_id = session.get('id')
-    return render_template("채팅상세.html", user_id, product_key=product_key)
+    return render_template("채팅상세.html", user_id=user_id, product_key=product_key)
 
 
 @application.route("/판매내역")

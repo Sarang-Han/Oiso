@@ -9,7 +9,7 @@
         function showOi(){
             $.ajax({
                 type: 'GET',
-                url: '/show_Oi/{{item_key}}/',
+                url: '/show_Oi/{{product_key}}/',
                 data: {},
                 async: false,
                 success: function (response){
@@ -51,7 +51,7 @@
         function like(){
             $.ajax({
                 type: 'POST',
-                url: '/like/{{item_key}}/',
+                url: '/like/{{product_key}}/',
                 data: {
                     interested: "Y"
                 },
@@ -66,7 +66,7 @@
         function unlike(){
             $.ajax({
                 type: 'POST',
-                url: '/unlike/{{item_key}}/',
+                url: '/unlike/{{product_key}}/',
                 data: {
                     interested: "N"
                 },
@@ -143,7 +143,7 @@
     {% if seller_id == my_id %}
         <button id="chat1">채팅하기</button><!-- 채팅 화면 연결X -->
     {% else %}
-        <a href="{{ url_for('chat_detail', product_key=item_key) }}">
+        <a href="{{ url_for('chat_detail', product_key=product_key) }}">
         <button id="chat2">채팅하기</button><!--채팅 화면 연결 필요-->
     </a>
     {% endif %}
@@ -156,7 +156,7 @@
     // 채팅 상세 페이지로 이동하는 함수
     function goToChatDetail() {
         // 여기에 채팅 상세 페이지 URL을 설정합니다.
-        let productKey = '{{ item_key }}';
+        let productKey = '{{ product_key }}';
         window.location.href = `/채팅상세/${productKey}`;
     }
 
@@ -166,7 +166,7 @@
             // 채팅방에 참여하기 위해 사용자 ID를 추가하는 로직
             $.ajax({
                 type: 'GET',
-                url: '/chat_detail/{{ item_key }}', // 상품 키를 이용하여 해당 상품 채팅방에 참여합니다.
+                url: '/chat_detail/{{ product_key }}', // 상품 키를 이용하여 해당 상품 채팅방에 참여합니다.
                 success: function (response) {
                     // 채팅 상세 페이지로 이동합니다.
                     goToChatDetail();
