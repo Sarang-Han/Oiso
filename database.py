@@ -66,6 +66,18 @@ class DBhandler:
             return item.val()
         return None
     
+    def get_sellitems_by_seller(self, seller_id):
+        items = self.db.child("item").get().val()
+        seller_items = {}
+        if items:
+            for item_key, item_info in items.items():
+                if 'seller' in item_info and item_info['seller'] == seller_id:
+                    seller_items[item_key] = {
+                        'name': item_info['name'],  # 상품명
+                        'img_path': item_info['img_path'][0] if 'img_path' in item_info else None  # 이미지 경로 (첫 번째 이미지만 가져오기)
+                    }
+        return seller_items
+    
     def get_user_info_by_id(self, user_id): # id로 user 정보 접근
         users = self.db.child("users").get()
         for user in users.each():

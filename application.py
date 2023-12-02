@@ -139,10 +139,20 @@ def view_item_detail(item_key):
 def all_review():
     return render_template("리뷰전체보기.html")
 
+
 @application.route("/채팅목록")
 @login_required
 def chatlist():
-    return render_template("채팅목록.html")
+    user_id = session.get('id', '')  # 세션에서 사용자 ID 가져오기
+    if user_id:
+        item_info_list = DB.get_sellitems_by_seller(user_id)
+        total = len(item_info_list)
+        return render_template("채팅목록.html", lists=item_info_list, total=total)
+    else:
+        # 세션에 사용자 ID가 없는 경우 로그인 페이지로 리다이렉트 또는 다른 처리 수행
+        return redirect(url_for('login'))  # login 함수명에 맞게 수정해야 합니다.
+
+
 
 @application.route("/상품등록")
 @login_required
