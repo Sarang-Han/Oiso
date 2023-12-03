@@ -52,9 +52,9 @@ class DBhandler:
             "img_path": img_paths,              # 이미지 경로
             "date": current_time                # 등록 날짜
         }
-        new_item_ref = self.db.child("item").push(item_info)
-        new_item_key = new_item_ref.get('name')  # 새로 생성한 상품의 키 가져오기
-        return new_item_key
+        self.db.child("item").push(item_info)
+        print(data, img_paths)
+        return True
     
     def get_user_info_by_id(self, user_id): # id로 user 정보 접근
         users = self.db.child("users").get()
@@ -76,25 +76,6 @@ class DBhandler:
             return item.val()
         return None
     
-    def get_sellitems_by_seller(self, seller_id):
-        items = self.db.child("item").get().val()
-        seller_items = {}
-        if items:
-            for item_key, item_info in items.items():
-                if 'seller' in item_info and item_info['seller'] == seller_id:
-                    seller_items[item_key] = {
-                        'name': item_info['name'],  # 상품명
-                        'img_path': item_info['img_path'][0] if 'img_path' in item_info else None  # 이미지 경로 (첫 번째 이미지만 가져오기)
-                    }
-        return seller_items
-    
-    def get_user_info_by_id(self, user_id): # id로 user 정보 접근
-        users = self.db.child("users").get()
-        for user in users.each():
-            if user.val()['id'] == user_id:
-                return user.val()
-        return None
-    
         #session id 별로 등록한 상품 정보 저장
     def insert_selllist(self, id_, data, img_paths):
         item_info ={
@@ -110,6 +91,18 @@ class DBhandler:
         selllist = self.db.child("selllist").child(id_).get().val()
         return selllist
     
+    def get_sellitems_by_seller(self, seller_id):
+        items = self.db.child("item").get().val()
+        seller_items = {}
+        if items:
+            for item_key, item_info in items.items():
+                if 'seller' in item_info and item_info['seller'] == seller_id:
+                    seller_items[item_key] = {
+                        'name': item_info['name'],  # 상품명
+                        'img_path': item_info['img_path'][0] if 'img_path' in item_info else None  # 이미지 경로 (첫 번째 이미지만 가져오기)
+                    }
+        return seller_items
+
     def get_oilist_bykey(self, uid, item_key):
         ois = self.db.child("oilist").child(uid).get()
         target_value=""
@@ -145,6 +138,38 @@ class DBhandler:
         if chat_ref:
             return list(chat_ref.values())  # 딕셔너리를 리스트로 변환하여 반환합니다.
         return None
+    
+    def insert_chatlist(self, uid, item_key):
+        item_info=self.db.child("item").child(item_key).get().val()
+        imgpath = item_info['img_path']
+        chat_info={
+            "img_path": imgpath[0],
+            "name": item_info['name'],
+            "item_key": item_key
+        }
+        self.db.child("buyer_chatlist").child(uid).child(item_key).push(chat_info)
+        return True
+    
+    def get_chatlist_by_itemkey(self, uid, item_key):
+        item = self.db.child("buyer_chatlist").child(uid).child(item_key).get().val()
+        return item
+
+    def get_chatitems(self, uid):
+        items = self.db.child("buyer_chatlist").child(uid).get().val()
+        chatitems = {}
+        if items:
+            for item in items.items():
+                item_key = item[0]
+                for value in item[1]:
+                    chatitems[item_key] = {
+                        'name': item[1][value]['name'],  # 상품명
+                        'img_path': item[1][value]['img_path'] if 'img_path' in item[1][value] else None  # 이미지 경로 (첫 번째 이미지만 가져오기)
+                    }
+        return chatitems
+
+    def get_chatlist_byuid(self, uid):
+        chatlist = self.db.child("buyer_chatlist").child(uid).get().val()
+        return chatlist
 
     def insert_message(self, item_key, user_id, message, timestamp):
     # 채팅 메시지 추가
