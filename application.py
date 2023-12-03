@@ -121,6 +121,34 @@ def main():
     return render_template("메인화면.html", datas=data.items(), limit=per_page, page=page,
                            page_count=page_count, total=item_counts, selected_category=selected_category)
 
+@application.route("/상품등록")
+@login_required
+def reg_items():
+    seller_id = session.get('id', '')  # 세션에서 id 가져와 판매자 id 자동완성, 없으면 빈 문자열
+    return render_template("상품등록.html", seller_id=seller_id)
+
+@application.route("/submit_item_post", methods=['POST']) # 상품 등록 함수
+def reg_item_submit_post():
+    
+    image_files = request.files.getlist("image[]")
+    img_paths = []
+
+    for image_file in image_files:
+        try:
+            if image_file.filename != '': # 이미지 파일이 비어있지 않으면 저장 후 경로를 리스트에 추가.
+                image_file.save("static/image/{}".format(image_file.filename))
+                img_paths.append("static/image/{}".format(image_file.filename))
+        except Exception as e:
+            print("파일 저장 오류: ", e)
+    
+    data=request.form
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    DB.insert_item(data, img_paths, current_time) # 상품 정보와 이미지 경로, 현재 시간 저장
+    seller_id = session.get('id', '')
+    img_paths = str(img_paths[0])
+    DB.insert_selllist(seller_id, data, img_paths)
+    return redirect(url_for('main'))
+
 @application.route("/view_detail/<item_key>/") # 상품 key로 동적 라우팅
 def view_item_detail(item_key):
     data = DB.get_item_by_key(str(item_key))
@@ -157,8 +185,19 @@ def chatlist():
     user_id = session.get('id', '')  # 세션에서 사용자 ID 가져오기
     if user_id:
         item_info_list = DB.get_sellitems_by_seller(user_id)
-        total = len(item_info_list)
-        return render_template("채팅목록.html", lists=item_info_list, total=total)
+        if (item_info_list == None):
+            sell_total = 0
+        else:
+            sell_total = len(item_info_list)
+
+        buyer_chatlist = DB.get_chatitems(user_id)
+        if (buyer_chatlist == None):
+            buy_total = 0
+        else:
+            buy_total = len(buyer_chatlist)
+
+        return render_template("채팅목록.html", item_info_list=item_info_list, sell_total=sell_total,
+                               buyer_chatlist=buyer_chatlist, buy_total=buy_total)
     else:
         # 세션에 사용자 ID가 없는 경우 로그인 페이지로 리다이렉트 또는 다른 처리 수행
         return redirect(url_for('login'))  # login 함수명에 맞게 수정해야 합니다.
@@ -178,18 +217,19 @@ def send_message():
         message = data.get("msg")
         timestamp = data.get("timestamp")
 
+        item_info = DB.get_item_by_key(item_key)
+        seller_id = item_info['seller']
         # 여기서 DB에 메시지를 저장하는 함수 호출
         DB.insert_message(item_key, user_id, message, timestamp)
+
+        if (seller_id != user_id):
+            item = DB.get_chatlist_by_itemkey(user_id, item_key)
+            if (item == None):
+                DB.insert_chatlist(user_id, item_key)
 
         return jsonify({"success": True}), 200
     else:
         return jsonify({"success": False}), 400
-
-@application.route("/상품등록")
-@login_required
-def reg_items():
-    seller_id = session.get('id', '')  # 세션에서 id 가져와 판매자 id 자동완성, 없으면 빈 문자열
-    return render_template("상품등록.html", seller_id=seller_id)
 
 @application.route("/마이페이지1")
 @login_required
@@ -212,46 +252,6 @@ def mypage2():
 def buylist():
     return render_template("구매내역.html")
 
-@application.route("/오이목록")
-def oilist():
-    my_id = session.get('id', '')
-    my_oilist = DB.get_oilist_byuid(my_id)
-    if (my_oilist == None):
-        lists = []
-        tot_count = 0
-    else:
-        lists = my_oilist.items()
-        tot_count = len(my_oilist)
-        
-    return render_template(
-        "오이목록.html",
-        lists = lists,
-        total = tot_count
-    )
-
-@application.route("/submit_item_post", methods=['POST']) # 상품 등록 함수
-def reg_item_submit_post():
-    
-    image_files = request.files.getlist("image[]")
-    img_paths = []
-
-    for image_file in image_files:
-        try:
-            if image_file.filename != '': # 이미지 파일이 비어있지 않으면 저장 후 경로를 리스트에 추가.
-                image_file.save("static/image/{}".format(image_file.filename))
-                img_paths.append("static/image/{}".format(image_file.filename))
-        except Exception as e:
-            print("파일 저장 오류: ", e)
-    
-    data=request.form
-    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    DB.insert_item(data, img_paths, current_time) # 상품 정보와 이미지 경로, 현재 시간 저장
-    seller_id = session.get('id', '')
-    img_paths = str(img_paths[0])
-    DB.insert_selllist(seller_id, data, img_paths)
-    return redirect(url_for('main'))
-
-
 @application.route("/판매내역")
 def selllist():
     #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
@@ -269,7 +269,24 @@ def selllist():
         lists = lists,
         total = tot_count
     )
-    
+
+@application.route("/오이목록")
+def oilist():
+    my_id = session.get('id', '')
+    my_oilist = DB.get_oilist_byuid(my_id)
+    if (my_oilist == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = my_oilist.items()
+        tot_count = len(my_oilist)
+        
+    return render_template(
+        "오이목록.html",
+        lists = lists,
+        total = tot_count
+    )
+
 @application.route('/show_Oi/<item_key>/', methods=['GET'])
 def show_Oi(item_key):
     my_oi = DB.get_oilist_bykey(session['id'],item_key)
