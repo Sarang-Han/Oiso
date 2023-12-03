@@ -1,9 +1,13 @@
+ @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400&display=swap');
+
+
 html{
     background-color: #f0f0f0;    
+
 }
 
 body { 
-    font-family: Arial, sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     margin: 0 auto;
     width: 390px;
     min-height: 100vh;
@@ -80,12 +84,21 @@ nav .nav-active img{
     align-items: center;
     font-size: 14px;
     position:relative;
+    border-radius: 10px;
 }
 
 .myMenu img{
     width:15px;
     margin: 10px;
     display: inline;
+}
+
+.myMenu:hover{
+    background-color: #004F25;
+    color:white;
+}
+.myMenu:hover img{
+    filter: invert(100%);
 }
 
 
@@ -100,6 +113,7 @@ nav .nav-active img{
     display: flex;
     justify-content: space-between;
 }
+
 .review-header-block {
     width: 150px;
     text-align: center;
@@ -107,9 +121,23 @@ nav .nav-active img{
     cursor: pointer;
     
 }
-.review-header-block.active {
+
+.review-header-block-active {
     background-color: #f2f2f2;
+    width: 150px;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
 }
+
+.review-header-block:hover{
+    background-color: #004F25;
+}
+
+.review-header-block:hover a{
+    color:white;
+}
+
 .image-grid {
     background-color: #f2f2f2;
     display: grid;
@@ -142,6 +170,8 @@ nav .nav-active img{
 .review-content {
     background-color: #f2f2f2;
     padding: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     
 }
 .review {
@@ -192,4 +222,8 @@ nav .nav-active img{
 }
 .review img{
     width:100px;
+}
+
+img[src="../static/image/item.png"]{
+    filter: hue-rotate(260deg);
 }
