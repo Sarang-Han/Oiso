@@ -252,53 +252,6 @@ def reg_item_submit_post():
     return redirect(url_for('main'))
 
 
-@application.route("/채팅목록") # 판매내역 db에서 정보 가져오도록 함
-@login_required
-def chatlist():
-    seller_id = session.get('id', '')
-    my_chatlist = DB.get_sellitems(seller_id)
-    if (my_chatlist == None):
-        lists = []
-        tot_count = 0
-    else:
-        lists = my_chatlist.items()
-        tot_count = len(my_chatlist)
-    
-    return render_template(
-        "채팅목록.html",
-        lists = lists,
-        total = tot_count
-    )
-    
-
-@application.route("/chat_detail/<product_key>")
-@login_required
-def chat_detail(product_key):
-    user_id = session.get('id')
-    
-    # 상품키에 해당하는 채팅 메시지 가져오기
-    chat_messages = DB.get_chat_messages(product_key)
-    
-    # 채팅 데이터가 없을 경우 예외 처리
-    if chat_messages is None or not chat_messages:
-        return render_template("채팅상세.html", user_id=user_id, product_key=product_key, chat_messages=None)
-    
-    return render_template("채팅상세.html", user_id=user_id, product_key=product_key, chat_messages=chat_messages)
-
-
-@application.route("/send_message", methods=["POST"])
-def send_message():
-    if request.method == "POST":
-        data = request.get_json()
-        product_key = data.get("product_key")
-        participant_id = data.get("participant_id")
-        message = data.get("message")
-        timestamp = data.get("timestamp")
-
-        DB.insert_chat_message(product_key, participant_id, message, timestamp)
-        return "Message sent successfully", 200
-    return "Invalid request", 400
-
 @application.route("/판매내역")
 def selllist():
     #세션 정보 활용하여 로그인 한 사람이 등록한 상품 정보 가져오기
