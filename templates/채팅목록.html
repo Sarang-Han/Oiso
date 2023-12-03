@@ -19,28 +19,27 @@
         {% if sell_total > 0 or buy_total > 0 %}
             {% for key, value in item_info_list.items() %}
                 <div class="item">
-                    <a href="{{ url_for('chat_detail', item_key=key) }}">
                         <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
                         <div class="item-details">
-                            <h4>{{ value.name }} 채팅방</h4>
+                            <h4><a href="{{ url_for('chat_detail', item_key=key) }}">{{ value.name }} 채팅방</a></h4>
                         </div>
-                    </a>
                 </div>
                 <br><br>
                 <hr>
             {% endfor %}
             {% for key, value in buyer_chatlist.items() %}
-                    <div class="item">
-                        <a href="{{ url_for('chat_detail', item_key=key) }}">
-                            <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
-                            <div class="item-details">
-                                <h4>{{ value.name }} 채팅방</h4>
-                                <button>구매완료</button>
-                            </div>
-                        </a>
-                    </div>
-                    <br><br>
-                    <hr>
+                <div class="item">
+                    <a href="{{ url_for('chat_detail', item_key=key) }}">
+                        <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
+                        <div class="item-details">
+                            <h4><a href="{{ url_for('chat_detail', item_key=key) }}">{{ value.name }} 채팅방</a></h4>
+                            <input type=button id="buying" value="구매완료"
+                            onclick="disablefunc(); location.href='/buying_complete?name={{ value.name }}&price={{value.price}}&img_path={{value.img_path}}';">
+                        </div>
+                    </a>
+                </div>
+                <br><br>
+                <hr>
             {% endfor %}
         {% else %}
             <div class="none">
@@ -68,6 +67,11 @@
 <script>
     function goBack() {
         window.history.back();
+    }
+
+    function disablefunc(){
+        const target = document.getElementById('buying');
+        target.disabled = true;
     }
 </script>
 </body>

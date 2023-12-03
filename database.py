@@ -145,6 +145,7 @@ class DBhandler:
         chat_info={
             "img_path": imgpath[0],
             "name": item_info['name'],
+            "price": item_info['price'],
             "item_key": item_key
         }
         self.db.child("buyer_chatlist").child(uid).child(item_key).push(chat_info)
@@ -162,7 +163,9 @@ class DBhandler:
                 item_key = item[0]
                 for value in item[1]:
                     chatitems[item_key] = {
-                        'name': item[1][value]['name'],  # 상품명
+                        'name': item[1][value]['name'],
+                        'price': item[1][value]['price'],
+                        'item_key': item_key,
                         'img_path': item[1][value]['img_path'] if 'img_path' in item[1][value] else None  # 이미지 경로 (첫 번째 이미지만 가져오기)
                     }
         return chatitems
@@ -184,3 +187,16 @@ class DBhandler:
 
         # 채팅방에 새로운 메시지 추가
         chat_ref.push(new_message)
+
+    def insert_buylist(self, uid, data):
+        item_info={
+            'name': data['name'],
+            'price': data['price'],
+            'img_path': data['img_path']
+        }
+        self.db.child("buylist").child(uid).push(item_info)
+        return True
+    
+    def get_buyitems(self, uid):
+        buylist = self.db.child("buylist").child(uid).get().val()
+        return buylist

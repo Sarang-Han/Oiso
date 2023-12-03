@@ -231,6 +231,23 @@ def send_message():
     else:
         return jsonify({"success": False}), 400
 
+@application.route("/buying_complete/") # 구매 완료 함수
+def buying_complete():
+    name = request.args.get('name')
+    price = request.args.get('price')
+    img_path = request.args.get('img_path')
+
+    data = {
+    'name': name,
+    'price': price,
+    'img_path': img_path
+    }
+
+    user_id = session.get('id', '')
+    DB.insert_buylist(user_id, data)
+    return redirect(url_for('chatlist'))
+
+
 @application.route("/마이페이지1")
 @login_required
 def mypage1():
@@ -250,7 +267,20 @@ def mypage2():
 
 @application.route("/구매내역")
 def buylist():
-    return render_template("구매내역.html")
+    my_id = session.get('id', '')
+    my_buylist = DB.get_buyitems(my_id)
+    if (my_buylist == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = my_buylist.items()
+        tot_count = len(my_buylist)
+    
+    return render_template(
+        "구매내역.html",
+        lists = lists,
+        total = tot_count
+    )
 
 @application.route("/판매내역")
 def selllist():
