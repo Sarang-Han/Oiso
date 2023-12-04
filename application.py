@@ -149,7 +149,7 @@ def reg_item_submit_post():
     DB.insert_selllist(seller_id, data, img_paths)
     return redirect(url_for('main'))
 
-@application.route("/view_detail/<item_key>/") # 상품 key로 동적 라우팅
+@application.route("/상품상세/<item_key>/") # 상품 key로 동적 라우팅
 def view_item_detail(item_key):
     data = DB.get_item_by_key(str(item_key))
     seller_info = DB.get_user_info_by_id(data['seller'])  # 판매자 정보 가져옴
@@ -176,7 +176,18 @@ def view_item_detail(item_key):
 
 @application.route("/리뷰전체보기")
 def all_review():
-    return render_template("리뷰전체보기.html")
+    page = request.args.get("page", 0, type=int) # 현 페이지 인덱스
+    per_page = 12 # 페이지 상품 수
+    start_idx = per_page * page
+    end_idx = per_page * (page+1)
+    data = DB.get_reviews()
+
+    item_counts = len(data)
+    page_count = math.ceil(item_counts / per_page)
+    data = dict(list(data.items())[start_idx:end_idx])
+
+    return render_template("리뷰전체보기.html", datas=data.items(), limit=per_page, page=page,
+                           page_count=page_count, total=item_counts)
 
 @application.route("/리뷰작성하기/<item_key>/") # 상품 key로 리뷰작성 동적라우팅
 def reg_review_route(item_key):
@@ -200,6 +211,15 @@ def regi_review():
     data = request.form
     DB.reg_review(data, img_paths)
     return redirect(url_for('all_review'))
+
+@application.route("/리뷰상세/<review_key>/") # 리뷰 key로 동적 라우팅
+def view_review_detail(review_key):
+    data = DB.get_review_by_key(str(review_key))
+    buyer = DB.get_user_info_by_id(data['buyer_id'])
+    buyer_name = buyer['name']
+    data['rate'] = int(data['rate']) # rate 정수로 변환
+
+    return render_template("리뷰상세.html", review_key=review_key, data=data, buyer_name=buyer_name)
 
 @application.route("/채팅목록")
 @login_required

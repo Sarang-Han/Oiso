@@ -14,43 +14,54 @@
             <h3>리뷰 전체보기</h3>
         </header>
 
-        <div class="review-section">
-            
-            <div class="image-grid" style="margin-right: 10px;">
-                <a href="리뷰상세3"><img class="review-image" src="../static/image/example2.jpeg" alt="리뷰 이미지">
-                <div class="merchname">보스 QC45</div>
-                </a>
-                <a href="리뷰상세2"><img class="review-image" src="../static/image/desk.png" alt="리뷰 이미지">
-                <div class="merchname">컴퓨터 책상</div></a>
-                <a href="리뷰상세1"><img class="review-image" src="../static/image/mug.png" alt="리뷰 이미지">
-                <div class="merchname">스타벅스 머그</div></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
+        {% if total > 0 %}
+        <div class="reviews">
+            {% for key, value in datas %}
+                <div class="review_div">
+                    <a href="{{ url_for('view_review_detail', review_key=key) }}">
+                    <div class="image-wrapper">
+                        {% if value['img_path'] %}
+                            <img src="{{ value['img_path'][0] }}" width="100px" onerror="this.onerror=null; this.src='../static/image/item.png'">
+                        {% else %}
+                            <img src="../static/image/item.png" width="100px">
+                        {% endif %}
+                        <div class="review-title-overlay">
+                        {% if value['title'] and value['title']|length > 6 %}
+                            {{ value['title'][:4] + '...' }}
+                        {% else %}
+                            {{ value['title'] or '리뷰제목' }}
+                        {% endif %}</div>
+                    </div>
+                    </a>
+                </div>
+            {% endfor %}
+            {% set current_page_item_count = datas|length %}
+            {% set remaining_count = 12 - current_page_item_count %}
+            {% for _ in range(remaining_count) %} <!--상품 없는 칸-->
+            <div class="review_div">
+            <div class="image-wrapper">
+                <img src="../static/image/item.png" width="100px">
             </div>
+            </div>
+            {% endfor %}
         </div>
 
         <div class="page">
-            <a href="#">&laquo; 이전</a>
-            <a href="#" style="margin: 0 10px;">1</a>
-            <a href="#" style="margin: 0 10px;">2</a>
-            <a href="#" style="margin: 0 10px;">3</a>
-            <a href="#" style="margin: 0 10px;">4</a>
-            <a href="#" style="margin: 0 10px;">5</a>
-            <a href="#">다음 &raquo;</a>
+            <div class="page-nation">
+                <ul>
+                    <li>
+                        {% for i in range(page_count) %}
+                            <a href="{{url_for('all_review', page=i)}}">{{i}}</a>
+                        {% endfor %}
+                    </li>
+                </ul>
+            </div>
         </div>
+        {% else %}
+            <div class="no-items">
+                <p>등록된 상품이 없습니다.</p>
+            </div>
+        {% endif %}
 
         <nav>
             <a href="/메인화면"><img src="../static/image/home.png" width="20px"><br>메인 홈</a>

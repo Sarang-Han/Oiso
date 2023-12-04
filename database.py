@@ -231,4 +231,13 @@ class DBhandler:
         self.db.child("users").child(buyer_key).child("written_reviews").update({review_key: True}) # 구매자의 작성한 리뷰에 리뷰key 저장
         return True
     
+    def get_reviews(self): # 전체 리뷰 DB 가져옴
+        reviews = self.db.child("review").get().val()
+        return reviews
+    
+    def get_review_by_key(self, review_key): # 특정 key 리뷰 DB 가져옴
+        review = self.db.child("review").child(review_key).get()
+        if review.val():
+            return review.val()
+        return None
     
