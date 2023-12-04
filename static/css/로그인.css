@@ -9,8 +9,8 @@ body {
 }
 
 .content {
-    width: 400px;
-    height: 864px;
+    width: 390px;
+    height: 844px;
     background-color: #fff;
     text-align: center;
     padding: 20px;
@@ -55,7 +55,7 @@ input:focus {
     border-radius: 12px;
     cursor: pointer;
     display: block;
-    margin-top: 15px;
+    margin-top: 24px;
     margin-bottom: 15px;
 }
 
