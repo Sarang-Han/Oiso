@@ -67,50 +67,26 @@
             </div>
             
             <div class="review-content">
-
-                <div class="review">
-                    <a href="리뷰상세2" style="width: 100%;"><img src="../static/image/desk.png" alt="프로필 사진"></a>
-                    <div class="review-text">
-                        <div class="review-user">이화연 @1077</div>
-                        <div class="review-product">상품명: 컴퓨터 책상</div>
-                        <div class="review-description"><strong>판매자가 친절해요</strong> 물건이 설명과 같아요 상...더보기</div>
-                                           
+                {% if total > 0 %}
+                    {% for key, value in lists %}
+                        <div class="review">
+                            <a href="리뷰상세1" style="width: 100%;"><img src="{{value.img_path}}" alt="상품 사진"></a>
+                            <div class="review-text">
+                                <div class="review-user">{{value.seller_name}} @{{value.seller_id}}</div>
+                                <div class="review-product">상품명: {{value.name}}</div>
+                                <div class="review-description"><strong>{{value.title}}</strong> {{value.content}}</div>
+                                
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="review">
+                        <div class="review-text">
+                            <div class="review-user">등록된 리뷰가 없습니다</div>
+                        </div>
                     </div>
-                    
+                {% endif %}
                 </div>
-                
-                <div class="review">
-                    <a href="#" style="width: 100%;"><img src="../static/image/item.png" alt="프로필 사진"></a>
-                    <div class="review-text">
-                        <div class="review-user">김이화</div>
-                        <div class="review-product">스타벅스 머그</div>
-                        <div class="review-description"><strong>판매자가 친절해요</strong> 동해물과 백두산이 마르고 닳도록</div>
-                        
-                        
-                    </div>
-                    
-                </div>
-                <div class="review">
-                    <a href="#" style="width: 100%;"><img src="../static/image/item.png" alt="프로필 사진"></a>
-                    <div class="review-text">
-                        <div class="review-user">김이화</div>
-                        <div class="review-product">스타벅스 머그</div>
-                        <div class="review-description"><strong>판매자가 친절해요</strong> 동해물과 백두산이 마르고 닳도록</div>
-                        
-                        
-                    </div>
-                    
-                </div>
-                <div class="review">
-                    <a href="#" style="width: 100%;"><img src="..\static\../static/image/item.png" alt="프로필 사진"></a>
-                    <div class="review-text">
-                        <div class="review-user">김이화</div>
-                        <div class="review-product">스타벅스 머그</div>
-                        <div class="review-description"><strong>판매자가 친절해요</strong> 동해물과 백두산이 마르고 닳도록</div>
-                    </div>
-                    
-                </div>
-            </div>
         </div>
 
         <nav>

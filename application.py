@@ -279,7 +279,16 @@ def mypage1():
     user_info = DB.get_user_info_by_id(my_id)
     name = user_info['name']
     profile = user_info['profile']
-    return render_template("마이페이지1.html", my_id=my_id, name=name, profile=profile)
+
+    #리뷰 부분
+    reviews = DB.get_received_reviews(my_id)
+    if (reviews == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = reviews.items()
+        tot_count = len(reviews)
+    return render_template("마이페이지1.html", my_id=my_id, name=name, profile=profile, lists=lists, total=tot_count)
 
 @application.route("/마이페이지2")
 def mypage2():
@@ -287,7 +296,16 @@ def mypage2():
     user_info = DB.get_user_info_by_id(my_id)
     name = user_info['name']
     profile = user_info['profile']
-    return render_template("마이페이지2.html", my_id=my_id, name=name, profile=profile)
+
+    #리뷰 부분
+    reviews = DB.get_written_reviews(my_id)
+    if (reviews == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = reviews.items()
+        tot_count = len(reviews)
+    return render_template("마이페이지2.html", my_id=my_id, name=name, profile=profile, lists=lists, total=tot_count)
 
 @application.route("/구매내역")
 def buylist():
