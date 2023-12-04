@@ -34,7 +34,7 @@
                         <div class="item-details">
                             <h4><a href="{{ url_for('chat_detail', item_key=key) }}">{{ value.name }} 채팅방</a></h4>
                             <input type=button id="buying" value="구매완료"
-                            onclick="disablefunc(); location.href='/buying_complete?name={{ value.name }}&price={{value.price}}&img_path={{value.img_path}}';">
+                            onclick="disablefunc(); location.href='/buying_complete?name={{ value.name }}&price={{value.price}}&img_path={{value.img_path}}&item_key={{key}}';">
                         </div>
                     </a>
                 </div>

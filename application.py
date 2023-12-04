@@ -178,6 +178,28 @@ def view_item_detail(item_key):
 def all_review():
     return render_template("리뷰전체보기.html")
 
+@application.route("/리뷰작성하기/<item_key>/") # 상품 key로 리뷰작성 동적라우팅
+def reg_review_route(item_key):
+    buyer_id = session.get('id', '')
+    data = DB.get_item_by_key(str(item_key))
+    return render_template("리뷰작성하기.html", data=data, buyer_id=buyer_id)
+
+@application.route("/reg_review", methods=['POST']) # 리뷰작성 DB 넘기고 리뷰전체보기 이동
+def regi_review():
+    image_files = request.files.getlist("image[]")
+    img_paths = []
+
+    for image_file in image_files:
+        try:
+            if image_file.filename != '': # 이미지 파일이 비어있지 않으면 저장 후 경로를 리스트에 추가.
+                image_file.save("static/image/{}".format(image_file.filename))
+                img_paths.append("static/image/{}".format(image_file.filename))
+        except Exception as e:
+            print("파일 저장 오류: ", e)
+
+    data = request.form
+    DB.reg_review(data, img_paths)
+    return redirect(url_for('all_review'))
 
 @application.route("/채팅목록")
 @login_required
@@ -236,11 +258,13 @@ def buying_complete():
     name = request.args.get('name')
     price = request.args.get('price')
     img_path = request.args.get('img_path')
+    item_key = request.args.get('item_key')
 
     data = {
     'name': name,
     'price': price,
-    'img_path': img_path
+    'img_path': img_path,
+    'item_key': item_key
     }
 
     user_id = session.get('id', '')
