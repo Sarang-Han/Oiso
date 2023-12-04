@@ -224,3 +224,13 @@ nav .nav-active img{
 img[src="../static/image/item.png"]{
     filter: hue-rotate(260deg);
 }
+
+img[src="../static/image/logout.png"]:hover{
+    transform: scale(1.2);
+    transition: transform.5s;
+}
+
+img[src="../static/image/logout.png"]{
+    transform:scale(1.0);
+    transition: transform .5s;
+}
