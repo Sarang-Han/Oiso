@@ -210,9 +210,16 @@ class DBhandler:
         return None
 
     def reg_review(self, data, img_paths): # 리뷰 작성 DB 저장
+        seller_key = self.get_user_key_by_id(data['seller_id'])
+        buyer_key = self.get_user_key_by_id(data['buyer_id'])
+        seller_name = self.db.child("users").child(seller_key).get().val()['name']
+        buyer_name = self.db.child("users").child(buyer_key).get().val()['name']
+
         review_info ={
             "seller_id": data['seller_id'], # 판매자(리뷰받음)ID
+            "seller_name": seller_name,
             "buyer_id": data['buyer_id'],   # 구매자(리뷰작성)ID
+            "buyer_name": buyer_name,
             "name": data['name'],           # 상품명
             "price": data['price'],         # 가격
             "title": data['title'],         # 리뷰 제목
@@ -223,13 +230,20 @@ class DBhandler:
         result = self.db.child("review").push(review_info)
         review_key = result['name'] # 리뷰 key
 
-        seller_key = self.get_user_key_by_id(data['seller_id'])
-        buyer_key = self.get_user_key_by_id(data['buyer_id'])
+        review_info["review_key"] = review_key
 
-        self.db.child("users").child(seller_key).child("received_reviews").update({review_key: True}) # 판매자의 받은 리뷰에 리뷰key 저장
-        self.db.child("users").child(buyer_key).child("written_reviews").update({review_key: True}) # 구매자의 작성한 리뷰에 리뷰key 저장
+        self.db.child("received_reviews").child(data['seller_id']).push(review_info)
+        self.db.child("written_reviews").child(data['buyer_id']).push(review_info)
         return True
     
+    def get_received_reviews(self, uid):
+        reviews = self.db.child("received_reviews").child(uid).get().val()
+        return reviews
+    
+    def get_written_reviews(self, uid):
+        reviews = self.db.child("written_reviews").child(uid).get().val()
+        return reviews
+
     def get_reviews(self): # 전체 리뷰 DB 가져옴
         reviews = self.db.child("review").get().val()
         return reviews

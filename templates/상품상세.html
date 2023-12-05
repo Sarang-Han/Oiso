@@ -114,7 +114,7 @@
     </div>
 
 <div class="seller">
-    <a href="#"> <!--판매자 프로필 화면 연결 필요-->
+    <a href="{{ url_for('view_seller_detail1', seller_id=data['seller']) }}">
         <div class="profile-circle">
         <img src="{{ url_for('static', filename='image/' + seller_profile) }}" width="70px" style="display: inline;">
         </div>

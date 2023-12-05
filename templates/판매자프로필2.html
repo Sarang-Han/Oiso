@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="../static/css/판매자프로필.css"/>
+    <title>받은 리뷰 확인하기</title>
+    
+</head>
+<body>
+    <header>
+        <button onclick="goBack()"><img src="../../static/image/back.png" style="width:20px;"></button>
+        <img src="../../static/image/logo.png" width="100px" alt="로고" class="logo">
+    </header>
+    <div class="profile-section">
+        {% if seller_info['profile'] != "_" %}
+        <div class="profile-circle">
+        <img src="{{ url_for('static', filename='image/' + seller_info['profile']) }}" alt="프로필 사진" class="profile-picture" width="100px">
+        </div>
+        {% else %}
+        <img src="../../static/image/profile.png" alt="프로필 사진" class="profile-picture" width="100px">
+        {% endif %}
+        <div class="user-nickname">{{seller_info['name']}} @{{seller_info['id']}}</div>
+    </div>
+    
+    <div class="review-section">
+        <div class="review-header">
+            <div class="review-header-block"><a href="{{ url_for('view_seller_detail1', seller_id=seller_info['id']) }}">받은 리뷰</a></div>
+            <div class="review-header-block active">작성한 리뷰</div>
+        </div>
+        <div class="image-grid">
+        {% if total > 0 %}
+            {% for key, value in written_reviews %}
+                {% if loop.index <= 6 %}
+                <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}">
+                    {% if value.img_path %}
+                    <img class="review-image" src="../{{value.img_path[0]}}" alt="리뷰 이미지"></a>
+                    {% else %}
+                    <img class="review-image" src="../../static/image/item.png">
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% if total < 6 %}
+            {% for _ in range(6 - total) %}
+            <a href="#"><img class="review-image" src="../static/image/item.png" alt="기본 이미지"></a>
+            {% endfor %}
+            {% endif %}
+        {% endif %}
+        </div>
+        <div class="review-content">
+        {% if total > 0 %}
+            {% for key, value in written_reviews %}
+            <div class="review">
+                {% if value.img_path %}
+                    <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}" style="width: 100%;"><img src="../{{value.img_path[0]}}" alt="상품 사진"></a>
+                {% else %}
+                <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}"><img src="../../static/image/400.png"></a>
+                {% endif %}
+                <div class="review-text">
+                    <div class="review-user">{{value.buyer_name}} @{{value.buyer_id}}</div>
+                    <div class="review-product">상품명: {{value.name}}</div>
+                    <div class="review-description"><strong>{{value.title}}</strong> {{value.content}}</div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p>받은 리뷰가 없습니다.</p>
+        {% endif %}
+        </div>
+    </div>
+
+    <nav>
+        <a href="/메인화면" class="nav-active"><img src="../static/image/home.png" width="20px"><br>메인 홈</a>
+        <a href="/리뷰전체보기"><img src="../static/image/write.png" width="20px"><br>전체 리뷰</a>
+        <a href="/상품등록"><img src="../static/image/add.png" width="20px"><br>상품 등록</a>
+        <a href="/채팅목록"><img src="../static/image/chat.png" width="20px"><br>채팅 보기</a>
+        <a href="/마이페이지1"><img src="../static/image/user.png" width="20px"><br>My</a>
+    </nav>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        
+    </script>
+</body>
+</html>

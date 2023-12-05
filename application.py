@@ -174,6 +174,36 @@ def view_item_detail(item_key):
     return render_template("상품상세.html", item_key=item_key, data=data, seller_name=seller_name, seller_profile=seller_profile,
                            seller_id=seller_id, my_id=my_id, product_key=product_key)
 
+@application.route("/판매자프로필1/<seller_id>") # 판매자 프로필1(받은 리뷰)
+def view_seller_detail1(seller_id):
+    seller_info = DB.get_user_info_by_id(seller_id)
+
+    # 받은 리뷰 데이터 가져오기
+    reviews = DB.get_received_reviews(seller_id)
+    if (reviews == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = reviews.items()
+        tot_count = len(reviews)
+    
+    return render_template("판매자프로필1.html", seller_info=seller_info, received_reviews=lists, total=tot_count)
+
+@application.route("/판매자프로필2/<seller_id>") # 판매자 프로필2(작성한 리뷰)
+def view_seller_detail2(seller_id):
+    seller_info = DB.get_user_info_by_id(seller_id)
+
+    # 작성한 리뷰 데이터 가져오기
+    reviews = DB.get_written_reviews(seller_id)
+    if (reviews == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = reviews.items()
+        tot_count = len(reviews)
+    
+    return render_template("판매자프로필2.html", seller_info=seller_info, written_reviews=lists, total=tot_count)
+
 @application.route("/리뷰전체보기")
 def all_review():
     page = request.args.get("page", 0, type=int) # 현 페이지 인덱스
