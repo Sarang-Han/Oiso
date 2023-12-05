@@ -16,46 +16,29 @@
         </header>
 
         <div class="listarea">
-        <div class="ipad">
-            <img src="../static/image/ipad.png" alt="아이패드">
-            <div class="ipad-details">
-                <h4>아이패드 6세대 128G</h4>
-                <p>구매가격: 200,000원</p>
-                    <a href="리뷰작성하기">
-                    <button>리뷰 작성</button>
-                    </a>
-            </div>
-        </div>
-    <br><br>
-    <hr>
-    <div class="desk">
-        <img src="../static/image/desk.png" alt="컴퓨터책상">
-            <div class="desk-details">
-                <h4>컴퓨터책상</h4>
-                <p>구매가격: 47,000원</p>
-                <div class="button-container">
-                    <input type="button" class="write-review" value="리뷰 작성완료">
-                    <a href="리뷰상세2">
-                        <button>리뷰 보기</button>
-                    </a>
-                
+        {% if total > 0 %} <!-- 여기서부터 수정 -->
+            {% for key, value in lists %}
+                <div class="item">
+                    <img src="{{value.img_path}}" width="90px" alt="상품 사진">
+                    <div class="item-details">
+                        <h4>{{value.name}}</h4>
+                        <p>구매가격: {{value.price}}원</p>
+                            <button onclick="location.href='/리뷰작성하기/{{value.item_key}}/';">리뷰 작성</button>
+                    </div>
                 </div>
+                <br><br>
+                <hr>
+            {% endfor %}
+        {% else %}
+            <div class="none">
+                <div class="item-details">
+                    <h2>구매내역이 없습니다</h2>
+                </div>
+                <br><br>
+                <hr>
             </div>
-        </div>
-    <br><br>
-    <hr>
-    <div class="none">
-        <img src="../static/image/none.png" alt="빈 이미지">
-        <br><br>
-        <hr>
-        <img src="../static/image/none.png" alt="빈 이미지">
-        <br><br>
-        <hr>
-        <img src="../static/image/none.png" alt="빈 이미지">
-        <br><br>
-        <hr>
-    </div>
-    </div>
+        {% endif %}
+        </div> <!-- 여기까지 수정 -->
    
     <nav>
         <a href="/메인화면"><img src="../static/image/home.png" width="20px"><br>메인 홈</a>

@@ -64,7 +64,7 @@ header h3{
     margin-top: 0;
 }
 
-.item-details button {
+.item-details #buying {
     display: block;
     margin-top: 20px;
     margin-left: 0;

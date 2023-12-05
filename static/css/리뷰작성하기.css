@@ -7,10 +7,64 @@ body {
     font-family: Arial, sans-serif;
     margin: 0 auto;
     width: 390px;
-    min-height: 100vh;
+    min-height: 140vh;
     padding: 20px;
     background-color: white;
     overflow: visible;
+}
+
+.body form {
+    width: 370px;
+}
+
+.upload-preview-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.image-preview-container {
+    flex: 1 1 auto;
+    display: flex;
+    overflow-x: auto; /* 가로 스크롤 설정 */
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-bottom: 0px;
+
+    /* 스크롤 바 X */
+    scrollbar-width: none; /* 파이어폭스 */
+    -ms-overflow-style: none; /* 엣지 */
+}
+
+/* 크롬, 사파리, 오페라 스크롤 바 X*/
+.image-preview-container::-webkit-scrollbar {
+    display: none;
+}
+
+.picupload{
+    flex: 0 0 auto;
+    margin-left: 15px;
+    margin-top: 10px;
+    padding: 10px;
+    background: #eeeeee;
+    border: 2px solid black;
+    width:50px;
+    height: 50px;
+    border-radius: 5px;
+
+}
+.picupload img{
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: auto;
+}
+
+.picupload p{
+    font-size: 10px;
+    margin-top: 5px;
+    margin-left: 15px;
 }
 
 header {
@@ -79,17 +133,42 @@ textarea{
     display: block;
     margin: 0;
     text-align: left;
-    
+    box-sizing: border-box;
+    resize: none;
 }
 
-
-#countstar {
+.star {
+    display: flex;
+}
+#form_ fieldset{ /*별점 css*/
+    display: inline-block;
+    direction: rtl;
+    border:0;
+    margin-right: 80px;
+    padding-left: 0px;
+}
+#form_ fieldset legend{
+    text-align: right;
+}
+#form_ input[type=radio]{
+    display: none;
+}
+ #form_ label{
     font-size: 150%;
-    display: inline; 
-    margin-right: 110px; 
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#form_ label:hover{
+    text-shadow: 0 0 0 #004F25;
+}
+#form_ label:hover ~ label{
+    text-shadow: 0 0 0 #004F25;
+}
+#form_ input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 #004F25;
 }
 
-input[type="button"] {
+input[type="submit"] {
     display: inline; 
     color: white;
     width: 100px;

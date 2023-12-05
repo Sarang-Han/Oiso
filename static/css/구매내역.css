@@ -39,7 +39,7 @@ header h3{
 
 
 
-.ipad button {
+.item button {
     display: block;
     margin-top: 20px;
     margin-left: 0;
@@ -52,59 +52,33 @@ header h3{
 
 }
 
-.ipad {
+.item {
     display: inline-block;
 }
 
-.ipad img {
+.item img {
     vertical-align: top;
-    margin-left: 10px;
+    margin-left: 20px;
     margin-top:30px;
 }
 
-.ipad-details {
+.item-details {
     display: inline-block;
     vertical-align: top;
     margin-left: 20px;
     margin-top:30px;
 }
 
-.ipad-details h4 {
+.item-details h4 {
     font-size: 14px;
     margin-top: 0;
 }
 
-.ipad-details p {
+.item-details p {
     font-size: 12px;
     margin-top: 0;
 }
 
-.desk {
-    display: inline-block;
-}
-
-.desk img {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top: 30px;
-}
-
-.desk-details {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 25px;
-    margin-top:30px;
-}
-
-.desk-details h4 {
-    font-size: 14px;
-    margin-top: 0;
-}
-
-.desk-details p {
-    font-size: 12px;
-    margin-top: 0;
-}
 .button-container {
     display: flex; 
     gap: 20px; 
