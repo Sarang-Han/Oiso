@@ -8,18 +8,22 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
     
-    def check_user_existence(self, user_id):
-            user = self.db.child("users").child(user_id).get()
-            return user.val() is not None
-        
-    def user_login(self, id, pw): # db에서 유저 로그인 정보 확인
+    def user_login(self, id, pw):
         users = self.db.child("users").get().val()
+
+        if users is None or not users:  
+            return False
 
         for user_info in users.items():
             user_data = user_info[1]
-            if user_data.get("id") == id and user_data.get("pw") == pw:  # 해당하는 id와 pw가 있는지 확인
+            if user_data.get("id") == id and user_data.get("pw") == pw:
                 return True
         return False
+    
+    def check_if_users_exist(self):
+        users = self.db.child("users").get().val()
+        
+        return users is not None and bool(users)
 
     def write_to_db(self, profile, name, id, pw_hash, email, phone): # 회원가입 정보 받아서 db에 쓰는 함수
         user_info = {
