@@ -11,6 +11,10 @@ body {
     background-color: white;
 }
 
+a{
+    text-decoration: none;
+}
+
 header {
     background-color: #ffffff;
     height: 73.5px;
@@ -37,7 +41,30 @@ header h3{
     padding-bottom:60px;
 }
 
+.listarea button:hover{
+    filter:brightness(130%);
+}
 
+.listarea h4{
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.listarea p{
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.listarea img{
+    width:100px;
+    height: 100px;
+    border-radius: 10px;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
+}
 
 .ipad button {
     display: block;
@@ -56,11 +83,6 @@ header h3{
     display: inline-block;
 }
 
-.ipad img {
-    vertical-align: top;
-    margin-left: 10px;
-    margin-top:30px;
-}
 
 .ipad-details {
     display: inline-block;
@@ -69,42 +91,19 @@ header h3{
     margin-top:30px;
 }
 
-.ipad-details h4 {
-    font-size: 14px;
-    margin-top: 0;
-}
-
-.ipad-details p {
-    font-size: 12px;
-    margin-top: 0;
-}
 
 .desk {
     display: inline-block;
 }
 
-.desk img {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top: 30px;
-}
-
 .desk-details {
     display: inline-block;
     vertical-align: top;
-    margin-left: 25px;
+    margin-left: 20px;
     margin-top:30px;
 }
 
-.desk-details h4 {
-    font-size: 14px;
-    margin-top: 0;
-}
 
-.desk-details p {
-    font-size: 12px;
-    margin-top: 0;
-}
 .button-container {
     display: flex; 
     gap: 20px; 

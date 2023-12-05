@@ -50,44 +50,18 @@ header h3{
 .item-details {
     display: inline-block;
     vertical-align: top;
-    margin-left: 35px;
+    margin-left: 20px;
     margin-top:30px;
 }
 
 .item-details h4 {
-    font-size: 14px;
+    font-size: 20px;
+    margin-bottom:10px;
     margin-top: 0;
 }
 
 .item-details p {
-    font-size: 12px;
-    margin-top: 0;
-}
-
-.doll {
-    display: inline-block;
-}
-
-.doll img {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
-}
-
-.doll-details {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
-}
-
-.doll-details h4 {
-    font-size: 14px;
-    margin-top: 0;
-}
-
-.doll-details p {
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 0;
 }
 
@@ -127,4 +101,8 @@ nav .nav-active{
 
 nav .nav-active img{
     filter:invert(100%);  
+}
+
+.item img{
+    border-radius: 10px;
 }

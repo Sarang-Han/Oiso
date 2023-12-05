@@ -106,6 +106,16 @@ nav .nav-active img{
     margin-bottom: 60px;
     
 }
+
+.review-section img{
+    border-radius: 10px;
+}
+
+.review-section img:not(img[src="../static/image/item.png"]){
+    /* box-shadow: 1px 1px 1px #808080; */
+    /* border: 1px solid #004F25; */
+}
+
 .review-header {
     display: flex;
     justify-content: space-between;
@@ -159,7 +169,7 @@ nav .nav-active img{
 }
 
 .review-image {
-    padding: 0 10px;
+    margin: 0 10px;
     width: 100px;
     height: 100px;
     object-fit: cover;
