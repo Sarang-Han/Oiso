@@ -56,21 +56,20 @@
                 <div class="review-header-block-active" style="border-top-left-radius: 10px;">받은 리뷰</div>
                 <div class="review-header-block" style="border-top-right-radius: 10px;"><a href="/마이페이지2">작성한 리뷰</a></div>
             </div>
+
             <div class="image-grid">
-                <a href="리뷰상세1"><img class="review-image" src="../static/image/example_.jpg" alt="리뷰 이미지"></a>
-                <a href="리뷰상세1"><img class="review-image" src="../static/image/mug.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                
+                {% if total > 0 %}
+                    {% for key, value in lists %}
+                            <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}"><img class="review-image" src="{{value.img_path[0]}}" alt="리뷰 이미지"></a>
+                    {% endfor %}
+                {% endif %}
             </div>
 
             <div class="review-content">
             {% if total > 0 %}
                 {% for key, value in lists %}
                     <div class="review">
-                        <a href="리뷰상세1" style="width: 100%;"><img src="{{value.img_path}}" alt="상품 사진"></a>
+                        <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}" style="width: 100%;"><img src="{{value.img_path[0]}}" alt="상품 사진"></a>
                         <div class="review-text">
                             <div class="review-user">{{value.buyer_name}} @{{value.buyer_id}}</div>
                             <div class="review-product">상품명: {{value.name}}</div>
