@@ -60,11 +60,10 @@
             <div class="image-grid">
                 {% if total > 0 %}
                     {% for key, value in lists %}
-                    <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}">
                         {% if value.img_path %}
-                            <img class="review-image" src="{{value.img_path[0]}}" alt="리뷰 이미지"></a>
+                        <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}"><img class="review-image" src="{{value.img_path[0]}}" alt="리뷰 이미지"></a>
                         {% else %}
-                            <img class="review-image" src="../../static/image/400.png">
+                        <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}"><img class="review-image" src="../../static/image/400.png"></a>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
@@ -74,11 +73,10 @@
             {% if total > 0 %}
                 {% for key, value in lists %}
                     <div class="review">
-                        <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}">
                             {% if value.img_path %}
-                                <img class="review-image" src="{{value.img_path[0]}}" alt="리뷰 이미지"></a>
+                            <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}"> <img src="{{value.img_path[0]}}" alt="리뷰 이미지"></a>
                             {% else %}
-                                <img class="review-image" src="../../static/image/400.png">
+                            <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}"><img src="../../static/image/400.png"></a>
                             {% endif %}
                         <div class="review-text">
                             <div class="review-user">{{value.buyer_name}} @{{value.buyer_id}}</div>
