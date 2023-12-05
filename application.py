@@ -238,11 +238,39 @@ def chatlist():
         else:
             buy_total = len(buyer_chatlist)
 
+        buylist = DB.get_buyitems_key(user_id)
+        buylist_len = len(buylist)
         return render_template("채팅목록.html", item_info_list=item_info_list, sell_total=sell_total,
-                               buyer_chatlist=buyer_chatlist, buy_total=buy_total)
+                               buyer_chatlist=buyer_chatlist, buy_total=buy_total, buylist=buylist, buylist_len=buylist_len)
     else:
         # 세션에 사용자 ID가 없는 경우 로그인 페이지로 리다이렉트 또는 다른 처리 수행
         return redirect(url_for('login'))  # login 함수명에 맞게 수정해야 합니다.
+
+@application.route("/buying_complete/") # 구매 완료 함수
+def buying_complete():
+    name = request.args.get('name')
+    price = request.args.get('price')
+    img_path = request.args.get('img_path')
+    item_key = request.args.get('item_key')
+
+    data = {
+    'name': name,
+    'price': price,
+    'img_path': img_path,
+    'item_key': item_key
+    }
+
+    user_id = session.get('id', '')
+
+    buylist = DB.get_buyitems_key(user_id)
+    count = 0
+    for item in buylist:
+        if item == item_key:
+            count += 1
+            break
+    if count == 0:
+        DB.insert_buylist(user_id, data)
+    return redirect(url_for('chatlist'))
 
 @application.route("/채팅상세/<item_key>/")
 @login_required
@@ -272,24 +300,6 @@ def send_message():
         return jsonify({"success": True}), 200
     else:
         return jsonify({"success": False}), 400
-
-@application.route("/buying_complete/") # 구매 완료 함수
-def buying_complete():
-    name = request.args.get('name')
-    price = request.args.get('price')
-    img_path = request.args.get('img_path')
-    item_key = request.args.get('item_key')
-
-    data = {
-    'name': name,
-    'price': price,
-    'img_path': img_path,
-    'item_key': item_key
-    }
-
-    user_id = session.get('id', '')
-    DB.insert_buylist(user_id, data)
-    return redirect(url_for('chatlist'))
 
 
 @application.route("/마이페이지1")

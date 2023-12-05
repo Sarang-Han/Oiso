@@ -202,6 +202,16 @@ class DBhandler:
         buylist = self.db.child("buylist").child(uid).get().val()
         return buylist
     
+    def get_buyitems_key(self, uid):
+        buylist = self.db.child("buylist").child(uid).get().val()
+        buyitems = []
+        if buylist:
+            for item in buylist.items():
+                item_key = item[1]['item_key']
+                buyitems.append(item_key)
+        
+        return buyitems
+
     def get_user_key_by_id(self, user_id): # id로 user key
         users = self.db.child("users").get()
         for user in users.each():
