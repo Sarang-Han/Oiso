@@ -83,14 +83,6 @@ header h3{
     display: inline-block;
 }
 
-<<<<<<< HEAD
-.item img {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
-}
-=======
->>>>>>> 0984d28ba5cd5a7af552d9f0c94fb2ffb7cf74fc
 
 .item-details {
     display: inline-block;
@@ -99,32 +91,6 @@ header h3{
     margin-top:30px;
 }
 
-<<<<<<< HEAD
-.item-details h4 {
-    font-size: 14px;
-    margin-top: 0;
-}
-
-.item-details p {
-    font-size: 12px;
-    margin-top: 0;
-}
-
-=======
-
-.desk {
-    display: inline-block;
-}
-
-.desk-details {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
-}
-
-
->>>>>>> 0984d28ba5cd5a7af552d9f0c94fb2ffb7cf74fc
 .button-container {
     display: flex; 
     gap: 20px; 
