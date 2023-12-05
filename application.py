@@ -239,9 +239,8 @@ def chatlist():
             buy_total = len(buyer_chatlist)
 
         buylist = DB.get_buyitems_key(user_id)
-        buylist_len = len(buylist)
         return render_template("채팅목록.html", item_info_list=item_info_list, sell_total=sell_total,
-                               buyer_chatlist=buyer_chatlist, buy_total=buy_total, buylist=buylist, buylist_len=buylist_len)
+                               buyer_chatlist=buyer_chatlist, buy_total=buy_total, buylist=buylist)
     else:
         # 세션에 사용자 ID가 없는 경우 로그인 페이지로 리다이렉트 또는 다른 처리 수행
         return redirect(url_for('login'))  # login 함수명에 맞게 수정해야 합니다.
