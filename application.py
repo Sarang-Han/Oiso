@@ -182,6 +182,12 @@ def all_review():
     end_idx = per_page * (page+1)
     data = DB.get_reviews()
 
+    if not data or len(data) == 0:
+        return render_template("리뷰전체보기.html", total=0)  # 리뷰 예외처리
+
+    item_counts = len(data)
+    page_count = math.ceil(item_counts / per_page)
+    data = dict(list(data.items())[start_idx:end_idx])
     item_counts = len(data)
     page_count = math.ceil(item_counts / per_page)
     data = dict(list(data.items())[start_idx:end_idx])
