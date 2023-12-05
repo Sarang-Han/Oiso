@@ -193,7 +193,8 @@ class DBhandler:
             'name': data['name'],
             'price': data['price'],
             'img_path': data['img_path'],
-            'item_key': data['item_key']
+            'item_key': data['item_key'],
+            'reviewed': False
         }
         self.db.child("buylist").child(uid).push(item_info)
         return True
@@ -231,6 +232,7 @@ class DBhandler:
             "seller_name": seller_name,
             "buyer_id": data['buyer_id'],   # 구매자(리뷰작성)ID
             "buyer_name": buyer_name,
+            "item_key": data['item_key'],
             "name": data['name'],           # 상품명
             "price": data['price'],         # 가격
             "title": data['title'],         # 리뷰 제목
@@ -242,6 +244,14 @@ class DBhandler:
         review_key = result['name'] # 리뷰 key
 
         review_info["review_key"] = review_key
+        
+        # 구매 정보에 리뷰 작성 여부 추가
+        buyer_buylist = self.db.child("buylist").child(data['buyer_id']).get().val()
+        if buyer_buylist:
+            for buylist_key, buylist_value in buyer_buylist.items():
+                if buylist_value.get('item_key') == data['item_key']:
+                    self.db.child("buylist").child(data['buyer_id']).child(buylist_key).update({'reviewed': True})
+                    break
 
         self.db.child("received_reviews").child(data['seller_id']).push(review_info)
         self.db.child("written_reviews").child(data['buyer_id']).push(review_info)

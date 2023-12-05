@@ -79,6 +79,19 @@ header h3{
 
 }
 
+.item button:disabled {
+    display: block;
+    margin-top: 20px;
+    margin-left: 0;
+    border-radius: 10px;
+    background-color: rgb(131, 131, 131);
+    border: none;
+    width: 100px;
+    height: 30px;
+    color: white;
+
+}
+
 .item {
     display: inline-block;
 }

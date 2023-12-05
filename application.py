@@ -229,7 +229,7 @@ def all_review():
 def reg_review_route(item_key):
     buyer_id = session.get('id', '')
     data = DB.get_item_by_key(str(item_key))
-    return render_template("리뷰작성하기.html", data=data, buyer_id=buyer_id)
+    return render_template("리뷰작성하기.html",item_key=item_key, data=data, buyer_id=buyer_id)
 
 @application.route("/reg_review", methods=['POST']) # 리뷰작성 DB 넘기고 리뷰전체보기 이동
 def regi_review():
