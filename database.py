@@ -220,7 +220,6 @@ class DBhandler:
             "rate": data['reviewStar'],     # 별점
             "img_path": img_paths,          # 리뷰 이미지
         }
-        self.db.child("review").push(review_info)
         result = self.db.child("review").push(review_info)
         review_key = result['name'] # 리뷰 key
 
