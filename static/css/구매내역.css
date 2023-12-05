@@ -11,6 +11,10 @@ body {
     background-color: white;
 }
 
+a{
+    text-decoration: none;
+}
+
 header {
     background-color: #ffffff;
     height: 73.5px;
@@ -37,7 +41,30 @@ header h3{
     padding-bottom:60px;
 }
 
+.listarea button:hover{
+    filter:brightness(130%);
+}
 
+.listarea h4{
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.listarea p{
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.listarea img{
+    width:100px;
+    height: 100px;
+    border-radius: 10px;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
+}
 
 .item button {
     display: block;
@@ -56,11 +83,14 @@ header h3{
     display: inline-block;
 }
 
+<<<<<<< HEAD
 .item img {
     vertical-align: top;
     margin-left: 20px;
     margin-top:30px;
 }
+=======
+>>>>>>> 0984d28ba5cd5a7af552d9f0c94fb2ffb7cf74fc
 
 .item-details {
     display: inline-block;
@@ -69,6 +99,7 @@ header h3{
     margin-top:30px;
 }
 
+<<<<<<< HEAD
 .item-details h4 {
     font-size: 14px;
     margin-top: 0;
@@ -79,6 +110,21 @@ header h3{
     margin-top: 0;
 }
 
+=======
+
+.desk {
+    display: inline-block;
+}
+
+.desk-details {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top:30px;
+}
+
+
+>>>>>>> 0984d28ba5cd5a7af552d9f0c94fb2ffb7cf74fc
 .button-container {
     display: flex; 
     gap: 20px; 
