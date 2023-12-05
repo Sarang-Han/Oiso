@@ -67,6 +67,12 @@
                             <img class="review-image" src="../../static/image/400.png">
                         {% endif %}
                 {% endfor %}
+                {% if total < 6 %}
+                    {% set remaining_count = 6 - total %}
+                        {% for _ in range(remaining_count) %} <!--상품 없는 칸-->
+                        <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
+                        {% endfor %}
+                {% endif %}
             {% endif %}
             </div>
             

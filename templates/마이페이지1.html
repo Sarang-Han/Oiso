@@ -56,18 +56,24 @@
                 <div class="review-header-block-active" style="border-top-left-radius: 10px;">받은 리뷰</div>
                 <div class="review-header-block" style="border-top-right-radius: 10px;"><a href="/마이페이지2">작성한 리뷰</a></div>
             </div>
-
             <div class="image-grid">
                 {% if total > 0 %}
                     {% for key, value in lists %}
-                        {% if value.img_path %}
-                        <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}"><img class="review-image" src="{{value.img_path[0]}}" alt="리뷰 이미지"></a>
-                        {% else %}
-                        <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}"><img class="review-image" src="../../static/image/400.png"></a>
-                        {% endif %}
+                            <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}">
+                            {% if value.img_path %}
+                                <img class="review-image" src="{{value.img_path[0]}}" alt="리뷰 이미지"></a>
+                            {% else %}
+                                <img class="review-image" src="../../static/image/400.png">
+                            {% endif %}
                     {% endfor %}
+                    {% if total < 6 %}
+                        {% set remaining_count = 6 - total %}
+                            {% for _ in range(remaining_count) %} <!--상품 없는 칸-->
+                            <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
+                            {% endfor %}
+                    {% endif %}
                 {% endif %}
-            </div>
+                </div>
 
             <div class="review-content">
             {% if total > 0 %}
