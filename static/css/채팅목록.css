@@ -77,33 +77,18 @@ header h3{
 
 }
 
-.doll {
-    display: inline-block;
-}
+.item-details #buying_com {
+    display: block;
+    margin-top: 20px;
+    margin-left: 0;
+    border-radius: 10px;
+    background-color: rgb(131, 131, 131);
+    border: none;
+    width: 100px;
+    height: 30px;
+    color: rgb(206, 206, 206);
 
-.doll img {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
 }
-
-.doll-details {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
-}
-
-.doll-details h4 {
-    font-size: 14px;
-    margin-top: 0;
-}
-
-.doll-details p {
-    font-size: 12px;
-    margin-top: 0;
-}
-
 
 .none img{
     margin-left: 20px;

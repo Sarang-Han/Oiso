@@ -22,7 +22,7 @@
 
         <div class="myProfile">
             {% if profile == '_' %}
-                <img src="{{ url_for('static', filename='image/profile.png') }}">
+                <img src="{{ url_for('static', filename='image/prof2.png') }}">
             {% else %}
                 <img src="{{ url_for('static', filename='image/' + profile) }}">
             {% endif %}
@@ -58,59 +58,48 @@
                 <div class="review-header-block-active" style="border-top-right-radius: 10px">작성한 리뷰</div>
             </div>
             <div class="image-grid">
-                <a href="리뷰상세2"><img class="review-image" src="../static/image/desk.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
-                <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
+            {% if total > 0 %}
+                {% for key, value in lists %}
+                        <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}">
+                        {% if value.img_path %}
+                            <img class="review-image" src="{{value.img_path[0]}}" alt="리뷰 이미지"></a>
+                        {% else %}
+                            <img class="review-image" src="../../static/image/400.png">
+                        {% endif %}
+                {% endfor %}
+                {% if total < 6 %}
+                    {% set remaining_count = 6 - total %}
+                        {% for _ in range(remaining_count) %} <!--상품 없는 칸-->
+                        <a href="#"><img class="review-image" src="../static/image/item.png" alt="리뷰 이미지"></a>
+                        {% endfor %}
+                {% endif %}
+            {% endif %}
             </div>
             
             <div class="review-content">
-
-                <div class="review">
-                    <a href="리뷰상세2" style="width: 100%;"><img src="../static/image/desk.png" alt="프로필 사진"></a>
-                    <div class="review-text">
-                        <div class="review-user">이화연 @1077</div>
-                        <div class="review-product">상품명: 컴퓨터 책상</div>
-                        <div class="review-description"><strong>판매자가 친절해요</strong> 물건이 설명과 같아요 상...더보기</div>
-                                           
+                {% if total > 0 %}
+                    {% for key, value in lists %}
+                        <div class="review">
+                            {% if value.img_path %}
+                            <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}" style="width: 100%;"><img src="{{value.img_path[0]}}" alt="리뷰 이미지"></a>
+                            {% else %}
+                            <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}" style="width: 100%;"><img src="../../static/image/400.png"></a>
+                            {% endif %}
+                            <div class="review-text">
+                                <div class="review-user">{{value.buyer_name}} @{{value.buyer_id}}</div>
+                                <div class="review-product">상품명: {{value.name}}</div>
+                                <div class="review-description"><strong>{{value.title}}</strong> {{value.content}}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="review">
+                        <div class="review-text">
+                            <div class="review-user">등록된 리뷰가 없습니다</div>
+                        </div>
                     </div>
-                    
+                {% endif %}
                 </div>
-                
-                <div class="review">
-                    <a href="#" style="width: 100%;"><img src="../static/image/item.png" alt="프로필 사진"></a>
-                    <div class="review-text">
-                        <div class="review-user">김이화</div>
-                        <div class="review-product">스타벅스 머그</div>
-                        <div class="review-description"><strong>판매자가 친절해요</strong> 동해물과 백두산이 마르고 닳도록</div>
-                        
-                        
-                    </div>
-                    
-                </div>
-                <div class="review">
-                    <a href="#" style="width: 100%;"><img src="../static/image/item.png" alt="프로필 사진"></a>
-                    <div class="review-text">
-                        <div class="review-user">김이화</div>
-                        <div class="review-product">스타벅스 머그</div>
-                        <div class="review-description"><strong>판매자가 친절해요</strong> 동해물과 백두산이 마르고 닳도록</div>
-                        
-                        
-                    </div>
-                    
-                </div>
-                <div class="review">
-                    <a href="#" style="width: 100%;"><img src="..\static\../static/image/item.png" alt="프로필 사진"></a>
-                    <div class="review-text">
-                        <div class="review-user">김이화</div>
-                        <div class="review-product">스타벅스 머그</div>
-                        <div class="review-description"><strong>판매자가 친절해요</strong> 동해물과 백두산이 마르고 닳도록</div>
-                    </div>
-                    
-                </div>
-            </div>
         </div>
 
         <nav>

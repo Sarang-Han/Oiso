@@ -202,12 +202,23 @@ class DBhandler:
         buylist = self.db.child("buylist").child(uid).get().val()
         return buylist
     
+    def get_buyitems_key(self, uid):
+        buylist = self.db.child("buylist").child(uid).get().val()
+        buyitems = []
+        if buylist:
+            for item in buylist.items():
+                item_key = item[1]['item_key']
+                buyitems.append(item_key)
+        
+        return buyitems
+
     def get_user_key_by_id(self, user_id): # id로 user key
         users = self.db.child("users").get()
         for user in users.each():
             if user.val()['id'] == user_id:
                 return user.key()
         return None
+
 
     def reg_review(self, data, img_paths): # 리뷰 작성 DB 저장
         seller_key = self.get_user_key_by_id(data['seller_id'])
@@ -235,11 +246,11 @@ class DBhandler:
         self.db.child("received_reviews").child(data['seller_id']).push(review_info)
         self.db.child("written_reviews").child(data['buyer_id']).push(review_info)
         return True
-    
+
     def get_received_reviews(self, uid):
         reviews = self.db.child("received_reviews").child(uid).get().val()
         return reviews
-    
+
     def get_written_reviews(self, uid):
         reviews = self.db.child("written_reviews").child(uid).get().val()
         return reviews

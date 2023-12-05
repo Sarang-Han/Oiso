@@ -212,6 +212,12 @@ def all_review():
     end_idx = per_page * (page+1)
     data = DB.get_reviews()
 
+    if not data or len(data) == 0:
+        return render_template("리뷰전체보기.html", total=0)  # 리뷰 예외처리
+
+    item_counts = len(data)
+    page_count = math.ceil(item_counts / per_page)
+    data = dict(list(data.items())[start_idx:end_idx])
     item_counts = len(data)
     page_count = math.ceil(item_counts / per_page)
     data = dict(list(data.items())[start_idx:end_idx])
@@ -268,11 +274,38 @@ def chatlist():
         else:
             buy_total = len(buyer_chatlist)
 
+        buylist = DB.get_buyitems_key(user_id)
         return render_template("채팅목록.html", item_info_list=item_info_list, sell_total=sell_total,
-                               buyer_chatlist=buyer_chatlist, buy_total=buy_total)
+                               buyer_chatlist=buyer_chatlist, buy_total=buy_total, buylist=buylist)
     else:
         # 세션에 사용자 ID가 없는 경우 로그인 페이지로 리다이렉트 또는 다른 처리 수행
         return redirect(url_for('login'))  # login 함수명에 맞게 수정해야 합니다.
+
+@application.route("/buying_complete/") # 구매 완료 함수
+def buying_complete():
+    name = request.args.get('name')
+    price = request.args.get('price')
+    img_path = request.args.get('img_path')
+    item_key = request.args.get('item_key')
+
+    data = {
+    'name': name,
+    'price': price,
+    'img_path': img_path,
+    'item_key': item_key
+    }
+
+    user_id = session.get('id', '')
+
+    buylist = DB.get_buyitems_key(user_id)
+    count = 0
+    for item in buylist:
+        if item == item_key:
+            count += 1
+            break
+    if count == 0:
+        DB.insert_buylist(user_id, data)
+    return redirect(url_for('chatlist'))
 
 @application.route("/채팅상세/<item_key>/")
 @login_required
@@ -303,24 +336,6 @@ def send_message():
     else:
         return jsonify({"success": False}), 400
 
-@application.route("/buying_complete/") # 구매 완료 함수
-def buying_complete():
-    name = request.args.get('name')
-    price = request.args.get('price')
-    img_path = request.args.get('img_path')
-    item_key = request.args.get('item_key')
-
-    data = {
-    'name': name,
-    'price': price,
-    'img_path': img_path,
-    'item_key': item_key
-    }
-
-    user_id = session.get('id', '')
-    DB.insert_buylist(user_id, data)
-    return redirect(url_for('chatlist'))
-
 
 @application.route("/마이페이지1")
 @login_required
@@ -329,7 +344,16 @@ def mypage1():
     user_info = DB.get_user_info_by_id(my_id)
     name = user_info['name']
     profile = user_info['profile']
-    return render_template("마이페이지1.html", my_id=my_id, name=name, profile=profile)
+
+    #리뷰 부분
+    reviews = DB.get_received_reviews(my_id)
+    if (reviews == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = reviews.items()
+        tot_count = len(reviews)
+    return render_template("마이페이지1.html", my_id=my_id, name=name, profile=profile, lists=lists, total=tot_count)
 
 @application.route("/마이페이지2")
 def mypage2():
@@ -337,7 +361,16 @@ def mypage2():
     user_info = DB.get_user_info_by_id(my_id)
     name = user_info['name']
     profile = user_info['profile']
-    return render_template("마이페이지2.html", my_id=my_id, name=name, profile=profile)
+
+    #리뷰 부분
+    reviews = DB.get_written_reviews(my_id)
+    if (reviews == None):
+        lists = []
+        tot_count = 0
+    else:
+        lists = reviews.items()
+        tot_count = len(reviews)
+    return render_template("마이페이지2.html", my_id=my_id, name=name, profile=profile, lists=lists, total=tot_count)
 
 @application.route("/구매내역")
 def buylist():
