@@ -8,6 +8,10 @@ class DBhandler:
         firebase = pyrebase.initialize_app(config)
         self.db = firebase.database()
     
+    def check_user_existence(self, user_id):
+            user = self.db.child("users").child(user_id).get()
+            return user.val() is not None
+        
     def user_login(self, id, pw): # db에서 유저 로그인 정보 확인
         users = self.db.child("users").get().val()
 

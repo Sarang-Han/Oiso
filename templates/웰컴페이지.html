@@ -8,24 +8,45 @@
     <title>Welcome to Oiso</title>
 </head>
 <body>
-<div class="content">
+    <div class="content">
+        {% if profile == '_' %}
+        <img src="{{ url_for('static', filename='image/prof2.png') }}" alt="프로필 사진" width="100px">
+        {% else %}
+        <img src="{{ url_for('static', filename='image/' + profile) }}" alt="프로필 사진" width="100px">
+        {% endif %}
 
-    {% if profile == '_' %}
-    <img src="{{ url_for('static', filename='image/prof2.png') }}" alt="프로필 사진" width="100px">
-    {% else %}
-    <img src="{{ url_for('static', filename='image/' + profile) }}" alt="프로필 사진" width="100px">
-    {% endif %}
-    
-    <div class="ment">
-        <p>{{ username }}님,</p>
-        <p>오이소에 오신 것을 환영합니다!</p>
+        <div class="ment">
+            <p class="username-text" id="line1"><strong>{{ username }}</strong>님,</p>
+            <p id="line2"><strong>오이소</strong>에 오신 것을 환영합니다!</p>
+        </div>
+
+        <button class="login-button" onclick="login()">로그인하러 가기</button>
     </div>
-    <button class="login-button" onclick="login()">로그인하러 가기</button>
+
     <script>
         function login() {
             window.location.href = "/logout";
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var line1 = document.getElementById("line1");
+            var line2 = document.getElementById("line2");
+
+            line1.style.opacity = "0";
+            line1.style.transform = "translateY(20px)";
+            line2.style.opacity = "0";
+            line2.style.transform = "translateY(20px)";
+
+            setTimeout(function() {
+                line1.style.opacity = "1";
+                line1.style.transform = "translateY(0)";
+            }, 500);
+
+            setTimeout(function() {
+                line2.style.opacity = "1";
+                line2.style.transform = "translateY(0)";
+            }, 1500);
+        });
     </script>
-</div>
 </body>
 </html>

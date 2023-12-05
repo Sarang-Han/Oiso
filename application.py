@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from database import DBhandler
-import sys
 import hashlib
 from datetime import datetime
 import math
@@ -31,7 +30,8 @@ def login_():
         pw = request.form.get('pw')
         pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest() # 비밀번호 해싱
 
-        if not id and not pw:  # 아이디나 비밀번호가 입력되지 않은 경우
+            
+        if  not id and not pw:  # 아이디나 비밀번호가 입력되지 않은 경우
             flash("아이디와 비밀번호를 입력해주세요.")
             return redirect(url_for('login'))
         
@@ -43,12 +43,20 @@ def login_():
             flash("비밀번호를 입력해주세요.")
             return redirect(url_for('login'))
 
-        elif DB.user_login(id, pw_hash):
-            session['logged_in'] = True
-            session['id'] = id
-            return redirect(url_for('main'))  # 로그인 성공 시 main 페이지로 리다이렉트
+        # Check if the user exists in the database
+        user_exists = DB.check_user_existence(id)
+
+        if user_exists:
+            # User exists, verify credentials
+            if DB.user_login(id, pw_hash):
+                session['logged_in'] = True
+                session['id'] = id
+                return redirect(url_for('main'))  # 로그인 성공 시 main 페이지로 리다이렉트
+            else:
+                flash("아이디나 비밀번호를 잘못 입력하셨습니다.")
         else:
-            flash("아이디나 비밀번호를 잘못 입력하셨습니다.")
+            flash("존재하지 않는 사용자입니다.")
+
         return redirect(url_for('login'))
     return render_template("로그인.html")
 

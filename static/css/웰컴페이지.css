@@ -1,42 +1,65 @@
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+html{
+    background-color: #f0f0f0;    
 }
 
-.content {
+body { 
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
     width: 390px;
-    height: 844px;
-    background-color: #fff;
+    min-height: 100vh;
     padding: 20px;
+    background-color: white;
 }
 
 img {
-    padding: 50px 140px;
+    padding: 100px 140px;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
-  }  
+    margin-bottom: -70px;
+}
+
+
+.ment > .username-text {
+    font-weight: bold !important;
+    font-size: 30px !important;
+}
+
 
 .ment {
     text-align: center;
 }
 
+strong {
+    color: darkgreen;
+}
+
+#line2{
+    font-size: 20px;
+}
 .login-button {
     margin-left: 86px;
     justify-content: center;
     padding: 10px 60px;
-    background-color: #004f25;
+    height: 47px;
     color: #fff;
     border: none;
     border-radius: 15px;
     cursor: pointer;
     display: block;
     margin-top: 50px;
+    background-color: #004f25;
+    animation: blink 1.3s infinite alternate; 
 }
+
+@keyframes blink {
+    from {
+        background-color: #004f25;
+    }
+    to {
+        background-color: #888; 
+    }
+}
+
