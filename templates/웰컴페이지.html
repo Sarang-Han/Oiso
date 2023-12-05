@@ -32,19 +32,16 @@
             var line1 = document.getElementById("line1");
             var line2 = document.getElementById("line2");
 
-            // 초기 상태 설정
             line1.style.opacity = "0";
             line1.style.transform = "translateY(20px)";
             line2.style.opacity = "0";
             line2.style.transform = "translateY(20px)";
 
-            // 첫 번째 줄 나타나기
             setTimeout(function() {
                 line1.style.opacity = "1";
                 line1.style.transform = "translateY(0)";
             }, 500);
 
-            // 두 번째 줄 나타나기
             setTimeout(function() {
                 line2.style.opacity = "1";
                 line2.style.transform = "translateY(0)";
