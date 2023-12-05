@@ -227,7 +227,6 @@ class DBhandler:
             "rate": data['reviewStar'],     # 별점
             "img_path": img_paths,          # 리뷰 이미지
         }
-        self.db.child("review").push(review_info)
         result = self.db.child("review").push(review_info)
         review_key = result['name'] # 리뷰 key
 
@@ -245,3 +244,14 @@ class DBhandler:
     def get_written_reviews(self, uid):
         reviews = self.db.child("written_reviews").child(uid).get().val()
         return reviews
+    
+    def get_reviews(self): # 전체 리뷰 DB 가져옴
+        reviews = self.db.child("review").get().val()
+        return reviews
+    
+    def get_review_by_key(self, review_key): # 특정 key 리뷰 DB 가져옴
+        review = self.db.child("review").child(review_key).get()
+        if review.val():
+            return review.val()
+        return None
+    

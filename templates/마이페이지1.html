@@ -9,7 +9,7 @@
         <title>마이페이지</title>
     </head>
     <body>
-        <script>
+         <script>
             function logout() {
                 window.location.href = "/logout";
             }
@@ -45,7 +45,7 @@
             </a>
             <a href="/오이목록">
             <div class="myMenu">           
-                <img src="../static/image/logo_m.png"> 내 오이목록
+                <img src="../static/image/logo_m.png" style="filter:invert(0%)"> 내 오이목록
                 <img src="../static/image/next.png" style="position: absolute; left:90%">
             </div>
             </a>
@@ -53,8 +53,8 @@
 
         <div class="review-section">
             <div class="review-header">
-                <div class="review-header-block active">받은 리뷰</div>
-                <div class="review-header-block"><a href="/마이페이지2">작성한 리뷰</a></div>
+                <div class="review-header-block-active" style="border-top-left-radius: 10px;">받은 리뷰</div>
+                <div class="review-header-block" style="border-top-right-radius: 10px;"><a href="/마이페이지2">작성한 리뷰</a></div>
             </div>
             <div class="image-grid">
                 <a href="리뷰상세1"><img class="review-image" src="../static/image/example_.jpg" alt="리뷰 이미지"></a>

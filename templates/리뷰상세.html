@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/리뷰상세.css') }}"/>
+        <title>리뷰 상세</title>
+    </head>
+    <body>
+        <header>
+            <button onclick="goBack()"><img src="../../static/image/back.png" style="width:20px;"></button>
+            <h3>리뷰 상세</h3>
+        </header>
+
+        <div class="review-section">
+
+            <div class="profile">
+                {{buyer_name}} @{{data.buyer_id}}
+                <div class="review_star">
+                    {% for _ in range(data.rate) %}
+                        ★
+                    {% endfor %}
+                    {% for _ in range(5 - data.rate) %}
+                        ☆
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="review_title">
+                <h3>{{data.title}}</h3>
+                상품명: {{data.name}}
+
+            </div>
+            
+            
+            <div class="image-scroll-container">
+                {% if data['img_path'] %}
+                    {% for img_path in data['img_path'] %}
+                        <div class="image-wrapper">
+                            <img src="{{ '../../' + img_path }}">
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="image-wrapper">
+                        <img src="../../static/image/400.png">
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="review-content">
+            {{data.content}}
+        </div>
+
+        <nav>
+            <a href="/메인화면"><img src="../../static/image/home.png" width="20px"><br>메인 홈</a>
+            <a href="/리뷰전체보기" class="nav-active"><img src="../../static/image/write.png" width="20px"><br>전체 리뷰</a>
+            <a href="/상품등록"><img src="../../static/image/add.png" width="20px"><br>상품 등록</a>
+            <a href="/채팅목록"><img src="../../static/image/chat.png" width="20px"><br>채팅 보기</a>
+            <a href="/마이페이지1"><img src="../../static/image/user.png" width="20px"><br>My</a>
+        </nav>
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+
+    </body>
+</html>
