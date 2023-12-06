@@ -12,7 +12,6 @@
             <h3>채팅목록</h3>
         </header>
     <br>
-    
     <div class="listarea">
         {% if sell_total > 0 or buy_total > 0 %}
             {% for key, value in item_info_list.items() %}
@@ -31,7 +30,7 @@
                         <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
                         <div class="item-details">
                             <h4><a href="{{ url_for('chat_detail', item_key=key) }}">{{ value.name }} 채팅방</a></h4>
-                             {% if key in buylist %}
+                            {% if key in buylist %}
                                     <input type=button id="buying_com" value="구매완료">
                                 {% else %}
                                     <input type=button id="buying" value="구매완료"
@@ -65,5 +64,6 @@
     </nav>
 
 </div>
+
 </body>
 </html>
