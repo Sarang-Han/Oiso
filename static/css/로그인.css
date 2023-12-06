@@ -25,10 +25,6 @@ body {
     margin-top: 10px;
 }
 
-.logo {
-    margin-bottom: 30px;
-}
-
 h2 {
     margin-bottom: 10px;
 }
@@ -38,10 +34,12 @@ input {
     margin-bottom: 5px;
     width: 250px;
     height: 30px;
-    border-radius: 12px;
-    border: 2px solid #ddd;
+    border-radius: 5px;
+    border:none;
+    border-bottom: 2px solid #f8f6f6;
     transition: border-color 0.3s;
     padding: 5px;
+    background-color: #f8f6f6;
 }
 
 input:hover,
@@ -56,20 +54,24 @@ input:focus {
     background-color: #004f25;
     color: #fff;
     border: none;
-    border-radius: 12px;
+    border-radius: 5px;
     cursor: pointer;
     display: block;
     margin-top: 24px;
-    margin-bottom: 15px;
+}
+form {
+    padding: 20px;
+    border: none; /* 테두리 제거 */
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); /* 블러 그림자 추가 */
 }
 
 p {
-    font-size: 15px;
-    margin-top: 20px;
+    font-size: 14px;
 }
 
 a {
-    font-size: 15px;
+    margin-left: 40px;
+    font-size: 14px;
     color: darkgreen;
     text-decoration: none;
     transition: color 0.3s;
