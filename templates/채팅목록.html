@@ -9,8 +9,6 @@
 <body>
     <div class="content">
         <header>
-            <button onclick="goBack()"><img src="../static/image/back.png" 
-                alt="이전" style="width: 20px;"></button>
             <h3>채팅목록</h3>
         </header>
     <br>
@@ -33,12 +31,11 @@
                         <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
                         <div class="item-details">
                             <h4><a href="{{ url_for('chat_detail', item_key=key) }}">{{ value.name }} 채팅방</a></h4>
-                                {% if key in buylist %}
-                                    <input type=button id="buying_com" value="구매완료">
-                                {% else %}
-                                    <input type=button id="buying" value="구매완료"
-                                    onclick="location.href='/buying_complete?name={{ value.name }}&price={{value.price}}&img_path={{value.img_path}}&item_key={{key}}';">
-                                {% endif %}
+                            {% if key in buylist %}
+                                <input type="button" id="buying_com" value="구매완료" disabled>
+                            {% else %}
+                                <input type="button" id="buying" value="구매완료" onclick="toggleComplete(this, '{{ key }}');">
+                            {% endif %}
                         </div>
                     </a>
                 </div>
@@ -48,10 +45,9 @@
         {% else %}
             <div class="none">
                 <div class="item-details">
-                    <h4>채팅내역이 없습니다</h4>
+                    <h4>채팅내역이 없습니다.</h4>
                 </div>
                 <br><br>
-                <hr>
             </div>
         {% endif %}
     </div>
@@ -69,8 +65,10 @@
 
 </div>
 <script>
-    function goBack() {
-        window.history.back();
+    function markAsComplete(button) {
+        button.style.backgroundColor = '#004F25';  
+        button.style.color = '#ffffff'; 
+        button.disabled = true; 
     }
 </script>
 </body>
