@@ -12,37 +12,6 @@ body {
     background-color: white;
 }
 
-#chatBox {
-    border: 1px solid #ccc;
-    padding: 10px;
-    height: 450px;
-    overflow-y: auto;
-}
-
-/* 메시지 스타일 */
-.message {
-    margin-bottom: 5px;
-    padding: 8px;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-}
-
-/* 입력창, 전송 버튼 스타일 */
-#messageInput {
-    width: 70%;
-    padding: 8px;
-    margin-right: 5px;
-}
-
-#sendButton {
-    padding: 8px 15px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 header {
     background-color: #ffffff;
     height: 73.5px;
@@ -65,6 +34,62 @@ header h3{
     position: relative;
 }
 
+#chatBox {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 450px;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 8px;
+    padding: 8px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+#chatBox p {
+    font-size: 15px;
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: #f2f2f2;
+    color: black;
+    border: 2px solid #004F25;
+}
+
+#messageInput {
+    width: 77%;
+    padding: 8px;
+    margin-top: 30px;
+    margin-right: 5px;
+    border: 1px solid grey;
+    border-radius: 10px;
+
+}
+
+#messageInput:focus {
+    outline: none; 
+    border-color: #004F25;
+}
+
+#sendButton {
+    padding: 8px 15px;
+    background-color: #f8f6f6;
+    color: black;
+    border: 1px solid #004F25;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
+
+#sendButton:hover,
+#sendButton:active {
+    background-color: #004F25; 
+    color: white; 
+}
+
 
 nav {
     position: fixed;
@@ -75,8 +100,8 @@ nav {
     align-items: center;
     height: 60px;
     margin-left: -20px;
-    
 }
+
 nav a {
     text-decoration: none;
     color: gray;
@@ -85,14 +110,14 @@ nav a {
     font-size: 13px;
 }
 
-nav img{
-    filter:invert(50%);
+nav img {
+    filter: invert(50%);
 }
 
-nav .nav-active{
-    color:white;  
+nav .nav-active {
+    color: white;  
 }
 
-nav .nav-active img{
-    filter:invert(100%);  
+nav .nav-active img {
+    filter: invert(100%);  
 }
