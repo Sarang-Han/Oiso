@@ -32,10 +32,11 @@
                         <div class="item-details">
                             <h4><a href="{{ url_for('chat_detail', item_key=key) }}">{{ value.name }} 채팅방</a></h4>
                             {% if key in buylist %}
-                                <input type="button" id="buying_com" value="구매완료" disabled>
-                            {% else %}
-                                <input type="button" id="buying" value="구매완료" onclick="toggleComplete(this, '{{ key }}');">
-                            {% endif %}
+                                    <input type=button id="buying_com" value="구매완료">
+                                {% else %}
+                                    <input type=button id="buying" value="구매완료"
+                                    onclick="location.href='/buying_complete?name={{ value.name }}&price={{value.price}}&img_path={{value.img_path}}&item_key={{key}}';">
+                                {% endif %}
                         </div>
                     </a>
                 </div>
