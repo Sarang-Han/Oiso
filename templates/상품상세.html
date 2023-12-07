@@ -122,7 +122,7 @@
         <img src="{{ url_for('static', filename='image/' + seller_profile) }}" width="70px" style="display: inline;">
         </div>
     </a>
-    <h3>{{ seller_name }} @{{ data['seller'] }}</h3>
+    <h3>{{ seller_name }}<span id="isid">{{ data['seller'] }}</span></h3> 
 </div>
 <div class="productinfo">
     <h2>{{ data['name'] }}</h2><hr>

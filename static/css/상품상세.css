@@ -201,3 +201,8 @@ nav .nav-active{
 nav .nav-active img{
     filter:invert(100%);  
 }
+
+#isid {
+    font-size: 15px;
+    color:rgb(144, 156, 128);
+}

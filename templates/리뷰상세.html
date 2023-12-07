@@ -18,7 +18,7 @@
         <div class="review-section">
 
             <div class="profile">
-                {{buyer_name}} @{{data.buyer_id}}
+                {{buyer_name}} <span id="isid">{{data.buyer_id}} </span>
                 <div class="review_star">
                     {% for _ in range(data.rate) %}
                         ★

@@ -139,15 +139,19 @@ nav .nav-active img{
     object-fit: cover;
 }
 .review-content {
-    background-color: white;
+    background-color: #f8f6f6;
     padding: 15px;
     height: 400px;
     margin: 0 40px;
     font-size: 18px;
     margin-bottom: 60px;
     border-radius: 10px;
-    box-shadow: 0 0 5px 3px #f2f2f2;
     
+}
+
+#isid {
+    font-size: 15px;
+    color:rgb(144, 156, 128);
 }
 
 /*이건 클릭하는 거 없이 텍스트 띄워주기만 하는 창이라 hover 따로 안 넣었어요!
