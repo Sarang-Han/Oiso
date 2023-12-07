@@ -23,7 +23,7 @@
         {% else %}
         <img src="../../static/image/prof2.png" alt="프로필 사진" class="profile-picture" width="100px">
         {% endif %}
-        <div class="user-nickname">{{seller_info['name']}} @{{seller_info['id']}}</div>
+        <div class="user-nickname">{{seller_info['name']}} <span id="isid">{{seller_info['id']}}</span></div>
         
     </div>
     
@@ -61,7 +61,7 @@
                 <a href="{{ url_for('view_review_detail', review_key=value.review_key) }}"><img src="../../static/image/400.png"></a>
                 {% endif %}
                 <div class="review-text">
-                    <div class="review-user">{{value.buyer_name}} @{{value.buyer_id}}</div>
+                    <div class="review-user">{{value.buyer_name}} <span id="isid">{{value.buyer_id}}</span></div>
                     <div class="review-product">상품명: {{value.name}}</div>
                     <div class="review-description"><strong>{{value.title}}</strong> {{value.content}}</div>
                 </div>

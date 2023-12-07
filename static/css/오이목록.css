@@ -35,51 +35,26 @@ header h3{
     position: relative;
 }
 
-.listarea{
-    padding-bottom:60px;
-}
-
 .item {
-    display: inline-block;
+    position: relative;
+    margin: 20px;
 }
 
-.item img {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
+.item .oi {
+    position: absolute;
+    top: 5px;
+    right: 18px;
+    /* 원하는 위치 조정 가능 */
 }
 
 .item-details {
     display: inline-block;
     vertical-align: top;
     margin-left: 20px;
-    margin-top:30px;
-}
-
-.item-details h4 {
-    font-size: 20px;
-    margin-top: 0;
-    margin-bottom: 8px;
-}
-
-.item-details p {
-    font-size: 16px;
-    margin-top: 0;
-}
-
-.item img:last-child {
-    margin-left: 320px;
-    margin-top: -25px; 
-}
-
-.oi{
-    width: 30px;
-    height: 30px;
 }
 
 .no-items p {
     text-align: center;
-    margin-top: 20px;
 }
 
 nav {

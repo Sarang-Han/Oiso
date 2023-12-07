@@ -26,12 +26,11 @@
             <div class="item">
                 <img src="{{value.img_path}}" width="100px" height="100px" alt="상품사진">
                 <div class="item-details">
-                    <h4>{{value.name}}</h4>
-                    <p>판매가격: {{value.price}}원</p>
+                    <b>{{value.name}}</b>
+                    <h5>판매가격: {{value.price}}원</h5>
                 </div>
                 <img class="oi" src="../static/image/oioi.png" width="20px" alt="오이">
             </div>
-            <br><br>
             <hr>
             {% endif %}
         {% endfor %}

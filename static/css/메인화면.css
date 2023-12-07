@@ -45,6 +45,28 @@ select:hover,
 select:focus {
     border-color: darkgreen;
 }
+@keyframes shakeAnimation {
+    0% {
+        transform: translateY(-3px);
+    }
+    25% {
+        transform: translateY(3px);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+    75% {
+        transform: translateY(2px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.product:hover {
+    animation: shakeAnimation 0.5s ease-in-out;
+}
+
 
 .home {
     display: flex;
@@ -67,10 +89,6 @@ select:focus {
     height: 100%;
     margin-bottom: 8%;
     justify-content: center;
-}
-
-.product-name-overlay:hover {
-    color: darkgreen;
 }
 
 .product-name-overlay {
@@ -121,13 +139,19 @@ select:focus {
 
 .page-nation li{
     list-style: none;
-    margin: 0 5px;
+    margin: 0 3px;
 }
 
+ul{
+    padding: 3px;
+    margin: 3px;
+}
 .page-nation{
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 3px solid #ececec;
+    border-radius: 12px;
 }
 
 .page-nation ul li a.other-page{
@@ -136,8 +160,8 @@ select:focus {
 }
 
 .page-nation ul li a.current-page {
-    color: darkgreen; /* 원하는 색상으로 변경하세요 */
-    font-weight: bold; /* 혹은 다른 스타일 변경을 원하는 경우 추가 설정 가능 */
+    color: darkgreen;
+    font-weight: bold;
 }
 
 nav {
