@@ -84,12 +84,45 @@ header button{
     border: none;
 }
 
-.line{
-    border: none;
-    border-bottom: 1px solid #000;
-    padding: 2px;
-    width: 98%;
+.line {
+    width: 345px;
+    height: 24px;
     display: block;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    border: 2px solid #ddd;
+    transition: border-color 0.3s;
+    padding: 5px;
+}
+
+.line:hover,
+.line:focus {
+    border-color: darkgreen;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+  
+    color: #444;
+    background-color: #fff;
+  
+    padding: 0.5em 1.2em 0.4em 0.8em;
+    margin: 0;
+  
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  }
+
+select:hover,
+select:focus {
+    border-color: darkgreen;
 }
 
 .category {
@@ -98,21 +131,36 @@ header button{
 }
 
 .add textarea {
-    width: 100%;
+    width: 355px;
+    font-family: Arial;
     box-sizing: border-box;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+}
+
+textarea:hover,
+textarea:focus {
+    border-color: darkgreen;
 }
 
 .add-button {
     justify-content: center;
     padding: 10px 100px;
-    background-color: #004f25;
-    color: #fff;
-    border: none;
+    background-color: lightgrey;
+    border: 2px solid darkgreen;
+    color: black;
     border-radius: 10px;
     cursor: pointer;
     display: block;
     margin-left: 65px;
-    margin-top: 8px;
+    margin-top: 20px;
+}
+
+.add-button:hover,
+.add-button:active {
+    background-color: darkgreen;
+    color: white;
 }
 
 nav {
