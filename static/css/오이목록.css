@@ -35,6 +35,10 @@ header h3{
     position: relative;
 }
 
+p{
+    font-size: 13px;
+    color:#626161;
+}
 .item {
     position: relative;
     margin: 20px;
@@ -42,15 +46,16 @@ header h3{
 
 .item .oi {
     position: absolute;
-    top: 5px;
-    right: 18px;
-    /* 원하는 위치 조정 가능 */
+    top: 0;
+    right: 0;
 }
 
 .item-details {
     display: inline-block;
     vertical-align: top;
-    margin-left: 20px;
+    margin-left: 15px;
+    width:200px;
+    height: 85px;
 }
 
 .no-items p {
