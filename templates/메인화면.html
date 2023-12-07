@@ -61,9 +61,19 @@
         <div class="page-nation">
             <ul>
                 <li>
+                    {% if page > 0 %}
+                        <a href="{{url_for('main', page=page-1)}}">&laquo; </a>
+                    {% endif %}
+                </li>
+                <li>
                     {% for i in range(page_count) %}
                         <a href="{{url_for('main', page=i)}}">{{i+1}}</a>
                     {% endfor %}
+                </li>
+                <li>
+                    {% if page < page_count - 1 %}
+                        <a href="{{url_for('main', page=page+1)}}"> &raquo;</a>
+                    {% endif %}
                 </li>
             </ul>
         </div>
