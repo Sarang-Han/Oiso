@@ -71,7 +71,6 @@ header h3{
 #messageInput {
     width: 310px;
     padding: 8px;
-    margin-top: 10px;
     background-color: #f8f6f6;
     border: none;
     border-radius: 10px;
@@ -84,7 +83,7 @@ header h3{
 }
 
 #sendButton {
-    padding: 8px 15px;
+    padding: 8px 22px;
     color: white;
     background-color: rgb(154, 200, 108);
     border-radius: 5px;
@@ -100,10 +99,12 @@ header h3{
 }
 
 #inputmsg{
-    width: 390px;
     position: fixed;
-    bottom: 70px;
+    bottom: 60px;
     background-color: white;
+    display: flex;
+    align-items: center;
+    height: 55px;
 }
 
 nav {
