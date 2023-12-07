@@ -313,8 +313,9 @@ def buying_complete():
 @application.route("/채팅상세/<item_key>/")
 @login_required
 def chat_detail(item_key):
+    user_id = session.get('id', '')
     chat_messages = DB.get_chat_messages(item_key)  # item_key에 해당하는 채팅 메시지 가져오기
-    return render_template("채팅상세.html", item_key=item_key, chat_messages=chat_messages)
+    return render_template("채팅상세.html", user_id=user_id, item_key=item_key, chat_messages=chat_messages)
 
 @application.route("/send_message", methods=["POST"])
 def send_message():

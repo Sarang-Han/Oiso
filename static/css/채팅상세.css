@@ -57,41 +57,46 @@ header h3{
     overflow: hidden;
     background-color: #f2f2f2;
     color: black;
-    border: 2px solid #004F25;
+    border: none;
 }
 
 #messageInput {
-    width: 77%;
+    width: 310px;
     padding: 8px;
-    margin-top: 30px;
-    margin-right: 5px;
-    border: 1.5px solid grey;
+    margin-top: 10px;
+    background-color: #f8f6f6;
+    border: none;
     border-radius: 10px;
     font-family: 'Noto Sans KR', sans-serif;  
 }
 
 #messageInput:focus {
     outline: none; 
-    border-color: #004F25;
+    border-color: #2dd77c;
 }
 
 #sendButton {
     padding: 8px 15px;
-    background-color: #f8f6f6;
-    color: black;
-    border: 1.5px solid #004F25;
+    color: white;
+    background-color: rgb(154, 200, 108);
     border-radius: 5px;
+    border:none;
     cursor: pointer;
-    transition: background-color 0.3s; 
     font-family: 'Noto Sans KR', sans-serif;  
 }
 
 #sendButton:hover,
 #sendButton:active {
-    background-color: #004F25; 
+    background-color: #29b56b; 
     color: white; 
 }
 
+#inputmsg{
+    width: 390px;
+    position: fixed;
+    bottom: 70px;
+    background-color: white;
+}
 
 nav {
     position: fixed;

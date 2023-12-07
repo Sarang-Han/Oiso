@@ -28,7 +28,7 @@
         </div>    
         
         
-        <div>
+        <div id="inputmsg">
             <input type="text" id="messageInput" placeholder="메시지 입력">
             <button id="sendButton" onclick="sendMessage('{{ item_key }}')">전송</button>
         </div>
@@ -54,8 +54,9 @@
                         if (xhr.status === 200) {
                             var chatBox = document.getElementById("chatBox");
                             var newMessage = document.createElement("p");
-                            newMessage.textContent = message;
+                            newMessage.innerHTML = "<strong>{{ user_id }}: </strong>" + message; // 표시할 메시지 내용을 사용자 ID와 함께 구성
                             chatBox.appendChild(newMessage);
+
                     
                             messageInput.value = "";
                     
