@@ -22,18 +22,17 @@
         {% if total > 0 %}
             {% for key, value in lists %}
                 <div class="item">
-                    <img src="{{value.img_path}}" width="90px" alt="상품 사진">
+                    <img src="{{value.img_path}}" width="100px" height="100px" alt="상품 사진">
                     <div class="item-details">
-                        <h4>{{value.name}}</h4>
-                        <p>구매가격: {{value.price}}원</p>
+                        <b>{{value.name}}</b>
+                        <p>{{value.price}}원</p>
                         {% if value.reviewed %}
-                            <button disabled onclick="location.href='/리뷰작성하기/{{value.item_key}}/';">리뷰 작성</button>
+                            <button id="review_com" disabled onclick="location.href='/리뷰작성하기/{{value.item_key}}/';">리뷰 작성</button>
                         {% else %}
-                            <button onclick="location.href='/리뷰작성하기/{{value.item_key}}/';">리뷰 작성</button>
+                            <button id="review" onclick="location.href='/리뷰작성하기/{{value.item_key}}/';">리뷰 작성</button>
                         {% endif %}
                     </div>
                 </div>
-                <br><br>
                 <hr>
             {% endfor %}
         {% else %}

@@ -7,15 +7,12 @@ body {
     font-family: 'Noto Sans KR', sans-serif;  
     margin: 0 auto;
     width: 390px;
-    min-height: 100vh;
+    min-height: 130vh;
     padding: 20px;
     background-color: white;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-a{
-    text-decoration: none;
-}
 
 header {
     background-color: #ffffff;
@@ -43,97 +40,60 @@ header h3{
     padding-bottom:60px;
 }
 
-.listarea button:hover{
-    filter:brightness(130%);
-}
-
-.listarea h4{
-    font-size: 20px;
-    margin-top: 0;
-    margin-bottom: 8px;
-}
-
-.listarea p{
-    font-size: 16px;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.listarea img{
-    width:100px;
-    height: 100px;
-    border-radius: 10px;
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
-}
-
-.item button {
-    display: block;
-    margin-top: 20px;
-    margin-left: 0;
-    border-radius: 10px;
-    background-color: darkgreen;
-    border: none;
-    width: 100px;
-    height: 30px;
-    color: white;
-
-}
-
-.item button:disabled {
-    display: block;
-    margin-top: 20px;
-    margin-left: 0;
-    border-radius: 10px;
-    background-color: rgb(131, 131, 131);
-    border: none;
-    width: 100px;
-    height: 30px;
-    color: white;
-
-}
 
 .item {
     display: inline-block;
 }
 
+p{
+    font-size: 13px;
+    color:#626161;
+}
+.item {
+    position: relative;
+    margin: 20px;
+}
 
 .item-details {
     display: inline-block;
     vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
-}
-
-.button-container {
-    display: flex; 
-    gap: 20px; 
-}
-
-.write-review {
-    display: block;
-    margin-top: 10px;
-    margin-left: 0;
-    border-radius: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: lightgray;
-    border: none;
-    color: black;
-
-}
-
-.button-container button{
-    margin-top: 10px;
-    background-color: gray;
-    width: 70px;
-    height: 30px;
-    border: none;
+    margin-left: 15px;
+    width:200px;
+    height: 85px;
 }
 
 .no-items p {
     text-align: center;
+}
+
+#review {
+    display: block;
+    border-radius: 10px;
+    background-color: #004F25;
+    border: none;
+    width: 90px;
+    height: 30px;
+    color: white;
+    margin-top: 20px;
+    animation: floatAnimation 0.7s ease-in-out infinite alternate;
+    cursor: pointer;
+}
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(5px); /* 움직이는 거리 조절 */
+    }
+}
+#review_com {
+    display: block;
+    border-radius: 10px;
+    background-color: rgb(131, 131, 131);
+    border: none;
+    width: 90px;
+    height: 30px;
+    color: rgb(206, 206, 206);
     margin-top: 20px;
 }
 
