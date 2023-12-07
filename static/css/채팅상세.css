@@ -36,9 +36,7 @@ header h3{
 }
 
 #chatBox {
-    border: 1px solid #ccc;
     padding: 10px;
-    height: 450px;
     overflow-y: auto;
 }
 
@@ -49,15 +47,25 @@ header h3{
     border-radius: 5px;
 }
 
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* 움직이는 거리 조절 */
+    }
+}
+
 #chatBox p {
     font-size: 15px;
-    margin-bottom: 8px;
     padding: 8px;
+    margin: 20px;
     border-radius: 14px;
     overflow: hidden;
-    background-color: #f2f2f2;
     color: black;
-    border: none;
+    box-shadow: 5px 5px 10px 0 rgba(217, 214, 214, 0.8);
+    background-image: linear-gradient(to right,rgb(229, 236, 224), #f0f4ea);
+    animation: floating 3s ease-in-out infinite;
 }
 
 #messageInput {

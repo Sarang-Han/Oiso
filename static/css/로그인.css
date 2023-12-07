@@ -3,6 +3,19 @@ html{
     font-family: 'Noto Sans KR', sans-serif;
 }
 
+.float-image {
+    animation: floatAnimation 1s ease-in-out infinite alternate;
+}
+
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-9px); /* 움직이는 거리 조절 */
+    }
+}
+
 body {
     margin: 0;
     padding: 0;

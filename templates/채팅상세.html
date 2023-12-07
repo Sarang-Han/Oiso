@@ -54,7 +54,7 @@
                         if (xhr.status === 200) {
                             var chatBox = document.getElementById("chatBox");
                             var newMessage = document.createElement("p");
-                            newMessage.innerHTML = "<strong>{{ user_id }}: </strong>" + message; // 표시할 메시지 내용을 사용자 ID와 함께 구성
+                            newMessage.innerHTML = "<strong>{{ user_id }} : </strong>" + message; // 표시할 메시지 내용을 사용자 ID와 함께 구성
                             chatBox.appendChild(newMessage);
 
                     
