@@ -119,13 +119,13 @@
         <img src="{{ url_for('static', filename='image/' + seller_profile) }}" width="70px" style="display: inline;">
         </div>
     </a>
-    <p>{{ seller_name }} @{{ data['seller'] }}</p>
+    <h3>{{ seller_name }} @{{ data['seller'] }}</h3>
 </div>
 <div class="productinfo">
     <h2>{{ data['name'] }}</h2><hr>
-    <p>등록 일시: {{ data['date'] }}</p>
-    <p>거래 장소: {{ data['place'] }}</p>
-    <p>상태: 
+    <p class="info">등록 일시: {{ data['date'] }}</p>
+    <p class="info">거래 장소: {{ data['place'] }}</p>
+    <p class="info">상태: 
         {% if data['status'] == 'new' %}
         새상품(미개봉)
         {% elif data['status'] == 'barely_used'%}
