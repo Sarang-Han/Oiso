@@ -77,11 +77,9 @@ header h3{
     height: 30px;
 }
 
-
-.none img{
-    margin-left: 20px;
-    margin-top: 15px;
-    margin-bottom: 0px;
+.no-items p {
+    text-align: center;
+    margin-top: 20px;
 }
 
 nav {
