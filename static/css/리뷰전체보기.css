@@ -23,6 +23,7 @@ header {
     justify-content: center;
     align-items: center;
     position: relative;
+    margin-bottom: 15px;
 }
 
 
@@ -161,6 +162,10 @@ nav .nav-active img{
     height: 100%;
     margin-bottom: 5%;
     justify-content: center;
+}
+
+.review-title-overlay:hover {
+    color: darkgreen;
 }
 
 .review-title-overlay {

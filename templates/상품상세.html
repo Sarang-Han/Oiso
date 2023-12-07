@@ -122,9 +122,10 @@
     <p>{{ seller_name }} @{{ data['seller'] }}</p>
 </div>
 <div class="productinfo">
-    <h3>{{ data['name'] }}</h3><p>등록 날짜 : {{ data['date'] }}</p>
-    <p>거래 지역 : {{ data['place'] }}</p>
-    <p>상태 : 
+    <h2>{{ data['name'] }}</h2>
+    <p>등록 일시: {{ data['date'] }}</p>
+    <p>거래 지역: {{ data['place'] }}</p>
+    <p>상태: 
         {% if data['status'] == 'new' %}
         새상품(미개봉)
         {% elif data['status'] == 'barely_used'%}

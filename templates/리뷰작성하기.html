@@ -29,14 +29,14 @@
             <br>
             <input type="hidden" name="item_key" value="{{ item_key }}">
             <p>상품명</p>
-            <input type="text" name="name" id="name" class="bottom" value="{{data.name}}" readonly>
+            <input type="text" name="name" id="name" class="tb" value="{{data.name}}" readonly>
             <p>리뷰자 ID</p>
-            <input type="text" name="buyer_id" class="bottom" value="{{buyer_id}}" readonly>
+            <input type="text" name="buyer_id" class="tb" value="{{buyer_id}}" readonly>
             <input type="hidden" name="seller_id" value="{{ data.seller }}"> <!--판매자ID 숨기고 db저장-->
             <p>상품 가격</p>
-            <input type="text" name="price" id="price" class="bottom" value="{{data.price}}원" readonly>
+            <input type="text" name="price" id="price" class="tb" value="{{data.price}}원" readonly>
             <p>리뷰 제목</p>
-            <input type="text" name="title" id="title" class="bottom" required>
+            <input type="text" name="title" id="title" class="tb" required>
             <p>리뷰 내용</p>
             <textarea name="content" id="content" rows="10" style="vertical-align: top;" placeholder="상품 리뷰를 20자 이상 입력해주세요." required></textarea>
     

@@ -68,6 +68,10 @@ select:focus {
     justify-content: center;
 }
 
+.product-name-overlay:hover {
+    color: darkgreen;
+}
+
 .product-name-overlay {
     position: absolute;
     bottom: 0;
