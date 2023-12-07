@@ -93,6 +93,7 @@ header button{
     border: 2px solid #ddd;
     transition: border-color 0.3s;
     padding: 5px;
+    background-color: #f8f6f6;
 }
 
 .line:hover,
@@ -110,7 +111,7 @@ select {
     line-height: 1.5;
   
     color: #444;
-    background-color: #fff;
+    background-color: #f8f6f6;
   
     padding: 0.5em 1.2em 0.4em 0.8em;
     margin: 0;
@@ -137,6 +138,7 @@ select:focus {
     padding: 10px;
     border: 2px solid #ddd;
     border-radius: 12px;
+    background-color: #f8f6f6;
 }
 
 textarea:hover,
