@@ -39,9 +39,22 @@
     </div>
     <div class="add">
         <label for="seller"><p>판매자 ID</p></label>
-        <input type="text" name="seller" id="seller" class="line" value="{{ seller_id }}" readonly>
+        <input type="text" name="seller" id="seller" class="line" value="{{ seller_id }}" readonly >
         <label for="name"><p>상품명</p></label>
-        <input type="text" name="name" id="name" class="line" required>
+        <input type="text" name="name" id="name" class="line" required placeholder="상품의 이름을 적어주세요">
+        
+        <label for="price"><p>가격</p></label>
+        <input type="text" name="price" id="price" class="line" required placeholder=" 상품의 가격을 적어주세요 (원 생략)">
+        <label for="status"><p>상태</p></label>
+        <div class="category">
+            <select id="status" name="status">
+                <option value="default">선택하세요</option>
+                <option value="new">새상품(미개봉)</option>
+                <option value="barely_used">거의 사용 안함</option>
+                <option value="lightly_used">약간 사용함</option>
+                <option value="living">많이 사용함</option>
+            </select>
+        </div>
         <label for="category"><p>카테고리</p></label>
         <div class="category">
             <select id="category" name="category">
@@ -53,18 +66,7 @@
                 <option value="etc">기타</option>
             </select>
         </div>
-        <label for="price"><p>가격</p></label>
-        <input type="text" name="price" id="price" class="line" required>
-        <label for="status"><p>상태</p></label>
-        <div class="category">
-            <select id="status" name="status">
-                <option value="default">선택하세요</option>
-                <option value="new">새상품(미개봉)</option>
-                <option value="barely_used">거의 사용 안함</option>
-                <option value="lightly_used">약간 사용함</option>
-                <option value="living">많이 사용함</option>
-            </select>
-        </div>
+        
         <label for="place"><p>거래 지역</p></label>
         <div class="category">
             <select id="place" name="place">
@@ -81,6 +83,7 @@
                 <option value="중앙도서관">중앙도서관</option>
             </select>
         </div>
+        
         <label for="description"><p>상품 설명</p></label>
         <textarea name="description" id="description" cols="30" rows="10" required placeholder="상품의 자세한 설명을 적어주세요!"></textarea>
     </div>

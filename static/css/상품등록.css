@@ -126,7 +126,6 @@ select {
     line-height: 1.5;
   
     color: #444;
-    background-color: #f8f6f6;
     transition: border-color 0.3s;
   
     padding: 0.5em 1.2em 0.6em 0.8em;
@@ -150,12 +149,12 @@ select:focus {
 
 .add textarea {
     width: 355px;
+    height: 150px;
     font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
     padding: 10px;
     border: 2px solid #f8f6f6;
     border-radius: 12px;
-    background-color: #f8f6f6;
     transition: border-color 0.3s;
 }
 
