@@ -37,6 +37,10 @@ header button{
     margin-bottom: 10px;
 }
 
+.info {
+    color:#9a9a9a;
+}
+
 .image-slider {
     width: 300px;
     overflow: hidden;
