@@ -111,7 +111,10 @@ nav .nav-active img{
     margin-top: 10px;
     margin: 0 30px;
     margin-bottom: 60px;
+    margin-top: 20px;
     font-family: 'Noto Sans KR', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 3px #f2f2f2;
 }
 
 .review-section img{
@@ -141,7 +144,7 @@ nav .nav-active img{
 }
 
 .review-header-block:hover{
-    background-color: #004F25;
+    background-color: #4e7560;
 }
 
 .review-header-block:hover a{
@@ -249,10 +252,6 @@ img[src="../static/image/logout.png"]{
     transition: transform .5s;
 }
 
-.review-section{
-    border-radius: 10px;
-    box-shadow: 0 0 5px 3px #f2f2f2;
-}
 
 #isid {
     font-size: 15px;
