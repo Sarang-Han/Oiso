@@ -26,15 +26,15 @@
                 <input type="file" id="profile" name="profile" accept="image/*" style="display: none; visibility: none;" onchange="previewImage(event)">
             </div>
             <p>이름 <span class=req>*</span></p>
-            <input type="text" id="name" name="name" class="join">
+            <input type="text" id="name" name="name" class="join" placeholder=" 이름">
             <p>아이디 <span class=req>*</span></p> 
             <input type="text" id="id" name="id" class="join" placeholder=" 아이디">
             <p>비밀번호 <span class=req>*</span></p> 
             <input type="password" id="pw" name="pw" class="join" placeholder=" 비밀번호">
             <p>이메일 <span class=req>*</span></p> 
-            <input type="text" id="email" name="email" class="join">
+            <input type="text" id="email" name="email" class="join" placeholder=" 이메일">
             <p>전화번호</p>
-            <input type="text" id="phone" name="phone" class="join">
+            <input type="text" id="phone" name="phone" class="join" placeholder=" ex) 01012345678">
 
             {% with messages = get_flashed_messages() %}
             {% if messages %}
