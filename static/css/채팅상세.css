@@ -65,9 +65,9 @@ header h3{
     padding: 8px;
     margin-top: 30px;
     margin-right: 5px;
-    border: 1px solid grey;
+    border: 1.5px solid grey;
     border-radius: 10px;
-
+    font-family: 'Noto Sans KR', sans-serif;  
 }
 
 #messageInput:focus {
@@ -79,10 +79,11 @@ header h3{
     padding: 8px 15px;
     background-color: #f8f6f6;
     color: black;
-    border: 1px solid #004F25;
+    border: 1.5px solid #004F25;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s; 
+    font-family: 'Noto Sans KR', sans-serif;  
 }
 
 #sendButton:hover,
