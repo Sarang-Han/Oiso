@@ -21,3 +21,7 @@ function filterByCategory() {
     var selectedCategory = document.getElementById('category').value;
     window.location.href = `/메인화면?category=${selectedCategory}`;
 }
+
+window.onload = function() {
+    document.body.classList.add('loaded'); // body 요소에 'loaded' 클래스 추가하여 페이드 인 효과를 보여줌
+  };

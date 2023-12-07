@@ -36,30 +36,45 @@ header button{
     height: 300px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 10px;
+    background-color: rgb(250, 249, 249);
 }
-
-.info {
-    color: darkgreen;
+p.info{
+    color:gray;
+    font-size: 15px;
+}
+span.info1 {
+    border: rgb(157, 157, 157);
+    background-color: #ecf8cc;
+    color:rgb(27, 123, 23);
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px;
+    border-radius: 4px;
+    padding: 2px 12px;
+    margin-right: 5px;
+    font-size: 15px;
 }
-
+span.info2 {
+    border: rgb(157, 157, 157);
+    background-color: #e6eefa;
+    color:#58559d;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-radius: 4px;
+    padding: 2px 12px;
+    margin-right: 5px;
+    font-size: 15px;
+}
 .image-slider {
-    width: 300px;
+    
     overflow: hidden;
     margin: auto;
+}
+
+.image-slider img{
+    width: 80%;
 }
 
 .slide {
     display: flex;
     transition: transform 0.5s ease;
-}
-
-.slide img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
 }
 
 .slider-btn {
@@ -85,15 +100,13 @@ header button{
     align-items: center;
     left: 50%;
     transform: translateX(-5%);
-    background-color: #eeeeee;
+    background-color: #ffffff;
     padding: 10px 20px;
-    width: 392px;
+    width: 350px;
+    border-bottom: 1px solid #d9d9d9;
+    margin: 15px;
 }
 
-.seller a {
-    text-decoration: none;
-    margin-right: 30px;
-}
 
 .profile-circle {
     width: 70px;
@@ -106,19 +119,13 @@ header button{
 
 .profile-circle img {
     width: 100%;
-    height: auto;
+    height: 100px;
 }
 
 .seller p {
     margin: 0;
     font-size: 18px;
     font-weight: bold;
-}
-
-.seller span {
-    margin-bottom: 20px;
-    padding: 30px;
-    align-items: flex-start;
 }
 
 .productinfo {
@@ -131,10 +138,11 @@ header button{
     left: 50%;
     transform: translateX(-50%);
     width: 430px;
-    background-color: #eeeeee;
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     height: 70px;
+    border-top: 1px solid #d9d9d9;
 }
 
 .pricebar img {
@@ -149,7 +157,7 @@ header button{
 }
 
 .pricebar #chat1 {
-    padding: 10px 30px;
+    padding: 10px 20px;
     margin-right: 30px;
     background-color: #c1c1c1;
     color: #9a9a9a;
@@ -160,7 +168,7 @@ header button{
 }
 
 .pricebar #chat2 {
-    padding: 10px 30px;
+    padding: 10px 20px;
     margin-right: 30px;
     background-color: #004f25;
     color: #fff;
@@ -206,4 +214,5 @@ nav .nav-active img{
 #isid {
     font-size: 15px;
     color:rgb(144, 156, 128);
+    margin-left: 10px;
 }

@@ -22,7 +22,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 130vh;
     background-color: #f0f0f0;
     font-family: 'Noto Sans KR', sans-serif;
 }

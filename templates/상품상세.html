@@ -125,10 +125,10 @@
     <h3>{{ seller_name }}<span id="isid">{{ data['seller'] }}</span></h3> 
 </div>
 <div class="productinfo">
-    <h2>{{ data['name'] }}</h2><hr>
-    <p class="info">등록 일시: {{ data['date'] }}</p>
-    <p class="info">거래 장소: {{ data['place'] }}</p>
-    <p class="info">상태: 
+    <h2>{{ data['name'] }}</h2>
+    <p class="info">{{ data['date'] }}</p>
+    <span class="info1"> <b>{{ data['place'] }}</b></span>
+    <span class="info2"><b>
         {% if data['status'] == 'new' %}
         새상품(미개봉)
         {% elif data['status'] == 'barely_used'%}
@@ -138,11 +138,11 @@
         {% else %}
         많이 사용함
         {% endif %}
-    </p><hr>
+    </b></span>
     <p class="descr">{{ data['description'] | safe }}</p>
 </div>
 <div class="pricebar">
-    <img id="oi" src="{{ url_for('static', filename='image/oi.png') }}" width="40px" style="display: inline;">
+    <img id="oi" src="{{ url_for('static', filename='image/oi.png') }}" width="40px" style="display: inline; border-radius:50%;">
     <span>{{ data['price'] }}원</span>
     {% if seller_id == my_id %}
         <button id="chat1">채팅하기</button><!-- 채팅 화면 연결X -->
