@@ -1,5 +1,6 @@
 html{
-    background-color: #f0f0f0;    
+    background-color: #f0f0f0;  
+    font-family: 'Noto Sans KR', sans-serif;  
 }
 
 body {
@@ -10,6 +11,7 @@ body {
     align-items: center;
     min-height: 140vh;
     background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 header {
@@ -108,12 +110,13 @@ select {
 
     font-size: 13px;
     font-weight: 400;
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.5;
   
     color: #444;
     background-color: #f8f6f6;
   
-    padding: 0.5em 1.2em 0.4em 0.8em;
+    padding: 0.5em 1.2em 0.6em 0.8em;
     margin: 0;
   
     border: 2px solid #ddd;
@@ -129,11 +132,12 @@ select:focus {
 .category {
     text-align: left;
     margin-bottom: 10px;
+    font-family: 'Noto Sans KR';
 }
 
 .add textarea {
     width: 355px;
-    font-family: Arial;
+    font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
     padding: 10px;
     border: 2px solid #ddd;

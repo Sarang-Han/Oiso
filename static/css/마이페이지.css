@@ -1,5 +1,6 @@
 html{
-    background-color: #f0f0f0;    
+    background-color: #f0f0f0;   
+    font-family: 'Noto Sans KR', sans-serif; 
 
 }
 
@@ -34,7 +35,7 @@ nav {
     justify-content: center;
     align-items: center;
     height: 60px;
-    
+    font-family: 'Noto Sans KR', sans-serif;
 }
 nav a {
     text-decoration: none;
@@ -76,6 +77,7 @@ nav .nav-active img{
 
 .menu{
     height: 140px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .myMenu{
@@ -109,7 +111,7 @@ nav .nav-active img{
     margin-top: 10px;
     margin: 0 30px;
     margin-bottom: 60px;
-    
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .review-section img{

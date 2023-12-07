@@ -1,5 +1,6 @@
 html{
     background-color: #f0f0f0;    
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
@@ -39,7 +40,7 @@ header button{
 
 .info {
     color: darkgreen;
-    font-family: Arial;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 13px;
 }
 
@@ -151,6 +152,7 @@ header button{
     margin-right: 30px;
     background-color: #c1c1c1;
     color: #9a9a9a;
+    font-family: 'Noto Sans KR', sans-serif;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -161,6 +163,7 @@ header button{
     margin-right: 30px;
     background-color: #004f25;
     color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
     border: none;
     border-radius: 10px;
     cursor: pointer;

@@ -1,5 +1,6 @@
 html{
-    background-color: #f0f0f0;    
+    background-color: #f0f0f0;
+    font-family: 'Noto Sans KR', sans-serif;    
 }
 
 body { 
@@ -9,6 +10,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 a{

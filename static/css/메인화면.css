@@ -1,5 +1,6 @@
 html{
-    background-color: #f0f0f0;    
+    background-color: #f0f0f0; 
+    font-family: 'Noto Sans KR', sans-serif;   
 }
 
 body {
@@ -23,6 +24,7 @@ select {
 
     font-size: 13px;
     font-weight: 400;
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.5;
   
     color: #444;
