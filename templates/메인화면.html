@@ -62,7 +62,7 @@
             <ul>
                 <li>
                     {% for i in range(page_count) %}
-                        <a href="{{url_for('main', page=i)}}">{{i}}</a>
+                        <a href="{{url_for('main', page=i)}}">{{i+1}}</a>
                     {% endfor %}
                 </li>
             </ul>
