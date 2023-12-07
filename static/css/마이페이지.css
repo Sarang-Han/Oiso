@@ -11,7 +11,12 @@ body {
     min-height: 130vh;
     padding: 20px;
     background-color: white;
+    opacity: 0.8;
+    transition: opacity 0.5s ease-in-out; 
 }
+body.loaded {
+    opacity: 1; /* 페이지가 로드되면 투명도를 0에서 1로 변경하여 나타나게 함 */
+  }
 
 a{
     text-decoration: none;

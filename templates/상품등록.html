@@ -112,6 +112,10 @@
 
             window.location.href = "/메인화면";
         }
+
+        window.onload = function() {
+            document.body.classList.add('loaded'); // body 요소에 'loaded' 클래스 추가하여 페이드 인 효과를 보여줌
+          };
     </script>
     <script src="{{ url_for('static', filename='js/상품등록.js') }}"></script>
 </body>
