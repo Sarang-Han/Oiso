@@ -6,7 +6,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0 auto;
     width: 390px;
-    min-height: 140vh;
+    min-height: 100vh;
     padding: 20px;
     background-color: white;
 }
@@ -36,26 +36,33 @@ header button{
 
 .profile{
     font-size: 20px;
-    margin: 10px;
+    margin: 0 10px;
+    margin-top:10px;
     padding: 10px 0;
+    position: relative;
     
 }
 
 .review_star{
     position:inherit;
     float: right;
-    color:#004F25
+    color:#004F25;
+    position:absolute;
+    top:15%;
+    right: 0%;
 
 }
 
 .review_title{
     margin: 10px;
     padding-bottom: 10px;
+    font-size: 16px;
 }
 
 .review_title h3{
     margin-bottom: 5px;
     font-size: 20px;
+    margin-top:15px;
 }
 
 nav {
@@ -131,10 +138,21 @@ nav .nav-active img{
     object-fit: cover;
 }
 .review-content {
-    background-color: #f2f2f2;
+    background-color: white;
     padding: 15px;
     height: 400px;
     margin: 0 40px;
     font-size: 18px;
     margin-bottom: 60px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 3px #f2f2f2;
+    
 }
+
+/*이건 클릭하는 거 없이 텍스트 띄워주기만 하는 창이라 hover 따로 안 넣었어요!
+하지만 혹시 필요하다면 ↓↓↓
+
+.review-content:hover{
+    background-color: #f2f2f2;
+}
+*/
