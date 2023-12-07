@@ -115,10 +115,6 @@ input{
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-input:hover,
-input:focus {
-    border-color: darkgreen;
-}
 
 select {
     -moz-appearance: none;
@@ -153,6 +149,17 @@ select:focus {
 }
 
 .add textarea {
+    width: 355px;
+    height: 150px;
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 2px solid #f8f6f6;
+    border-radius: 12px;
+    transition: border-color 0.3s;
+}
+
+#title{
     width: 355px;
     height: 150px;
     font-family: 'Noto Sans KR', sans-serif;
