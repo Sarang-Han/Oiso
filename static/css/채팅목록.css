@@ -1,7 +1,8 @@
 html{
-    background-color: #f0f0f0; 
-    font-family: 'Noto Sans KR', sans-serif;   
+    background-color: #f0f0f0;   
+    font-family: 'Noto Sans KR', sans-serif; 
 }
+
 
 body { 
     font-family: 'Noto Sans KR', sans-serif;
@@ -21,90 +22,100 @@ header {
     position: relative;
 }
 
+
+header button{
+    position: absolute;
+    left: 0px;
+    background-color: transparent;
+    border: none;
+
+}
+
 header h3{
     position: relative;
 }
 
-.listarea{
-    padding-bottom:60px;
-}
-
 .item {
-    display: inline-block;
+    padding: 20px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
 }
 
-.item img {
-    vertical-align: top;
-    margin-left: 20px;
-    margin-top:30px;
+.item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(240, 240, 240, 0) 80%);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    transition: all 0.5s ease;
+    opacity: 0;
 }
+
+.item:hover::before {
+    opacity: 1;
+}
+
+.item:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.5s ease;
+}
+
+.item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 80%);
+    z-index: 2;
+    transition: all 0.5s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.item:hover::after {
+    opacity: 1;
+}
+
 
 .item-details {
     display: inline-block;
     vertical-align: top;
-    margin-left: 35px;
-    margin-top:30px;
+    margin-left: 15px;
+    width:200px;
+    height: 85px;
 }
 
-.item-details h4 {
-    font-size: 14px;
-    margin-top: 0;
-    width: 210px;
+.no-items p {
+    text-align: center;
 }
 
-.item-details p {
-    font-size: 12px;
-    margin-top: 0;
-}
-
-.item-details h4 a {
-    font-size: 16px;
-    margin-top: 0;
-    color: #333; /* 텍스트 색상 변경 */
-    text-decoration: none;
-}
-
-
-.item-details #buying {
+#buying {
     display: block;
-    margin-top: 40px;
-    margin-left: 0;
     border-radius: 10px;
     background-color: #004F25;
     border: none;
     width: 90px;
     height: 30px;
     color: white;
-
+    margin-top: 20px;
 }
 
-.item-details #buying_com {
+#buying_com {
     display: block;
-    margin-top: 20px;
-    margin-left: 0;
     border-radius: 10px;
     background-color: rgb(131, 131, 131);
     border: none;
-    width: 100px;
+    width: 90px;
     height: 30px;
     color: rgb(206, 206, 206);
-
-}
-
-
-.none {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-left: -8%;
-    margin-top: 160px;
-}
-
-.none p {
-    font-size: 17px;
-    text-align: center;
+    margin-top: 20px;
 }
 
 nav {

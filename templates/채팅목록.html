@@ -18,31 +18,29 @@
     <div class="listarea">
         {% if sell_total > 0 or buy_total > 0 %}
             {% for key, value in item_info_list.items() %}
-                <div class="item">
-                        <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
+                <div class="item" onclick="goToChat('{{ key }}')">
+                        <img src="{{ value.img_path }}" width="100px" height="100px" alt="상품 사진">
                         <div class="item-details">
-                            <h4><a href="{{ url_for('chat_detail', item_key=key) }}">{{ value.name }} 채팅방</a></h4>
+                            <b>{{ value.name }} 채팅방</b>
                         </div>
                 </div>
-                <br><br>
                 <hr>
+    
             {% endfor %}
             {% for key, value in buyer_chatlist.items() %}
-                <div class="item">
-                    <a href="{{ url_for('chat_detail', item_key=key) }}">
-                        <img src="{{ value.img_path }}" width="90px" alt="상품 사진">
+            <div class="item" onclick="goToChat('{{ key }}')">
+                    
+                    <img src="{{ value.img_path }}" width="100px" height="100px" alt="상품 사진">
                         <div class="item-details">
-                            <h4><a href="{{ url_for('chat_detail', item_key=key) }}">{{ value.name }} 채팅방</a></h4>
+                            <b>{{ value.name }} 채팅방</b>
                             {% if key in buylist %}
                                     <input type=button id="buying_com" value="구매완료">
                                 {% else %}
                                     <input type=button id="buying" value="구매완료"
-                                    onclick="location.href='/buying_complete?name={{ value.name }}&price={{value.price}}&img_path={{value.img_path}}&item_key={{key}}';">
+                                    onclick="location.href='/buying_complete?name={{ value.name }}&price={{ value.price }}&img_path={{ value.img_path }}&item_key={{ key }}';">
                                 {% endif %}
                         </div>
-                    </a>
                 </div>
-                <br><br>
                 <hr>
             {% endfor %}
         {% else %}
@@ -67,6 +65,15 @@
     </nav>
 
 </div>
+
+<script>
+    function goToChat(key) {
+        if (!event.target.matches('#buying, #buying_com')) {
+            var url = "{{ url_for('chat_detail', item_key= '') }}" + key;
+            window.location.href = url;
+        }
+    }
+</script>
 
 </body>
 </html>
