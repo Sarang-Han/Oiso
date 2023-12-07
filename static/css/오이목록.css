@@ -56,12 +56,13 @@ header h3{
 }
 
 .item-details h4 {
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 0;
+    margin-bottom: 8px;
 }
 
 .item-details p {
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 0;
 }
 
