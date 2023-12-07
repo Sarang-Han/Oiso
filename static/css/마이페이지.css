@@ -64,6 +64,7 @@ nav .nav-active img{
     width:50px;
     display: inline;
     float: left;
+    border-radius: 50%;
 }
 
 .myProfile .user{
@@ -113,11 +114,6 @@ nav .nav-active img{
 
 .review-section img{
     border-radius: 10px;
-}
-
-.review-section img:not(img[src="../static/image/item.png"]){
-    /* box-shadow: 1px 1px 1px #808080; */
-    /* border: 1px solid #004F25; */
 }
 
 .review-header {
@@ -254,4 +250,9 @@ img[src="../static/image/logout.png"]{
 .review-section{
     border-radius: 10px;
     box-shadow: 0 0 5px 3px #f2f2f2;
+}
+
+#isid {
+    font-size: 15px;
+    color:rgb(144, 156, 128);
 }
