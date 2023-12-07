@@ -11,6 +11,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #f0f0f0;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .content {
@@ -41,6 +42,7 @@ input {
     transition: border-color 0.3s;
     padding: 5px;
     background-color: #f8f6f6;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 input:hover,
@@ -54,6 +56,7 @@ input:focus {
     height: 40px;
     background-color: rgb(11, 117, 60);
     color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
     border: none;
     border-radius: 5px;
     cursor: pointer;

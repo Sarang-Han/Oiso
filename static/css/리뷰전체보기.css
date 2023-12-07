@@ -198,8 +198,9 @@ nav .nav-active img{
 }
 
 .no-items p {
+    font-size: 17px;
     text-align: center;
-    margin-top: 160px;
+    margin-top: 215px;
 }
 
 .page{

@@ -4,7 +4,7 @@ html{
 }
 
 body { 
-    font-family: Arial, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     margin: 0 auto;
     width: 390px;
     min-height: 130vh;
@@ -28,14 +28,15 @@ header {
 
 header button{
     position: absolute;
-    left: 30px;
+    left: 0px;
     background-color: transparent;
     border: none;
 
 }
 
-header h3{
+header h4{
     position: relative;
+    text-align: center;
 }
 
 .picupload {
@@ -75,6 +76,7 @@ input{
     transition: border-color 0.3s;
     padding: 5px;
     background-color: #f8f6f6;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 input:hover,
@@ -88,6 +90,7 @@ input:focus {
     width: 384px;
     background-color: rgb(18, 133, 72);
     color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
     border: none;
     border-radius: 5px;
     cursor: pointer;
