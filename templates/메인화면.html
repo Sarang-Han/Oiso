@@ -9,6 +9,20 @@
     </script>
     <script src="{{ url_for('static', filename='js/메인화면.js') }}"></script>
     <title>오이소</title>
+    <style>
+        /* 이미지를 이용하여 아이콘 삽입 */
+        .category select {
+            padding-left: 20px; /* 아이콘과 텍스트 간격 조정 */
+            background-image: url('../static/image/down.png'); /* 이미지 경로 확인 */
+            background-repeat: no-repeat;
+            background-position: left center;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-size: 20px 20px;
+        }
+    </style>
+    
 </head>
 
 <body>
@@ -18,7 +32,7 @@
 
     <div class="category">
     <select id="category" onchange="filterByCategory()">
-        <option value="all">전체</option>
+        <option value="all">전체보기</option>
         <option value="clothes">의류/패션</option>
         <option value="furniture">가구/가전</option>
         <option value="electronics">전자기기</option>

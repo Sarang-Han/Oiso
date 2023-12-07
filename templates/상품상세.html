@@ -136,7 +136,7 @@
         많이 사용함
         {% endif %}
     </p><hr>
-    <p class="descr">{{ data['description'] }}</p><br>
+    <p class="descr">{{ data['description'] | safe }}</p>
 </div>
 <div class="pricebar">
     <img id="oi" src="{{ url_for('static', filename='image/oi.png') }}" width="40px" style="display: inline;">

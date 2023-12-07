@@ -82,6 +82,14 @@
             window.history.back();
         }
         function toMain() {
+            var descriptionText = document.getElementById("description").value;
+
+        // 줄 바꿈을 <br> 태그로 변경
+        var descriptionWithLineBreaks = descriptionText.replace(/\n/g, "<br>");
+
+        // 변경된 텍스트를 다시 textarea에 넣기 (예를 들어, 서버로 전송하기 전에)
+        document.getElementById("description").value = descriptionWithLineBreaks;
+
             window.location.href = "/메인화면";
         }
     </script>
