@@ -84,7 +84,8 @@ input:focus {
 
 .join-button {
     justify-content: center;
-    padding: 10px 170px; 
+    padding: 10px 20px; 
+    width: 384px;
     background-color: rgb(18, 133, 72);
     color: #fff;
     border: none;
