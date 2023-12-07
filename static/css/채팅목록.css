@@ -49,6 +49,7 @@ header h3{
 .item-details h4 {
     font-size: 14px;
     margin-top: 0;
+    width: 210px;
 }
 
 .item-details p {
