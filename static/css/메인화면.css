@@ -125,9 +125,14 @@ select:focus {
     align-items: center;
 }
 
-.page-nation a{
+.page-nation ul li a.other-page{
     text-decoration: none;
     color:black;
+}
+
+.page-nation ul li a.current-page {
+    color: darkgreen; /* 원하는 색상으로 변경하세요 */
+    font-weight: bold; /* 혹은 다른 스타일 변경을 원하는 경우 추가 설정 가능 */
 }
 
 nav {
