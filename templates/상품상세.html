@@ -122,9 +122,9 @@
     <p>{{ seller_name }} @{{ data['seller'] }}</p>
 </div>
 <div class="productinfo">
-    <h2>{{ data['name'] }}</h2>
+    <h2>{{ data['name'] }}</h2><hr>
     <p>등록 일시: {{ data['date'] }}</p>
-    <p>거래 지역: {{ data['place'] }}</p>
+    <p>거래 장소: {{ data['place'] }}</p>
     <p>상태: 
         {% if data['status'] == 'new' %}
         새상품(미개봉)

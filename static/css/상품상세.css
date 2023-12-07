@@ -34,6 +34,7 @@ header button{
     height: 300px;
     position: relative;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .image-slider {
