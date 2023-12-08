@@ -79,7 +79,7 @@
             <ul>
                 <li>
                     {% if page > 0 %}
-                    <a href="{{url_for('main', page=page-1)} class="no-underline"}"> Prev</a>
+                    <a href="{{url_for('main', page=page-1)}}" class="no-underline"> Prev</a>
                     {% endif %}
                 </li>
                 <li class="curr_pg">
@@ -89,7 +89,7 @@
                 </li>
                 <li>
                     {% if page < page_count - 1 %}
-                    <a href="{{url_for('main', page=page+1)} class="no-underline"}">Next </a>
+                    <a href="{{url_for('main', page=page+1)}}" class="no-underline">Next </a>
                     {% endif %}
                 </li>
             </ul>
