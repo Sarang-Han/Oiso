@@ -105,7 +105,7 @@ def welcome(username, profile):
 def main():
     selected_category = request.args.get('category', 'all')
     page = request.args.get("page", 0, type=int) # 현 페이지 인덱스
-    per_page = 12 # 페이지 상품 수
+    per_page = 15 # 페이지 상품 수
     start_idx = per_page * page
     end_idx = per_page * (page+1)
     data = DB.get_items()
@@ -210,7 +210,7 @@ def view_seller_detail2(seller_id):
 @application.route("/리뷰전체보기")
 def all_review():
     page = request.args.get("page", 0, type=int) # 현 페이지 인덱스
-    per_page = 12 # 페이지 상품 수
+    per_page = 18 # 페이지 상품 수
     start_idx = per_page * page
     end_idx = per_page * (page+1)
     data = DB.get_reviews()
