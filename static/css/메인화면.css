@@ -176,18 +176,22 @@ ul{
     font-weight: bold;
 }
 
-a:visited {
+.page-nation a:visited {
     text-decoration: none;
     color: black;
 }
 
-a:active {
+.page-nation a:active {
     text-decoration: none;
     color: black;
 }
 
 .no-underline {
     text-decoration: none;
+}
+
+ul.page-nation a {
+    margin-right: 20px;
 }
 
 nav {

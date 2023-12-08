@@ -251,18 +251,43 @@ ul{
     margin: 3px;
 }
 .page-nation{
+    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #d5eec7;
+    border: none;
     border-radius: 3px;
+    padding-left: 2px;
+    padding-right: 7px;
     padding-bottom: 1px;
+    background-color: #eef8e9;
+    color: darkgreen;
 }
 
-.page-nation a{
+.page-nation ul li a.other-page{
     text-decoration: none;
     color:black;
-}   /*리뷰 전체보기 끝*/
+}
+
+.page-nation ul li a.current-page {
+    text-decoration: none;
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.page-nation a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.page-nation a:active {
+    text-decoration: none;
+    color: black;
+}
+
+.no-underline {
+    text-decoration: none;
+}
 
 .spec-image-grid{
     background-color: #ffffff;
