@@ -158,19 +158,18 @@ ul{
     align-items: center;
     border: none;
     border-radius: 3px;
-    padding-left: 2px;
-    padding-right: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
     padding-bottom: 1px;
     background-color: #eef8e9;
-    color: darkgreen;
 }
 
-.page-nation ul li a.other-page{
+.page-nation ul li a#other-page{
     text-decoration: none;
     color:black;
 }
 
-.page-nation ul li a.current-page {
+.page-nation ul li a#current-page {
     text-decoration: none;
     color: darkgreen;
     font-weight: bold;

@@ -84,7 +84,7 @@
                 </li>
                 <li class="curr_pg">
                     {% for i in range(page_count) %}
-                    <a href="{{url_for('main', page=i)}}" {% if i == current_page %}class="current-page"{% else %}class="other-page"{% endif %}>{{i+1}}</a>
+                    <a href="{{url_for('main', page=i)}}" {% if i == current_page %}id="current-page"{% else %}id="other-page"{% endif %}>{{i+1}}</a>
                     {% endfor %}
                 </li>
                 <li>
