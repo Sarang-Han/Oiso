@@ -22,7 +22,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 130vh;
+    min-height: 100vh;
     background-color: #f0f0f0;
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -37,7 +37,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 h2 {
