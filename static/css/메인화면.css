@@ -155,8 +155,11 @@ ul{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid #ececec;
-    border-radius: 12px;
+    border: 2px solid #d5eec7;
+    border-radius: 3px;
+    padding-bottom: 1px;
+    background-color: #eef8e9;
+    color: darkgreen;
 }
 
 .page-nation ul li a.other-page{
