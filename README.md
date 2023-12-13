@@ -46,6 +46,10 @@
 <img src="https://github.com/Sarang-Han/Oiso/assets/144914664/1018f107-a48e-40a8-a74a-76934f2fa21d" width=100%>
 
 
+## 📋 Requirements
+
+<img width="100%" alt="스크린샷 2023-12-14 오전 12 25 40" src="https://github.com/Sarang-Han/Sarang-Han.github.io/assets/144914664/de847c8c-89bf-42ff-99f1-c4a84cdd1118">
+
 ## 🥗 Contributors
 
 |Front|Front|Front|Back|Back|Back|
