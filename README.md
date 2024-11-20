@@ -15,7 +15,7 @@
 오픈SW플랫폼 "**오이소박이**"팀의 팀프로젝트 "**오이소 Oiso**" 입니다. <br><br>
 이대생을 위한 이화 플리마켓, **오이소**에 어서오이소!<br>
 
-[OISO Tech Blog](https://sarang-han.github.io/) <<click here<br>
+[OISO Tech Blog](https://sarang-han.github.io/oiso-tech/) <<click here<br>
 
 ## 🥬 Key Features
 
